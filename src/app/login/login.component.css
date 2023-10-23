@@ -57,5 +57,12 @@
     .login{
         
         min-height: calc(100vh - 96px);
+        padding-bottom: 30px;
     }
 }
+/* @media (max-width:766px) {
+    .login{
+        
+        min-height: calc(100vh - 96px);
+    }
+} */

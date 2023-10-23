@@ -4,6 +4,7 @@
     background-size: cover;
     position: relative;
     z-index: 10;
+    min-height: calc(100vh - 166px);
 }
 .register::before{
     
@@ -53,4 +54,13 @@
 .haveAcount a{
     color: #cc8800;
     font-weight: bold;
+}
+
+
+@media (max-width:766px) {
+    .register{
+        
+        min-height: calc(100vh - 96px);
+        padding-bottom: 30px;
+    }
 }
