@@ -11,6 +11,18 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LawerComponent } from './lawer/lawer.component';
 import { AllLawerComponent } from './all-lawer/all-lawer.component';
+import { TestTopicComponent } from './test-topic/test-topic.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { TopicDeatailsComponent } from './topic-deatails/topic-deatails.component';
+import { ReservationComponent } from './reservation/reservation.component';
+import { LawerDetailsComponent } from './lawer-details/lawer-details.component';
+import { LandingSearchComponent } from './landing-search/landing-search.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { OneProductComponent } from './one-product/one-product.component';
+import { LawersTestComponent } from './lawers-test/lawers-test.component';
+import { OneLawersTestComponent } from './one-lawers-test/one-lawers-test.component';
+import { OneLawersReservationComponent } from './one-lawers-reservation/one-lawers-reservation.component';
 
 const routes: Routes = [
   {
@@ -57,6 +69,54 @@ const routes: Routes = [
   {
     path: 'alllawer',
     component: AllLawerComponent,
+  },
+  {
+    path: 'topic',
+    component: TestTopicComponent,
+  },
+  {
+    path: 'Reservation',
+    component: ReservationComponent,
+  },
+  {
+    path: 'oneLawerReservation/:id/:from/:to',
+    component: OneLawersReservationComponent,
+  },
+  {
+    path: 'landingSearch',
+    component: LandingSearchComponent,
+  },
+  {
+    path: 'adminProfile',
+    component: AdminProfileComponent,
+  },
+  {
+    path: 'userProfile',
+    component: UserProfileComponent,
+  },
+  {
+    path: 'topic/:id',
+    component: TopicDeatailsComponent,
+  },
+  {
+    path: 'lawerDetail/:id',
+    component: LawerDetailsComponent,
+  },
+  {
+    path: 'oneProduct/:id',
+    component: OneProductComponent,
+  },
+  {
+    path: 'lawersTest',
+    component: LawersTestComponent,
+  },
+  {
+    path: 'lawersTest/:id',
+    component: OneLawersTestComponent,
+  },
+  {
+    path: '**',
+    component: ErrorPageComponent,
   }
 ];
 

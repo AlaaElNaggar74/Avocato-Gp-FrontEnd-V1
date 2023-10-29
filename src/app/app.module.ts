@@ -29,7 +29,24 @@ import { LandingComponent } from './home/landing/landing.component';
 import { LawerComponent } from './lawer/lawer.component';
 import { AllLawerComponent } from './all-lawer/all-lawer.component';
 import { CommonModule } from '@angular/common';
+import { TestTopicComponent } from './test-topic/test-topic.component';
 // register Swiper custom elements
+import { FormsModule } from '@angular/forms';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { TopicDeatailsComponent } from './topic-deatails/topic-deatails.component';
+import { LandingSearchComponent } from './landing-search/landing-search.component';
+import { ReservationComponent } from './reservation/reservation.component';
+import { LawerDetailsComponent } from './lawer-details/lawer-details.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+// import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { OneProductComponent } from './one-product/one-product.component';
+import { LawersTestComponent } from './lawers-test/lawers-test.component';
+import { OneLawersTestComponent } from './one-lawers-test/one-lawers-test.component';
+import { OneLawersReservationComponent } from './one-lawers-reservation/one-lawers-reservation.component';
+
+
 register();
 @NgModule({
   declarations: [
@@ -55,12 +72,26 @@ register();
     LandingComponent,
     LawerComponent,
     AllLawerComponent,
+    TestTopicComponent,
+    ErrorPageComponent,
+    TopicDeatailsComponent,
+    LandingSearchComponent,
+    ReservationComponent,
+    LawerDetailsComponent,
+    AdminProfileComponent,
+    UserProfileComponent,
+    OneProductComponent,
+    LawersTestComponent,
+    OneLawersTestComponent,
+    OneLawersReservationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    FormsModule,
+    HttpClientModule
 
   ],
   providers: [],

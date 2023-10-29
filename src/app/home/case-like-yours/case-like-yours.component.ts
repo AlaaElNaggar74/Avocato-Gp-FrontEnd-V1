@@ -35,6 +35,8 @@ export class CaseLikeYoursComponent implements AfterViewInit {
       },
     },
   };
+
+  
   swiperParams2 = {
     slidesPerView: 2,
     breakpoints: {

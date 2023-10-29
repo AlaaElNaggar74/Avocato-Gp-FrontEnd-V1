@@ -1,0 +1,129 @@
+<div class="userProfile mt-5">
+  <div class="container border border-2 border-secondary">
+    <div class="headerUser">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-md-4">
+          <div class="leftPro d-flex align-items-center">
+            <div class="image me-3">
+              <div class="icon" (click)="openWindow('image')">
+                <i class="fa-solid fa-pen"></i>
+              </div>
+              <img [src]="image1" alt="" />
+              <div class="acvitPar">
+                <div class="iconActive"></div>
+              </div>
+              <div class="modal-dialog modal-dialog-centered"></div>
+            </div>
+            <div class="name">
+              <h5>Ahmed</h5>
+              <div class="icon" (click)="openWindow('name')">
+                <i class="fa-solid fa-pen"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-3 mt-md-0">
+          <div class="btnX text-center">
+            <button type="button" class="btn btn-outline-success me-3">
+              Public View
+            </button>
+            <button type="button" class="btn btn-success">
+              Public Setting
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="">
+      <div class="row">
+        <div class="titleAndPrice col-md-12 border border-1 border-secondary">
+          <div class=" ">
+            <div class="password mb-3">
+              <h5>Password</h5>
+
+              <div class="icon" (click)="openWindow('password')">
+                <i class="fa-solid fa-pen"></i>
+              </div>
+            </div>
+            <div class="address mb-3">
+              <h5>Cairo - Cairo - 5-Str</h5>
+              <div class="icon" (click)="openWindow('address')">
+                <i class="fa-solid fa-pen"></i>
+              </div>
+            </div>
+            <div class="mobile mb-3">
+              <h5>0112545252</h5>
+              <div class="icon" (click)="openWindow('mobile')">
+                <i class="fa-solid fa-pen"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divForm" *ngIf="openBool">
+    <form action="#" method="POST">
+      <div class="closBtn" (click)="closeWindow()">x</div>
+      <div class="mb-1" [ngClass]="openTabs == 'image' ? 'd-black' : 'd-none'">
+        <label for="name" class="form-label">Picture</label>
+        <input
+          type="file"
+          class="form-control"
+          id="image"
+          name="image"
+          aria-describedby="imageHelp"
+        />
+      </div>
+      <div
+        class="mb-1"
+        [ngClass]="openTabs == 'password' ? 'd-black' : 'd-none'"
+      >
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          aria-describedby="passwordHelp"
+        />
+      </div>
+      <div
+        class="mb-1"
+        [ngClass]="openTabs == 'address' ? 'd-black' : 'd-none'"
+      >
+        <label for="address" class="form-label">address</label>
+        <input
+          type="text"
+          class="form-control"
+          id="address"
+          name="address"
+          aria-describedby="addressHelp"
+        />
+      </div>
+      <div class="mb-1" [ngClass]="openTabs == 'name' ? 'd-black' : 'd-none'">
+        <label for="name" class="form-label">name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          aria-describedby="nameHelp"
+        />
+      </div>
+
+      <div class="mb-1" [ngClass]="openTabs == 'mobile' ? 'd-black' : 'd-none'">
+        <label for="mobile" class="form-label">mobile</label>
+        <input
+          type="text"
+          class="form-control"
+          id="mobile"
+          name="mobile"
+          aria-describedby="mobileHelp"
+        />
+      </div>
+
+      <button type="submit" class="btnSubmit">Submit</button>
+    </form>
+  </div>
+</div>

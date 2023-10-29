@@ -2,26 +2,23 @@
   <div class="container">
     <h2 class="ourClientHeader text-center">Our Client</h2>
     <div class="row col-11 col-md-9 col-lg-8 m-auto">
-      <swiper-container
-    
-      space-between="20"
-      >
-        <swiper-slide>
-          <div class="client">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-              doloremque ab iste nulla minus adipisci mollitia praesentium magni
-              porro quo.
-            </p>
-            <h5 class="text-center">
-              oooo <span class="subTitle">old Client</span>
-            </h5>
-            <div class="clientImage">
-                <img [src]="image" alt="">
+      <swiper-container space-between="20">
+        <swiper-slide *ngFor="let ob of objX">
+          <a [routerLink]="['/oneProduct', ob.id]">
+            <div class="client">
+              <p>created_at==> {{ ob.created_at }}</p>
+              <p>phone==> {{ ob.phone }}</p>
+              <p>email==> {{ ob.email }}</p>
+              <h5 class="text-center">
+                {{ ob.name }} <span class="subTitle"> ID:{{ ob.id }} </span>
+              </h5>
+              <div class="clientImage">
+                <img [src]="image" alt="" />
+              </div>
             </div>
-          </div>
+          </a>
         </swiper-slide>
-        <swiper-slide>
+        <!-- <swiper-slide>
           <div class="client">
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
@@ -65,8 +62,7 @@
                 <img [src]="image" alt="">
             </div>
           </div>
-        </swiper-slide>
-      
+        </swiper-slide> -->
       </swiper-container>
     </div>
   </div>

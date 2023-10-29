@@ -1,0 +1,192 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "nour-Json",
+      "email": "nour@gmail.com",
+      "image": "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
+      "phone": 1147240976,
+      "role": "user",
+      "email_verified_at": null,
+      "created_at": "2023-10-17T13:33:26.000000Z",
+      "updated_at": null,
+      "city_id": 1
+    },
+    {
+      "id": 2,
+      "name": "sara-Json",
+      "email": "sara@gmail.com",
+      "image": "https://i.dummyjson.com/data/products/8/1.jpg",
+      "phone": 1165122345,
+      "role": "lawyer",
+      "email_verified_at": null,
+      "created_at": "2023-10-19T13:06:12.000000Z",
+      "updated_at": null,
+      "city_id": 1
+    },
+    {
+      "id": 3,
+      "name": "ali",
+      "email": "ali@gmail.com",
+      "image": "https://i.dummyjson.com/data/products/9/1.jpg",
+      "phone": 46546545,
+      "role": "user",
+      "email_verified_at": null,
+      "created_at": "2023-10-25T14:56:53.000000Z",
+      "updated_at": "2023-10-25T14:56:53.000000Z",
+      "city_id": 1
+    },
+    {
+      "id": 4,
+      "name": "nader",
+      "email": "nader2@gmail.com",
+      "image": "https://i.dummyjson.com/data/products/10/1.jpg",
+      "phone": 5456454,
+      "role": "user",
+      "email_verified_at": null,
+      "created_at": "2023-10-25T14:57:34.000000Z",
+      "updated_at": "2023-10-25T18:28:50.000000Z",
+      "city_id": 1
+    }
+  ],
+  "lawers": [
+    {
+      "id": 1,
+      "title":"lawer",
+      "name": "nour",
+      "subTitle":"php-seinor at cu-iti good",
+      "rate":3,
+      "visitor":885,
+      "spicialize":"case-fight",
+      "visita":300,
+      "waiteTime":15,
+      "phone": 1147240976,
+      "image": "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
+      "role": "user",
+      "dates":[
+        {
+          "from":"4:30PM",
+          "to":"9:30PM"
+
+        },
+        {
+          "from":"11:30AM",
+          "to":"9:30AM"
+
+        },
+        {
+          "from":"1:00PM",
+          "to":"4:30PM"
+
+        },
+        {
+          "from":"12:30pm",
+          "to":"3:30pm"
+
+        },
+        {
+          "from":"10:30pm",
+          "to":"12:30pm"
+
+        }
+      ],
+      "email": "nour@gmail.com",
+      "email_verified_at": null,
+      "created_at": "2023-10-17T13:33:26.000000Z",
+      "updated_at": null,
+      "city_id": 1
+    },
+    {
+      "id": 2,
+      "title":"lawer Assistant",
+      "name": "Nourhan",
+      "subTitle":"BackEnd Devoloper -seinor at cu-iti good",
+      "rate":5,
+      "visitor":205,
+      "spicialize":"Child-Good",
+      "visita":200,
+      "waiteTime":50,
+      "phone": 6302141,
+      "image": "https://i.dummyjson.com/data/products/2/1.jpg",
+      "role": "user",
+      "dates":[
+        {
+          "from":"10:30PM",
+          "to":"3030PM"
+
+        },
+        {
+          "from":"10:30AM",
+          "to":"5:30AM"
+
+        },
+        {
+          "from":"3:00PM",
+          "to":"2:30PM"
+
+        },
+        {
+          "from":"6:30pm",
+          "to":"3:30pm"
+
+        },
+        {
+          "from":"7:30pm",
+          "to":"8:30pm"
+
+        }
+      ],
+      "email": "nour@gmail.com",
+      "email_verified_at": null,
+      "created_at": "2023-10-17T13:33:26.000000Z",
+      "updated_at": null,
+      "city_id": 1
+    },
+    {
+      "id": 3,
+      "title":"football",
+      "name": "Alaa",
+      "subTitle":"FrontEnd-seinor and football",
+      "rate":2,
+      "visitor":741,
+      "spicialize":"Barcelona",
+      "visita":250,
+      "waiteTime":40,
+      "phone": 3654144,
+      "image": "https://i.dummyjson.com/data/products/11/1.jpg",
+      "role": "user",
+      "dates":[
+        {
+          "from":"5:00PM",
+          "to":"5:15PM"
+
+        },
+        {
+          "from":"11:30AM",
+          "to":"11:45AM"
+
+        },
+        {
+          "from":"6:00PM",
+          "to":"6:30PM"
+
+        },
+        {
+          "from":"9:30pm",
+          "to":"9:30pm"
+
+        },
+        {
+          "from":"3:30pm",
+          "to":"3:50pm"
+
+        }
+      ],
+      "email": "nour@gmail.com",
+      "email_verified_at": null,
+      "created_at": "2023-10-17T13:33:26.000000Z",
+      "updated_at": null,
+      "city_id": 1
+    }
+  ]
+}

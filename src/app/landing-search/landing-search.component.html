@@ -1,0 +1,78 @@
+<div class="landingSerach">
+  <div class="imag">
+    <img [src]="image1" alt="" class="im1" />
+    <img [src]="image2" alt="" class="im2" />
+    <img [src]="image3" alt="" class="im3" />
+  </div>
+  <div class="overLayer">
+    <div class="lantText">
+      <h1>Better Healthcare for a Better Life</h1>
+      <h4>Book online or call16676</h4>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <div class="search mt-5">
+        <h1 class="he w-100 text-center">Book doctor</h1>
+        <div class="search d-flex justify-content-center">
+          <!-- <form action=""> -->
+
+          <div class="select select1">
+            <select
+              id="doc"
+              name="doctor"
+              class="form-select"
+              (change)="getCity($event)"
+            >
+              <option value="all">City</option>
+              <option value="cairo">Cairo</option>
+              <option value="Giza">giza</option>
+              <option value="sharqea">sharqea</option>
+              <option value="tanta">tanta</option>
+              <option value="alex">alex</option>
+              <option value="atfih">atfih</option>
+              <option value="catalonia">catalonia</option>
+            </select>
+          </div>
+          <div class="select select2">
+            <select
+              id="doc"
+              name="doctor"
+              class="form-select"
+              (change)="getSpecialize($event)"
+            >
+              <option value="javascript">Specialize</option>
+              <option value="legal_advices">Legal Advices</option>
+              <option value="litigation">Litigation</option>
+              <option value="lawsuits">Lawsuits</option>
+              <option value="business_law">Business Law</option>
+              <option value="criminal_defense">Criminal Defense</option>
+              <option value="copyrights">Copyrights</option>
+              <option value="criminal_law">Criminal Law</option>
+            </select>
+          </div>
+          <div class="select 3">
+            <select
+              id="doc"
+              name="doctor"
+              class="form-select"
+              (change)="getDoctor($event)"
+            >
+              <option value="javascript">Doctor</option>
+              <option value="ajmed">Ahmed</option>
+              <option value="mohammed">Mohammed</option>
+              <option value="mostafa">Mostafa</option>
+              <option value="joo">Joo</option>
+              <option value="maged">Maged</option>
+              <option value="">C++</option>
+              <option value="erlang">Erlang</option>
+            </select>
+          </div>
+          <button class="btn btn-danger" [routerLink]="['/alllawer',city,location,doctor]">Search</button>
+          <!-- <button class="btn btn-danger" (click)="serch()">Search</button> -->
+
+          <!-- </form> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
