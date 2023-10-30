@@ -45,6 +45,7 @@ import { OneProductComponent } from './one-product/one-product.component';
 import { LawersTestComponent } from './lawers-test/lawers-test.component';
 import { OneLawersTestComponent } from './one-lawers-test/one-lawers-test.component';
 import { OneLawersReservationComponent } from './one-lawers-reservation/one-lawers-reservation.component';
+import { AboutLawerComponent } from './about-lawer/about-lawer.component';
 
 
 register();
@@ -84,6 +85,7 @@ register();
     LawersTestComponent,
     OneLawersTestComponent,
     OneLawersReservationComponent,
+    AboutLawerComponent,
   ],
   imports: [
     BrowserModule,

@@ -40,6 +40,14 @@ export class AllLawerService {
     return this._HttpClient.get(`http://localhost:5050/lawers/${id}`);
 
   }
+  getOneReviws(id:any):Observable <any>{
+    // return this._HttpClient.get('http://127.0.0.1:8000/api/reviews/1');
+    // return this._HttpClient.get('http://127.0.0.1:8000/api/users');
+    // return this._HttpClient.get(`https://dummyjson.com/products/${id}`);
+    // return this._HttpClient.get(`http:/api/users/${id}`);
+    return this._HttpClient.get(`http://localhost:5050/reviews/${id}`);
+
+  }
 
   // obj: any = [
   //   {

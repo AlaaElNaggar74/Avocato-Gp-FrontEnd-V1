@@ -8,6 +8,7 @@
       "phone": 1147240976,
       "role": "user",
       "email_verified_at": null,
+
       "created_at": "2023-10-17T13:33:26.000000Z",
       "updated_at": null,
       "city_id": 1
@@ -30,6 +31,7 @@
       "email": "ali@gmail.com",
       "image": "https://i.dummyjson.com/data/products/9/1.jpg",
       "phone": 46546545,
+
       "role": "user",
       "email_verified_at": null,
       "created_at": "2023-10-25T14:56:53.000000Z",
@@ -41,6 +43,7 @@
       "name": "nader",
       "email": "nader2@gmail.com",
       "image": "https://i.dummyjson.com/data/products/10/1.jpg",
+
       "phone": 5456454,
       "role": "user",
       "email_verified_at": null,
@@ -52,42 +55,38 @@
   "lawers": [
     {
       "id": 1,
-      "title":"lawer",
+      "title": "lawer",
       "name": "nour",
-      "subTitle":"php-seinor at cu-iti good",
-      "rate":3,
-      "visitor":885,
-      "spicialize":"case-fight",
-      "visita":300,
-      "waiteTime":15,
+      "subTitle": "php-seinor at cu-iti good",
+      "rate": 3,
+      "visitor": 885,
+      "spicialize": "case-fight",
+      "address": "El-Dokki : ElDokki street",
+      "visita": 300,
+      "waiteTime": 15,
       "phone": 1147240976,
       "image": "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
       "role": "user",
-      "dates":[
+      "dates": [
         {
-          "from":"4:30PM",
-          "to":"9:30PM"
-
+          "from": "4:30PM",
+          "to": "9:30PM"
         },
         {
-          "from":"11:30AM",
-          "to":"9:30AM"
-
+          "from": "11:30AM",
+          "to": "9:30AM"
         },
         {
-          "from":"1:00PM",
-          "to":"4:30PM"
-
+          "from": "1:00PM",
+          "to": "4:30PM"
         },
         {
-          "from":"12:30pm",
-          "to":"3:30pm"
-
+          "from": "12:30pm",
+          "to": "3:30pm"
         },
         {
-          "from":"10:30pm",
-          "to":"12:30pm"
-
+          "from": "10:30pm",
+          "to": "12:30pm"
         }
       ],
       "email": "nour@gmail.com",
@@ -98,42 +97,38 @@
     },
     {
       "id": 2,
-      "title":"lawer Assistant",
+      "title": "lawer Assistant",
       "name": "Nourhan",
-      "subTitle":"BackEnd Devoloper -seinor at cu-iti good",
-      "rate":5,
-      "visitor":205,
-      "spicialize":"Child-Good",
-      "visita":200,
-      "waiteTime":50,
+      "subTitle": "BackEnd Devoloper -seinor at cu-iti good",
+      "rate": 5,
+      "visitor": 205,
+      "spicialize": "Child-Good",
+      "address": "cairo Univeristy : faculity",
+      "visita": 200,
+      "waiteTime": 50,
       "phone": 6302141,
       "image": "https://i.dummyjson.com/data/products/2/1.jpg",
       "role": "user",
-      "dates":[
+      "dates": [
         {
-          "from":"10:30PM",
-          "to":"3030PM"
-
+          "from": "10:30PM",
+          "to": "3030PM"
         },
         {
-          "from":"10:30AM",
-          "to":"5:30AM"
-
+          "from": "10:30AM",
+          "to": "5:30AM"
         },
         {
-          "from":"3:00PM",
-          "to":"2:30PM"
-
+          "from": "3:00PM",
+          "to": "2:30PM"
         },
         {
-          "from":"6:30pm",
-          "to":"3:30pm"
-
+          "from": "6:30pm",
+          "to": "3:30pm"
         },
         {
-          "from":"7:30pm",
-          "to":"8:30pm"
-
+          "from": "7:30pm",
+          "to": "8:30pm"
         }
       ],
       "email": "nour@gmail.com",
@@ -144,42 +139,38 @@
     },
     {
       "id": 3,
-      "title":"football",
+      "title": "football",
       "name": "Alaa",
-      "subTitle":"FrontEnd-seinor and football",
-      "rate":2,
-      "visitor":741,
-      "spicialize":"Barcelona",
-      "visita":250,
-      "waiteTime":40,
+      "subTitle": "FrontEnd-seinor and football",
+      "rate": 2,
+      "visitor": 741,
+      "spicialize": "Barcelona",
+      "address": "atfih-giza-giza",
+      "visita": 250,
+      "waiteTime": 40,
       "phone": 3654144,
       "image": "https://i.dummyjson.com/data/products/11/1.jpg",
       "role": "user",
-      "dates":[
+      "dates": [
         {
-          "from":"5:00PM",
-          "to":"5:15PM"
-
+          "from": "5:00PM",
+          "to": "5:15PM"
         },
         {
-          "from":"11:30AM",
-          "to":"11:45AM"
-
+          "from": "11:30AM",
+          "to": "11:45AM"
         },
         {
-          "from":"6:00PM",
-          "to":"6:30PM"
-
+          "from": "6:00PM",
+          "to": "6:30PM"
         },
         {
-          "from":"9:30pm",
-          "to":"9:30pm"
-
+          "from": "9:30pm",
+          "to": "9:30pm"
         },
         {
-          "from":"3:30pm",
-          "to":"3:50pm"
-
+          "from": "3:30pm",
+          "to": "3:50pm"
         }
       ],
       "email": "nour@gmail.com",
@@ -187,6 +178,125 @@
       "created_at": "2023-10-17T13:33:26.000000Z",
       "updated_at": null,
       "city_id": 1
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "userReview": [
+        {
+          "rate": 5,
+          "comment": "oop ppdddsd sdsdsd",
+          "created_at": "2023-5-5 17:10:22",
+          "name": "alaa"
+        },
+        {
+          "rate": 3,
+          "comment": "uny fhfbs jfsdif efhiefnkfs ksef",
+          "created_at": "2023-5-15 17:10:22",
+          "name": "alex"
+        },
+        {
+          "rate": 1,
+          "comment": "lora pora tora fora jhora ",
+          "created_at": "2023-5-20 17:10:22",
+          "name": "moka"
+        },
+        {
+          "rate": 4,
+          "comment": "lorem hate alkslfls nknkdfgdfgk,dfbnkpdfnbmfp[d",
+          "created_at": "2023-5-25 17:10:22",
+          "name": "fares"
+        },
+        {
+          "rate": 2,
+          "comment": "lorem hate alkslfls nknkdfgdfgk,dfbnkpdfnbmfp[d",
+          "created_at": "2023-5-30 17:10:22",
+          "name": "oopp"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "userReview": [
+        {
+          "rate": 1,
+          "comment": "oop ppdddsd sdsdsd",
+          "created_at": "2023-7-5 17:10:22",
+          "name": "alaa222"
+        },
+        {
+          "rate": 5,
+          "comment": "uny fhfbs jfsdif efhiefnkfs ksef",
+          "created_at": "2023-7-15 17:10:22",
+          "name": "alex222"
+        },
+        {
+          "rate": 3,
+          "comment": "lora pora tora fora jhora ",
+          "created_at": "2023-7-20 17:10:22",
+          "name": "moka222"
+        },
+        {
+          "rate": 4,
+          "comment": "lorem hate alkslfls nknkdfgdfgk,dfbnkpdfnbmfp[d",
+          "created_at": "2023-7-25 17:10:22",
+          "name": "fares2222"
+        },
+        {
+          "rate": 5,
+          "comment": "lorem hate alkslfls nknkdfgdfgk,dfbnkpdfnbmfp[d",
+          "created_at": "2023-7-30 17:10:22",
+          "name": "oopp2222"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "userReview": [
+        {
+          "rate": 1,
+          "comment": "oop ppdddsd sdsdsd",
+          "created_at": "2023-10-5 17:10:22",
+          "name": "alaa333"
+        },
+        {
+          "rate": 5,
+          "comment": "uny fhfbs jfsdif efhiefnkfs ksef",
+          "created_at": "2023-10-15 17:10:22",
+          "name": "alex333"
+        },
+        {
+          "rate": 3,
+          "comment": "lora pora tora fora jhora ",
+          "created_at": "2023-10-20 17:10:22",
+          "name": "moka333"
+        },
+        {
+          "rate": 4,
+          "comment": "lorem hate alkslfls nknkdfgdfgk,dfbnkpdfnbmfp[d",
+          "created_at": "2023-10-25 17:10:22",
+          "name": "fares333"
+        },
+        {
+          "rate": 5,
+          "comment": "lorem hate alkslfls nknkdfgdfgk,dfbnkpdfnbmfp[d",
+          "created_at": "2023-10-30 17:10:22",
+          "name": "oopp333"
+        }
+      ]
+    }
+  ],
+  "dates": [
+    {
+      "start_hour": 3,
+      "end_hour": 6,
+      "day": "monday"
+    },
+    {
+      "start_hour": 3,
+      "end_hour": 6,
+      "day": "monday"
     }
   ]
 }

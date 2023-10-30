@@ -10,6 +10,7 @@ export class LawersTestComponent {
 
 
   allLawers:any=[];
+  allReviw:any=[];
 constructor(public _AllLawerService:AllLawerService){
 
   _AllLawerService.getAllLawers().subscribe((data)=>{
@@ -18,6 +19,13 @@ constructor(public _AllLawerService:AllLawerService){
     
 
   });
+
+  // _AllLawerService.getReview().subscribe((data)=>{
+  //   this.getReview=data;
+  //   console.log(data);
+    
+
+  // });
 
 
 }

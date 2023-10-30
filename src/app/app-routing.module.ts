@@ -23,6 +23,7 @@ import { OneProductComponent } from './one-product/one-product.component';
 import { LawersTestComponent } from './lawers-test/lawers-test.component';
 import { OneLawersTestComponent } from './one-lawers-test/one-lawers-test.component';
 import { OneLawersReservationComponent } from './one-lawers-reservation/one-lawers-reservation.component';
+import { AboutLawerComponent } from './about-lawer/about-lawer.component';
 
 const routes: Routes = [
   {
@@ -83,6 +84,10 @@ const routes: Routes = [
     component: OneLawersReservationComponent,
   },
   {
+    path: 'oneLawerReservation/:id/:from/:to',
+    component: OneLawersReservationComponent,
+  },
+  {
     path: 'landingSearch',
     component: LandingSearchComponent,
   },
@@ -113,6 +118,14 @@ const routes: Routes = [
   {
     path: 'lawersTest/:id',
     component: OneLawersTestComponent,
+  },
+  {
+    path: 'aboutLawer/:id',
+    component: AboutLawerComponent,
+  },
+  {
+    path: 'alllawer/:city/:location/:doctor',
+    component: LawersTestComponent,
   },
   {
     path: '**',

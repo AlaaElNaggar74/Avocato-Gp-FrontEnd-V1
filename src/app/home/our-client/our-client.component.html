@@ -6,11 +6,11 @@
         <swiper-slide *ngFor="let ob of objX">
           <a [routerLink]="['/oneProduct', ob.id]">
             <div class="client">
-              <p>created_at==> {{ ob.created_at }}</p>
-              <p>phone==> {{ ob.phone }}</p>
-              <p>email==> {{ ob.email }}</p>
+              <p>created_at==> {{ objX.created_at }}</p>
+              <p>phone==> {{ objX.phone }}</p>
+              <p>email==> {{ objX.email }}</p>
               <h5 class="text-center">
-                {{ ob.name }} <span class="subTitle"> ID:{{ ob.id }} </span>
+                {{ objX.name }} <span class="subTitle"> ID:{{ objX.id }} </span>
               </h5>
               <div class="clientImage">
                 <img [src]="image" alt="" />

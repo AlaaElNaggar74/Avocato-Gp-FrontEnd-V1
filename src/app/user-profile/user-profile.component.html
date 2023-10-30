@@ -79,6 +79,14 @@
         class="mb-1"
         [ngClass]="openTabs == 'password' ? 'd-black' : 'd-none'"
       >
+        <label for="password" class="form-label">Old Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="oldPassword"
+          name="oldPassword"
+          aria-describedby="oldPasswordHelp"
+        />
         <label for="password" class="form-label">Password</label>
         <input
           type="password"
@@ -86,6 +94,14 @@
           id="password"
           name="password"
           aria-describedby="passwordHelp"
+        />
+        <label for="password" class="form-label">Confirm Password</label>
+        <input
+          type="Password"
+          class="form-control"
+          id="conPassword"
+          name="confPassword"
+          aria-describedby="confpasswordHelp"
         />
       </div>
       <div
