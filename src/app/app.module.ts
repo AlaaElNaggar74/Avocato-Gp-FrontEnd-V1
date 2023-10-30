@@ -1,7 +1,11 @@
-import { CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA ,NgModule } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
+  NgModule,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +51,7 @@ import { OneLawersTestComponent } from './one-lawers-test/one-lawers-test.compon
 import { OneLawersReservationComponent } from './one-lawers-reservation/one-lawers-reservation.component';
 import { AboutLawerComponent } from './about-lawer/about-lawer.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
 
 register();
 @NgModule({
@@ -93,11 +98,11 @@ register();
     CommonModule,
     GoogleMapsModule,
     FormsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

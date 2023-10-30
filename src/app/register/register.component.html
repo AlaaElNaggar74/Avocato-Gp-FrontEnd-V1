@@ -1,35 +1,41 @@
 <div class="register pt-4 pb-5">
-    <div class="container">
-
-        <div
-        class="formContainer m-auto col-11 col-md-8 col-lg-5 p-4 rounded-1 "
-      >
-        <h5 class="text-center">Register</h5>
-        <form action="#" method="POST">
+  <div class="container">
+    <div class="formContainer m-auto col-11 col-md-8 col-lg-5 p-4 rounded-1">
+      <h5 class="text-center">Register</h5>
+      <!-- User Register -->
+      <div class="userRegister"  *ngIf="!clickSubmit ">
+        <form action="#" [formGroup]="RegisterUserForm" (ngSubmit)="getUserData(RegisterUserForm)" method="POST">
           <div class="mb-1">
             <label for="name" class="form-label">Name</label>
             <input
               type="text"
               class="form-control"
               id="name"
+              formControlName="name"
               name="name"
               aria-describedby="nameHelp"
             />
-            <!-- <div id="emailHelp" class="form-text">
-              We'll never share your email with anyone else.
+            <!-- <div id="nameId" class="form-text text-danger" *ngIf="RegisterUserForm?.get('name')?.errors?.maxLength">
+              the name should less than 8
+            </div>
+            <div id="nameId" class="form-text text-danger" *ngIf="RegisterUserForm?.get('name')?.errors?.minLength">
+              the name should greeter than 3
             </div> -->
           </div>
           <div class="mb-1">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <label for="exampleInputEmail1" class="form-label"
+              >Email address</label
+            >
             <input
               type="email"
               class="form-control"
               id="exampleInputEmail1"
+              formControlName="email"
               aria-describedby="emailHelp"
             />
-            <!-- <div id="emailHelp" class="form-text">
+            <div id="emailId" class="form-text">
               We'll never share your email with anyone else.
-            </div> -->
+            </div>
           </div>
           <div class="mb-1">
             <label for="age" class="form-label">Age</label>
@@ -37,33 +43,36 @@
               type="number"
               class="form-control"
               id="age"
+              formControlName="age"
               name="age"
               aria-describedby="ageHelp"
             />
-            <!-- <div id="emailHelp" class="form-text">
+            <div id="ageId" class="form-text">
               We'll never share your email with anyone else.
-            </div> -->
+            </div>
           </div>
           <div class="mb-1">
-            <label for="mobile" class="form-label">Mobile</label>
+            <label for="mobile" class="form-label" >Mobile</label>
             <input
               type="number"
               class="form-control"
               id="mobile"
+              formControlName="mobile"
               name="mobile"
               aria-describedby="mobileHelp"
             />
-            <!-- <div id="emailHelp" class="form-text">
+            <!-- [(ngModel)]="commonMobile" -->
+
+            <div id="mobileId" class="form-text">
               We'll never share your email with anyone else.
-            </div> -->
+            </div>
           </div>
           <div class="mb-1">
             <label for="password" class="form-label">Password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-            />
+            <input type="password" class="form-control" id="password" formControlName="password" />
+            <div id="passwordId" class="form-text">
+              We'll never share your email with anyone else.
+            </div>
           </div>
           <div class="mb-1">
             <label for="confirmPass" class="form-label">Confirm Password</label>
@@ -72,21 +81,99 @@
               class="form-control"
               name="ConfirmPassword"
               id="confirmPass"
+              formControlName="confirmePassword"
             />
+            <div id="conpasswordId" class="form-text">
+              We'll never share your email with anyone else.
+            </div>
           </div>
           <div class="mb-1 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="exampleCheck1"
+              (change)="showLawerRegis()"
+            />
+            <label class="form-check-label" for="exampleCheck1" (click)="showLawerRegis()"
+              >Register As Lawer</label
+            >
           </div>
           <button type="submit" class="btnSubmit">Submit</button>
         </form>
-    
-        <div class="mt-4 haveAcount">
-          <p class="text-center mt-4">
-            Have Already Acount?
-            <a class="" routerLink="/login">Login</a>
-          </p>
-        </div>
+      </div>
+      <!-- Lawer Register Form -->
+
+      <div class="lawerRegister" *ngIf=" clickSubmit">
+        <form action="#" [formGroup]="RegisterLawerForm" (ngSubmit)="getLawerData(RegisterLawerForm)"  method="POST">
+          <div class="mb-1">
+            <label for="name" class="form-label">hidden mobile</label>
+            <input
+              type="number"
+              class="form-control d-none"
+              id="imageId"
+              formControlName="mobile"
+              name="idImage"
+              
+              aria-describedby="imageHelp"
+            />
+            <!-- [value]="commonMobile" -->
+            <div id="nameId" class="form-text">
+              We'll never share your email with anyone else.
+            </div>
+          </div>
+          <div class="mb-1">
+            <label for="name" class="form-label">ID-Photo</label>
+            <input
+              type="file"
+              class="form-control"
+              id="imageId"
+              formControlName="idImage"
+              name="idImage"
+              aria-describedby="imageHelp"
+            />
+            <div id="nameId" class="form-text">
+              We'll never share your email with anyone else.
+            </div>
+          </div>
+          <div class="mb-1">
+            <label for="lawerPrice" class="form-label">Price</label>
+            <input
+              type="number"
+              class="form-control"
+              id="lawerPrice"
+              formControlName="price"
+              name="price"
+              aria-describedby="lawerPriceHelp"
+            />
+            <div id="lawerPriceId" class="form-text">
+              We'll never share your email with anyone else.
+            </div>
+          </div>
+          <div class="mb-1">
+            <label for="span" class="form-label">span</label>
+            <input
+              type="text"
+              class="form-control"
+              id="span"
+              formControlName="span"
+              name="span"
+              aria-describedby="spanHelp"
+            />
+            <div id="spanId" class="form-text">
+              We'll never share your email with anyone else.
+            </div>
+          </div>
+
+          <button type="submit" class="btnSubmit">Submit</button>
+        </form>
+      </div>
+
+      <div class="mt-4 haveAcount">
+        <p class="text-center mt-4">
+          Have Already Acount?
+          <a class="" routerLink="/login">Login</a>
+        </p>
       </div>
     </div>
+  </div>
 </div>
