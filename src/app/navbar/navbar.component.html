@@ -70,17 +70,17 @@
             >landing Search</a
           >
         </li> -->
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isLogin">
           <a class="nav-link" routerLink="about" routerLinkActive="active"
             >About Us</a
           >
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isLogin">
           <a class="nav-link" routerLink="practice" routerLinkActive="active"
             >Practice-Areas</a
           >
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isLogin">
           <a class="nav-link" routerLink="faq" routerLinkActive="active">FAQ</a>
         </li>
         <!-- <li class="nav-item">
@@ -88,12 +88,12 @@
             >Blog</a
           >
         </li> -->
-        <li class="nav-item">
+        <li class="nav-item" >
           <a class="nav-link" routerLink="contact" routerLinkActive="active"
             >Contact</a
           >
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="isLogin">
           <a
             class="nav-link dropdown-toggle"
             role="button"
@@ -103,19 +103,34 @@
             Profile
           </a>
           <ul class="dropdown-menu">
-            <li *ngIf="user == 'lawer'">
+            <li *ngIf="lawerInfo">
               <a class="dropdown-item" routerLink="adminProfile">Setting</a>
             </li>
-            <li *ngIf="user != 'lawer'">
+            <li *ngIf="userInfo">
               <a class="dropdown-item" routerLink="userProfile">Setting</a>
             </li>
           </ul>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!isLogin">
           <a class="nav-link" routerLink="login" routerLinkActive="active"
             >Login</a
           >
         </li>
+      
+          <li class="nav-item"  *ngIf="isLogin" >
+            <a class="nav-link" routerLink="register"  routerLinkActive="active"
+              >LogOut</a
+            >
+          </li>
+      
+        <!-- <ng-container *ngIf="isLogin">
+          <li class="nav-item"  (click)="logout()"  routerLinkActive="active">
+            <a class="nav-link" 
+              >LogOut</a
+            >
+          </li>
+        </ng-container> -->
+       
         <li class="nav-item">
           <a
             class="nav-link freeconsult"

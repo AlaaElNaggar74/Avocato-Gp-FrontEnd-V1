@@ -13,18 +13,22 @@ import { AllLawerService } from '../services/all-lawer.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  cities:any;
-  cityX:any="all";
-  userId:any;
-  constructor(public _Router: Router, public _AuthService: AuthService,public _AllLawerService:AllLawerService) {
+  cities: any;
+  cityX: any = 'all';
+  userId: any;
 
-    
-  _AllLawerService.getCities().subscribe((data)=>{
-    this.cities=data.data;
-    // console.log("citiies",data.data);
-    
-
-  })
+  UserImageName = '';
+  LawerImageName = '';
+  constructor(
+    public _Router: Router,
+    public _AuthService: AuthService,
+    public _AllLawerService: AllLawerService
+  ) {
+    _AllLawerService.getCities().subscribe((data) => {
+      this.cities = data.data;
+      // console.log("citiies",data.data);
+    });
+    this._AuthService.logOut();
   }
   checkLawer = false;
   clickSubmit = false;
@@ -44,6 +48,9 @@ export class RegisterComponent {
     email: new FormControl(null, [Validators.required, Validators.email]),
 
     image: new FormControl(null, [Validators.required]),
+    // fileSource: new FormControl(null, [
+    //   Validators.required
+    // ]),
 
     mobile: new FormControl(null, [
       Validators.required,
@@ -62,6 +69,9 @@ export class RegisterComponent {
 
   RegisterLawerForm: FormGroup = new FormGroup({
     idImage: new FormControl(null, [Validators.required]),
+    // fileSource: new FormControl(null, [
+    //   Validators.required
+    // ]),
     price: new FormControl(null, [
       Validators.required,
       Validators.min(100),
@@ -84,17 +94,38 @@ export class RegisterComponent {
     ]),
   });
 
+  onFileUserChange(event: any) {
+    if (event.target.files.length > 0) {
+      this.UserImageName = event.target.files[0].name;
+      // this.RegisterUserForm.patchValue({
+      //   fileSource: file.name
+      // });
+    }
+  }
+  onFileLawerChange(event: any) {
+    if (event.target.files.length > 0) {
+      this.LawerImageName = event.target.files[0].name;
+      // this.RegisterLawerForm.patchValue({
+      //   fileSource: file.name
+      // });
+    }
+  }
+
   getUserData(formUserData: any) {
     if (this.checkLawer) {
       this.clickSubmit = !this.clickSubmit;
       this.checkLawer = false;
-      formUserData.value.role="user";
-      formUserData.value.IsActive="active";
-      this._AuthService.registrUserJson(formUserData.value).subscribe((data) => {
-        console.log('status-id', data.id);
-        this.userId=data.id;
+      formUserData.value.role = 'user';
+      formUserData.value.IsActive = 'active';
+      formUserData.value.image = this.UserImageName;
+      console.log('formUserData.value', formUserData.value);
 
-      });
+      this._AuthService
+        .registrUserJson(formUserData.value)
+        .subscribe((data) => {
+          console.log('status-id', data.id);
+          this.userId = data.id;
+        });
       console.log(formUserData);
     } else {
       let obj = {
@@ -109,11 +140,15 @@ export class RegisterComponent {
       // this._AuthService.registrUserMethod(obj).subscribe((data) => {
       //   console.log('resssss', data);
       // });
-      formUserData.value.role="user";
-      formUserData.value.IsActive="active";
-      this._AuthService.registrUserJson(formUserData.value).subscribe((data) => {
-        console.log('status', data);
-      });
+      formUserData.value.role = 'user';
+      formUserData.value.IsActive = 'active';
+      formUserData.value.image = this.UserImageName;
+
+      this._AuthService
+        .registrUserJson(formUserData.value)
+        .subscribe((data) => {
+          console.log('status', data);
+        });
       // console.log(formUserData.value);
       // this._Router.navigate(['/home']);
       this._Router.navigate(['/login']);
@@ -121,20 +156,23 @@ export class RegisterComponent {
   }
 
   getLawerData(formLawerData: any) {
-    let lawerWithMobile = { ...formLawerData.value,UserId:this.userId };
-          console.log(lawerWithMobile);
+    formLawerData.value.idImage = this.LawerImageName;
+    let lawerWithID = { ...formLawerData.value, UserId: this.userId };
+    console.log(lawerWithID);
 
-    this._AuthService.registrLawerMethod(lawerWithMobile);
+    this._AuthService.registrLawerMethod(lawerWithID).subscribe((data) => {
+      console.log('status', data);
+    });
+    this._Router.navigate(['/login']);
   }
 
   showLawerRegis() {
     this.checkLawer = !this.checkLawer;
   }
 
+  getCity(event: any) {
+    this.cityX = event.target.value;
 
-  getCity(event:any){
-    this.cityX=event.target.value;
-    
     // console.log(event.target.value);
   }
 }

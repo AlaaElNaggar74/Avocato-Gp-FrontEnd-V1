@@ -30,6 +30,7 @@
             action=""
             [formGroup]="reservationForm"
             (ngSubmit)="getUserData(reservationForm)"
+            (change)="getValidate($event)"
           >
             <div class="mb-5">
               <div class="input-group">
@@ -172,13 +173,18 @@
             </div>
             <div class="but">
               <div class="book">
-                <input type="submit" value="Book" class="bookbtn btn me-3" />
+                <input type="submit" value="Book-Cash" class="bookbtn active btn me-3"    [ngClass]="{ active: reservationForm.valid }"
+                [disabled]="reservationForm.invalid"/>
 
-                <a routerLink="/alllawer" routerLinkActive="router-link-active">
+                <a   [routerLink]="['/alllawer', 'all' , 'all' ,'all']">
                   <button class="btn btn-outline-secondary me-3">
                     Cancel
                   </button></a
                 >
+               <div class="over">
+                <div class="lay" [class.d-none]="reservationForm.valid"></div>
+                <div class="par mt-3 " #paymentRef></div>
+               </div>
               </div>
             </div>
           </form>

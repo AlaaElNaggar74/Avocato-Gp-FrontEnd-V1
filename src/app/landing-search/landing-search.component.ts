@@ -16,7 +16,7 @@ constructor(public _AllLawerService:AllLawerService){
 
   _AllLawerService.getCities().subscribe((data)=>{
     this.cities=data.data;
-    // console.log("citiies",data.data);
+    console.log("citiies",data.data);
     
 
   })

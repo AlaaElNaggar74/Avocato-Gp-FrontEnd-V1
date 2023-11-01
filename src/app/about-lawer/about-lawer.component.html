@@ -88,8 +88,8 @@
                 </i>
               </div>
               <h5 class="">Overall Rating</h5>
-              <p>{{review.name}}</p>
-              <p>{{review.created_at}}</p>
+              <p>{{ review.name }}</p>
+              <p>{{ review.created_at }}</p>
             </div>
             <div class="rateNum">
               <p>{{ review.rate }}</p>
@@ -149,7 +149,9 @@
           >
             <div class="detai text-center">
               <i class="fa-solid fa-money-bill-wave"></i>
-              <p>Fees <span>{{ lawer.visita }} EGP</span></p>
+              <p>
+                Fees <span>{{ lawer.visita }} EGP</span>
+              </p>
             </div>
             <div class="detai text-center">
               <i class="fa-solid fa-dollar-sign"></i>
@@ -157,7 +159,7 @@
             </div>
             <div class="detai text-center">
               <i class="fa-regular fa-clock"></i>
-              <p>Waiting Time : {{ lawer.waiteTime }} </p>
+              <p>Waiting Time : {{ lawer.waiteTime }}</p>
             </div>
           </div>
 
