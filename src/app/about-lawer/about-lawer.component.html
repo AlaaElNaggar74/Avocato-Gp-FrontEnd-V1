@@ -11,7 +11,7 @@
               <span class="doctor">{{ lawer.title }}</span> {{ lawer.name }}
             </h5>
             <p class="title">
-              {{ lawer.subTitle }}
+              {{ lawer.email }}
             </p>
             <p class="des mt-3">
               Pediatrician Specialized in Pediatric Allergy and Immunology,
@@ -177,7 +177,7 @@
               <swiper-container navigation="true">
                 <swiper-slide *ngFor="let date of lawer.dates"
                   ><div class="slide text-center">
-                    <h6 class="bg-secondary text-white">Today</h6>
+                    <h6 class="bg-secondary text-white">{{ date.day }}</h6>
                     <div class="date">
                       <p>
                         From <span class="">{{ date.from }}</span>

@@ -31,6 +31,18 @@
     margin-top: 5px;
     border: none;
     outline: none;
+    border:2px solid #ffeac1;
+    background-color: white;
+    color: rgba(110, 110, 110, 0.801);
+    border-radius: 7px;
+    padding: 5px 15px;
+    transition: .3s;
+
+}
+.btnSubmit.active{
+    margin-top: 5px;
+    border: none;
+    outline: none;
     border:2px solid #cc8800;
     background-color: white;
     color: black;
@@ -41,7 +53,7 @@
 }
 
 
-.btnSubmit:hover{
+.btnSubmit.active:hover{
     border:2px solid #878787;
     background-color: #cc8800;
     color: white;
@@ -56,6 +68,9 @@
     font-weight: bold;
 }
 
+input:focus{
+    box-shadow: none;
+}
 
 @media (max-width:766px) {
     .register{
@@ -63,4 +78,12 @@
         min-height: calc(100vh - 96px);
         padding-bottom: 30px;
     }
+}
+
+textarea{
+    resize: none;
+    height: 150px;
+}
+textarea:focus{
+    box-shadow: none;
 }

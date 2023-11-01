@@ -13,7 +13,7 @@ export class OurClientComponent {
   image2 = '../../../assets/client/q3.jpg';
   image3 = '../../../assets/client/q8.jpg';
 
-  objX: any;
+  objx: any;
   constructor(_AllLawerService: AllLawerService) {
     // this.objX = _AllLawerService.obj;
     // debugger
@@ -21,8 +21,12 @@ export class OurClientComponent {
     _AllLawerService.getAllUser().subscribe((values) => {
       // debugger
       // this.objX = values.data;
-      this.objX = values;
-      console.log(values);
+      // this.objx = values;
+      // console.log(values);
+    });
+    _AllLawerService.getAllUserApi().subscribe((data) => {
+      this.objx = data.data;
+      console.log("API----Data",data.data);
     });
   }
 }

@@ -1,90 +1,101 @@
 <div class="login pt-4">
   <div class="container">
-
-      <div
-      class="formContainer m-auto col-11 col-md-8 col-lg-5 p-4 "
-    >
+    <div class="formContainer m-auto col-11 col-md-8 col-lg-5 p-4">
       <h5 class="text-center">Register</h5>
-      <form action="#" method="POST">
-        <!-- <div class="mb-1">
-          <label for="name" class="form-label">Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="name"
-            name="name"
-            aria-describedby="nameHelp"
-          /> -->
-          <!-- <div id="emailHelp" class="form-text">
-            We'll never share your email with anyone else.
-          </div> -->
-        <!-- </div> -->
+      <!-- <ng-container *ngFor="let o of userx">
+        <h1>{{o.email}}</h1>
+      </ng-container> -->
+      <form
+        action="#"
+        method="POST"
+        [formGroup]="loginForm"
+        (ngSubmit)="getLoginData(loginForm)"
+      >
+       
         <div class="mb-1">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <label for="exampleInputEmail1" class="form-label"
+            >Email address</label
+          >
           <input
             type="email"
             class="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
+            formControlName="email"
+            [ngStyle]="{
+              'border-color':
+                loginForm.controls['email'].touched &&
+                loginForm.controls['email'].invalid
+                  ? 'red'
+                  : 'grey'
+            }"
           />
-          <!-- <div id="emailHelp" class="form-text">
-            We'll never share your email with anyone else.
-          </div> -->
-        </div>
-        <!-- <div class="mb-1">
-          <label for="age" class="form-label">Age</label>
-          <input
-            type="number"
-            class="form-control"
-            id="age"
-            name="age"
-            aria-describedby="ageHelp"
-            />
-            
-          </div>
-        -->
-          <!-- <div id="emailHelp" class="form-text">
-            We'll never share your email with anyone else.
-          </div> -->
+          <div
+            class="text-danger"
+            *ngIf="
+              loginForm.controls['email'].touched &&
+              loginForm.controls['email'].invalid
+            "
+          >
+            <small *ngIf="loginForm.controls['email']?.errors?.['required']"
+              >Email is a required field!</small
+            >
 
-          
-        <!-- <div class="mb-1">
-          <label for="mobile" class="form-label">Mobile</label>
-          <input
-            type="number"
-            class="form-control"
-            id="mobile"
-            name="mobile"
-            aria-describedby="mobileHelp"
-          /> -->
-          <!-- <div id="emailHelp" class="form-text">
-            We'll never share your email with anyone else.
-          </div> -->
-        <!-- </div> -->
+            <small *ngIf="loginForm.controls['email']?.errors?.['email']"
+              >Email Not Correct !!!
+            </small>
+          </div>
+        </div>
+
         <div class="mb-1">
           <label for="password" class="form-label">Password</label>
           <input
             type="password"
             class="form-control"
+            formControlName="password"
             id="password"
+            [ngStyle]="{
+              'border-color':
+                loginForm.controls['password'].touched &&
+                loginForm.controls['password'].invalid
+                  ? 'red'
+                  : 'grey'
+            }"
           />
+          <div
+            class="text-danger"
+            *ngIf="
+              loginForm.controls['password'].touched &&
+              loginForm.controls['password'].invalid
+            "
+          >
+            <small *ngIf="loginForm.controls['password']?.errors?.['required']"
+              >password is a required field!</small
+            >
+
+            <small *ngIf="loginForm.controls['password']?.errors?.['pattern']"
+              >password Not Correct !!!
+            </small>
+          </div>
         </div>
-        <!-- <div class="mb-1">
-          <label for="confirmPass" class="form-label">Confirm Password</label>
-          <input
-            type="password"
-            class="form-control"
-            name="ConfirmPassword"
-            id="confirmPass"
-          />
-        </div> -->
+
         <div class="mb-1 form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          <label class="form-check-label" for="exampleCheck1"
+            >Check me out</label
+          >
         </div>
-        <button type="submit" class="btn loginBtn">Submit</button>
+        <!-- <button type="submit" class="btn loginBtn">Submit</button> -->
+        <button
+          type="submit"
+          class="btn loginBtn"
+          [ngClass]="{ active: loginForm.valid }"
+          [disabled]="loginForm.invalid"
+        >
+          Submit
+        </button>
       </form>
-  
+
       <div class="mt-4 DontHave">
         <p class="text-center mt-4">
           Dont Have Email?

@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+
+import { matchpassword } from '../../matchPassword.validators';
+import { AllLawerService } from '../services/all-lawer.service';
 
 @Component({
   selector: 'app-register',
@@ -9,49 +13,128 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(public _Router:Router){
+  cities:any;
+  cityX:any="all";
+  userId:any;
+  constructor(public _Router: Router, public _AuthService: AuthService,public _AllLawerService:AllLawerService) {
 
+    
+  _AllLawerService.getCities().subscribe((data)=>{
+    this.cities=data.data;
+    // console.log("citiies",data.data);
+    
+
+  })
   }
   checkLawer = false;
   clickSubmit = false;
-  // commonMobile="";
+  commonMobile = '';
 
   RegisterUserForm: FormGroup = new FormGroup({
-    name: new FormControl(null,[Validators.required,Validators.minLength(3),Validators.maxLength(3)]),
-    email: new FormControl(null,[Validators.required,Validators.email]),
-    age: new FormControl(null,[Validators.required,Validators.min(16),Validators.maxLength(2)]),
-    mobile: new FormControl(null,[Validators.required,Validators.maxLength(11)]),
-    password: new FormControl(null,[Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]),
-    confirmePassword: new FormControl(null,[Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]),
+    name: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(8),
+    ]),
+    city: new FormControl(null, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(10),
+    ]),
+    email: new FormControl(null, [Validators.required, Validators.email]),
+
+    image: new FormControl(null, [Validators.required]),
+
+    mobile: new FormControl(null, [
+      Validators.required,
+      // Validators.minLength(11),
+
+      Validators.pattern('^(\\+201|01|00201)[0-2,5]{1}[0-9]{8}'),
+      // Validators.pattern('^(\\+201|01|00201)[0-2,5]{1}[0-9]{8}'),
+    ]),
+    password: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(
+        '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+      ),
+    ]),
   });
 
   RegisterLawerForm: FormGroup = new FormGroup({
-    idImage: new FormControl(),
-    price: new FormControl(),
-    span: new FormControl(),
-    mobile: new FormControl(),
+    idImage: new FormControl(null, [Validators.required]),
+    price: new FormControl(null, [
+      Validators.required,
+      Validators.min(100),
+      Validators.max(400),
+    ]),
+    location: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(15),
+    ]),
+    about: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(150),
+    ]),
+    span: new FormControl(null, [
+      Validators.required,
+      Validators.min(100),
+      Validators.max(400),
+    ]),
   });
 
-  getUserData(formUserData:any) {
+  getUserData(formUserData: any) {
     if (this.checkLawer) {
       this.clickSubmit = !this.clickSubmit;
+      this.checkLawer = false;
+      formUserData.value.role="user";
+      formUserData.value.IsActive="active";
+      this._AuthService.registrUserJson(formUserData.value).subscribe((data) => {
+        console.log('status-id', data.id);
+        this.userId=data.id;
+
+      });
       console.log(formUserData);
-      
-    }else{
-      this._Router.navigate(["/login"]);
+    } else {
+      let obj = {
+        name: 'alaax',
+        image: 'alaax.png',
+        email: 'alla@gmail.com',
+        phone: '524141',
+        password: '21452145',
+        city_id: 1,
+        plan_id: 1,
+      };
+      // this._AuthService.registrUserMethod(obj).subscribe((data) => {
+      //   console.log('resssss', data);
+      // });
+      formUserData.value.role="user";
+      formUserData.value.IsActive="active";
+      this._AuthService.registrUserJson(formUserData.value).subscribe((data) => {
+        console.log('status', data);
+      });
+      // console.log(formUserData.value);
+      // this._Router.navigate(['/home']);
+      this._Router.navigate(['/login']);
     }
   }
 
-  getLawerData(formLawerData:any) {
-  
-      console.log(formLawerData);
-      this._Router.navigate(["/login"]);
-      
-  
+  getLawerData(formLawerData: any) {
+    let lawerWithMobile = { ...formLawerData.value,UserId:this.userId };
+          console.log(lawerWithMobile);
+
+    this._AuthService.registrLawerMethod(lawerWithMobile);
   }
 
   showLawerRegis() {
     this.checkLawer = !this.checkLawer;
-    console.log('chhhhhhhhhhh');
+  }
+
+
+  getCity(event:any){
+    this.cityX=event.target.value;
+    
+    // console.log(event.target.value);
   }
 }

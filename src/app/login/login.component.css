@@ -36,6 +36,19 @@
     margin-top: 5px;
     border: none;
     outline: none;
+    border:2px solid #ffeac1;
+    background-color: white;
+    color: rgba(110, 110, 110, 0.801);
+    border-radius: 7px;
+    padding: 5px 15px;
+    transition: .3s;
+
+}
+
+.loginBtn.active{
+    margin-top: 5px;
+    border: none;
+    outline: none;
     border:2px solid #cc8800;
     background-color: white;
     color: black;
@@ -46,7 +59,7 @@
 }
 
 
-.loginBtn:hover{
+.loginBtn.active:hover{
     border:2px solid #878787;
     background-color: #cc8800;
     color: white;

@@ -124,7 +124,7 @@ const routes: Routes = [
     component: AboutLawerComponent,
   },
   {
-    path: 'alllawer/:city/:location/:doctor',
+    path: 'alllawer/:city/:specializ/:name',
     component: LawersTestComponent,
   },
   {

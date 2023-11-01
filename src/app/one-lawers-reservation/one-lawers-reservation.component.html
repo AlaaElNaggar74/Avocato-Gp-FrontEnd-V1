@@ -1,30 +1,38 @@
 <div class="reservation">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="lawerInfo">
-            <div class="flexInfo">
-              <div class="image">
-                <img [src]="oneLawerReserv.image" alt="" />
-              </div>
-              <div class="infoText">
-                <h5 class="name">
-                  <span class="doctor">{{oneLawerReserv.title}}</span> {{oneLawerReserv.name}}
-                </h5>
-                <p>{{oneLawerReserv.subTitle}}</p>
-              </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="lawerInfo">
+          <div class="flexInfo">
+            <div class="image">
+              <img [src]="oneLawerReserv?.image" alt="" />
             </div>
-            <p class="details">
-              Today October 25 - From {{lawerfrom}}  To {{lawerto}}  , Reservation required,
-              first-come, first-served
-            </p>
+            <div class="infoText">
+              <h5 class="name">
+                <span class="doctor">{{ oneLawerReserv?.title }}</span>
+                {{ oneLawerReserv?.name }}
+              </h5>
+              <p>{{ oneLawerReserv?.subTitle }}</p>
+            </div>
           </div>
+          <p class="details">
+            Today October 25 - From {{ lawerfrom }} To {{ lawerto }} ,
+            Reservation required, first-come, first-served
+          </p>
         </div>
-        <div class="col-lg-6 mt-3 mt-lg-0">
-          <div class="formReserv">
-            <h5 class="text-center py-3 bg-secondary text-white">Enter Your Info.</h5>
-            <form action="">
-              <div class="input-group mb-5">
+      </div>
+      <div class="col-lg-6 mt-3 mt-lg-0">
+        <div class="formReserv">
+          <h5 class="text-center py-3 bg-secondary text-white">
+            Enter Your Info.
+          </h5>
+          <form
+            action=""
+            [formGroup]="reservationForm"
+            (ngSubmit)="getUserData(reservationForm)"
+          >
+            <div class="mb-5">
+              <div class="input-group">
                 <span class="input-group-text" id="basic-addon1"
                   ><i class="fa-solid fa-user"></i
                 ></span>
@@ -34,10 +42,41 @@
                   placeholder="User name"
                   aria-label="Username"
                   name="name"
+                  formControlName="name"
                   aria-describedby="basic-addon1"
+                  [ngStyle]="{
+                    'border-color':
+                      reservationForm.controls['name'].touched &&
+                      reservationForm.controls['name'].invalid
+                        ? 'red'
+                        : 'grey'
+                  }"
                 />
               </div>
-              <div class="input-group mb-5">
+              <div
+                class="text-danger mt-1"
+                *ngIf="
+                  reservationForm.controls['name'].touched &&
+                  reservationForm.controls['name'].invalid
+                "
+              >
+                <small
+                  *ngIf="reservationForm.controls['name']?.errors?.['required']"
+                  >Name is a required field!</small
+                >
+                <small
+                  *ngIf="reservationForm.controls['name']?.errors?.['minlength']"
+                  >Length Should Be More Than 3 Char!!!
+                </small>
+                <small
+                  *ngIf="reservationForm.controls['name']?.errors?.['maxlength']"
+                  >Length Should Be Less Than 10 Char!!!
+                </small>
+              </div>
+            </div>
+
+            <div class="mb-5">
+              <div class="input-group">
                 <span class="input-group-text" id="basic-addon1"
                   ><i class="fa-solid fa-phone"></i
                 ></span>
@@ -47,10 +86,39 @@
                   placeholder="User mobile"
                   aria-label="Username"
                   name="mobile"
+                  formControlName="mobile"
                   aria-describedby="basic-addon1"
+                  [ngStyle]="{
+                    'border-color':
+                      reservationForm.controls['mobile'].touched &&
+                      reservationForm.controls['mobile'].invalid
+                        ? 'red'
+                        : 'grey'
+                  }"
                 />
               </div>
-              <div class="input-group mb-5">
+              <div
+                class="text-danger mt-1"
+                *ngIf="
+                  reservationForm.controls['mobile'].touched &&
+                  reservationForm.controls['mobile'].invalid
+                "
+              >
+                <small
+                  *ngIf="reservationForm.controls['mobile']?.errors?.['required']"
+                  >Mobile is a required field!</small
+                >
+                <!-- <small *ngIf="reservationForm.controls['mobile']?.errors?.['maxlength']"
+    >mobile Should Greater Than 17 !!!
+  </small> -->
+                <small
+                  *ngIf="reservationForm.controls['mobile']?.errors?.['pattern']"
+                  >Mobilee Not Correct !!!
+                </small>
+              </div>
+            </div>
+            <div class="mb-5">
+              <div class="input-group">
                 <span class="input-group-text" id="basic-addon1"
                   ><i class="fa-regular fa-envelope"></i
                 ></span>
@@ -59,34 +127,63 @@
                   class="form-control"
                   placeholder="User gmail"
                   aria-label="Username"
+                  formControlName="email"
                   name="mail"
                   aria-describedby="basic-addon1"
+                  [ngStyle]="{
+                    'border-color':
+                      reservationForm.controls['email'].touched &&
+                      reservationForm.controls['email'].invalid
+                        ? 'red'
+                        : 'grey'
+                  }"
                 />
               </div>
-              <div class="mb-5">
-                <div class="lableInfo d-flex justify-content-between align-items-center" >
-                  <p>
-                    Vezeeta Points Earned
-                    <i class="exlamition fa-solid fa-exclamation ms-2"></i>
-                  </p>
-                  <p class="point"><i class="fa-solid fa-medal me-2"></i> 300 points</p>
-                </div>
+              <div
+                class="text-danger mt-1"
+                *ngIf="
+                  reservationForm.controls['email'].touched &&
+                  reservationForm.controls['email'].invalid
+                "
+              >
+                <small
+                  *ngIf="reservationForm.controls['email']?.errors?.['required']"
+                  >E-Mail is a required field!</small
+                >
+                <small
+                  *ngIf="reservationForm.controls['email']?.errors?.['email']"
+                  >E-Mail Don't Match !!!
+                </small>
               </div>
-              <div class="but">
-                <div class="book">
-                  <input type="submit" value="Book" class="bookbtn btn  me-3" />
-  
-                  <a routerLink="/alllawer" routerLinkActive="router-link-active">
-                    <button class="btn btn-outline-secondary me-3">
-                      Cancel
-                    </button></a
-                  >
-                </div>
+            </div>
+
+            <div class="mb-5">
+              <div
+                class="lableInfo d-flex justify-content-between align-items-center"
+              >
+                <p>
+                  Vezeeta Points Earned
+                  <i class="exlamition fa-solid fa-exclamation ms-2"></i>
+                </p>
+                <p class="point">
+                  <i class="fa-solid fa-medal me-2"></i> 300 points
+                </p>
               </div>
-            </form>
-          </div>
+            </div>
+            <div class="but">
+              <div class="book">
+                <input type="submit" value="Book" class="bookbtn btn me-3" />
+
+                <a routerLink="/alllawer" routerLinkActive="router-link-active">
+                  <button class="btn btn-outline-secondary me-3">
+                    Cancel
+                  </button></a
+                >
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

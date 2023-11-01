@@ -12,22 +12,31 @@ export class AboutLawerComponent {
 
   lawer: any = [];
   Reviws: any = [];
-  
+
   constructor(
     public _AllLawerService: AllLawerService,
     public _ActivatedRoute: ActivatedRoute
   ) {
     this.id = _ActivatedRoute.snapshot.paramMap.get('id');
-    
+
     _AllLawerService.getOneLawer(this.id).subscribe((data) => {
-      this.lawer = data;
-      console.log(data);
+      // this.lawer = data;
+      // console.log(data);
     });
+    _AllLawerService.getOneLawerApi(this.id).subscribe((data) => {
+      this.lawer = data.data;
+      // console.log(data.data);
+    });
+    // _AllLawerService.deleteOneLawerApi(this.id).subscribe((data) => {
+    //   // this.lawer = data.data;
+    //   console.log(data.data);
+    // });
 
     _AllLawerService.getOneReviws(this.id).subscribe((data) => {
       this.Reviws = data;
       console.log(data);
     });
+  
   }
 
   numSequence(n: number): Array<number> {

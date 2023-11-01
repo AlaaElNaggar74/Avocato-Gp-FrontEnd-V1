@@ -3,21 +3,20 @@
     <h2 class="ourClientHeader text-center">Our Client</h2>
     <div class="row col-11 col-md-9 col-lg-8 m-auto">
       <swiper-container space-between="20">
-        <swiper-slide *ngFor="let ob of objX">
-          <a [routerLink]="['/oneProduct', ob.id]">
-            <div class="client">
-              <p>created_at==> {{ objX.created_at }}</p>
-              <p>phone==> {{ objX.phone }}</p>
-              <p>email==> {{ objX.email }}</p>
-              <h5 class="text-center">
-                {{ objX.name }} <span class="subTitle"> ID:{{ objX.id }} </span>
-              </h5>
-              <div class="clientImage">
-                <img [src]="image" alt="" />
-              </div>
+        <ng-container *ngFor="let ob of objx; index as i">
+        <swiper-slide *ngIf="i < 2">
+          <div class="client">
+            <p>created_at==> {{ ob.created_at }}</p>
+            <p>phone==> {{ ob.phone }}</p>
+            <p>email==> {{ ob.email }}</p>
+            <h5 class="text-center">
+              {{ ob.name }} <span class="subTitle"> ID:{{ ob.id }} </span>
+            </h5>
+            <div class="clientImage">
+              <img [src]="ob.image" alt="" />
             </div>
-          </a>
-        </swiper-slide>
+          </div>
+        </swiper-slide></ng-container>
         <!-- <swiper-slide>
           <div class="client">
             <p>

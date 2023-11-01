@@ -15,7 +15,7 @@
                     <span class="doctor">{{lawer.title}}</span> {{lawer.name}}
                   </h5>
                   <p class="title">
-                    {{lawer.subTitle}}
+                    {{lawer.email}}
                   </p>
                   <div class="iconrate">
                     <i class="fa-solid fa-star" *ngFor="let star of numSequence(lawer.rate)"> </i>
@@ -48,13 +48,13 @@
               <swiper-container navigation="true">
                 <swiper-slide *ngFor="let date of lawer.dates"
                   ><div class="slide text-center">
-                    <h6 class="bg-secondary text-white">Today</h6>
+                    <h6 class="bg-secondary text-white">{{date.day}}</h6>
                     <div class="date">
                       <p>From <span class="">{{date.from}}</span></p>
                       <p>To <span class="">{{date.to}}</span></p>
                     </div>
                     <a [routerLink]="['/oneLawerReservation',lawer.id,date.from,date.to]">
-                      <h6 class="bg-secondary text-white">Bookv</h6></a
+                      <h6 class="bg-secondary text-white">Book</h6></a
                     >
                   </div></swiper-slide
                 >

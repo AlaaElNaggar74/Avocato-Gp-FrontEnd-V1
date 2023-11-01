@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AllLawerService } from '../services/all-lawer.service';
 
 @Component({
   selector: 'app-landing-search',
@@ -7,9 +8,29 @@ import { Component } from '@angular/core';
 })
 export class LandingSearchComponent {
 
+  cities:any;
+  specializations:any;
+
+constructor(public _AllLawerService:AllLawerService){
+
+
+  _AllLawerService.getCities().subscribe((data)=>{
+    this.cities=data.data;
+    // console.log("citiies",data.data);
+    
+
+  })
+  _AllLawerService.getspecializations().subscribe((data)=>{
+    this.specializations=data.data;
+    console.log("getspecializations",data.data[1].name);
+    
+
+  })
+}
+
 city:any="all";
-location:any="all";
-doctor:any="all";
+speciali:any="all";
+lawerName:any="all";
 
   image1 = '../../../assets/landing/landing1.jpg';
   image2 = '../../../assets/landing/landing4.jpg';
@@ -17,8 +38,8 @@ doctor:any="all";
 
   serch(){
     console.log("city",this.city);
-    console.log("doctor",this.doctor);
-    console.log("location",this.location);
+    console.log("speciali",this.speciali);
+    console.log("doctor",this.lawerName);
     
   }
   getCity(event:any){
@@ -27,12 +48,12 @@ doctor:any="all";
     // console.log(event.target.value);
   }
   getSpecialize(event:any){
-    this.doctor=event.target.value;
+    this.speciali=event.target.value;
 
-    // console.log(event.target.value);
+    console.log(event.target.value);
   }
-  getDoctor(event:any){
-    this.location=event.target.value;
+  getLawerName(event:any){
+    this.lawerName =event.target.value;
 
     // console.log(event.target.value);
   }

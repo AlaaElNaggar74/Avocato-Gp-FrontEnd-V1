@@ -1,183 +1,231 @@
 {
-  "users": [
+  "usersRegisterData": [
     {
-      "id": 1,
-      "name": "nour-Json",
-      "email": "nour@gmail.com",
-      "image": "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
-      "phone": 1147240976,
+      "name": "AlaaAb",
+      "email": "alaaUser@gmail.com",
+      "image": "C:\\fakepath\\ثثث.png",
+      "mobile": "+201141508472",
+      "password": "qa@#12QAZ",
       "role": "user",
-      "email_verified_at": null,
-
-      "created_at": "2023-10-17T13:33:26.000000Z",
-      "updated_at": null,
-      "city_id": 1
+      "IsActive": "active",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "sara-Json",
-      "email": "sara@gmail.com",
-      "image": "https://i.dummyjson.com/data/products/8/1.jpg",
-      "phone": 1165122345,
-      "role": "lawyer",
-      "email_verified_at": null,
-      "created_at": "2023-10-19T13:06:12.000000Z",
-      "updated_at": null,
-      "city_id": 1
+      "name": "MOM",
+      "email": "mom@gmail.com",
+      "image": "C:\\fakepath\\aa.png",
+      "mobile": "01122334455",
+      "password": "qa@#12QAZ",
+      "role": "user",
+      "IsActive": "active",
+      "id": 2
     },
     {
-      "id": 3,
-      "name": "ali",
-      "email": "ali@gmail.com",
-      "image": "https://i.dummyjson.com/data/products/9/1.jpg",
-      "phone": 46546545,
-
+      "name": "Giza",
+      "city": "Alex",
+      "email": "alaaUser@gmail.com",
+      "image": "C:\\fakepath\\ثثث.png",
+      "mobile": "+201141508472",
+      "password": "qazxsw@#12QAZ",
       "role": "user",
-      "email_verified_at": null,
-      "created_at": "2023-10-25T14:56:53.000000Z",
-      "updated_at": "2023-10-25T14:56:53.000000Z",
-      "city_id": 1
+      "IsActive": "active",
+      "id": 3
     },
     {
-      "id": 4,
-      "name": "nader",
-      "email": "nader2@gmail.com",
-      "image": "https://i.dummyjson.com/data/products/10/1.jpg",
-
-      "phone": 5456454,
+      "name": "Giza",
+      "city": "2",
+      "email": "alaaUser@gmail.com",
+      "image": "C:\\fakepath\\aa.png",
+      "mobile": "+201141508472",
+      "password": "qaz@#$122QA",
       "role": "user",
-      "email_verified_at": null,
-      "created_at": "2023-10-25T14:57:34.000000Z",
-      "updated_at": "2023-10-25T18:28:50.000000Z",
-      "city_id": 1
+      "IsActive": "active",
+      "id": 4
+    },
+    {
+      "name": "Giza",
+      "city": "1",
+      "email": "alla@gmail.com",
+      "image": "C:\\fakepath\\aa.png",
+      "mobile": "+201141508472",
+      "password": "qaz@#$12QAZ",
+      "role": "user",
+      "IsActive": "active",
+      "id": 5
+    },
+    {
+      "name": "Giza",
+      "city": "2",
+      "email": "alaaUser@gmail.com",
+      "image": "C:\\fakepath\\Screenshot 2023-10-30 122804.png",
+      "mobile": "+201141508472",
+      "password": "qaz@#$12QAZ",
+      "role": "user",
+      "IsActive": "active",
+      "id": 6
     }
   ],
   "lawers": [
     {
       "id": 1,
-      "title": "lawer",
-      "name": "nour",
-      "subTitle": "php-seinor at cu-iti good",
-      "rate": 3,
-      "visitor": 885,
-      "spicialize": "case-fight",
-      "address": "El-Dokki : ElDokki street",
+      "title": "frontend",
+      "name": "Alaa",
+      "image": "https://static8.depositphotos.com/1437210/922/i/950/depositphotos_9222678-stock-photo-female-lawyer.jpg",
+      "subTitle": "faculity of computer and artifcial intelgent",
+      "rate": 5,
+      "visitor": 412,
+      "spicialize": "case-Study",
       "visita": 300,
       "waiteTime": 15,
-      "phone": 1147240976,
-      "image": "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
-      "role": "user",
+      "phone": "011111111",
       "dates": [
         {
-          "from": "4:30PM",
-          "to": "9:30PM"
+          "day": "sat",
+          "from": "3:15 pm",
+          "to": "7:15 pm"
         },
         {
-          "from": "11:30AM",
-          "to": "9:30AM"
+          "day": "mon",
+          "from": "12:15 pm",
+          "to": "3:15 pm"
         },
         {
-          "from": "1:00PM",
-          "to": "4:30PM"
+          "day": "tus",
+          "from": "9:15 am",
+          "to": "1:15 pm"
         },
         {
-          "from": "12:30pm",
-          "to": "3:30pm"
-        },
-        {
-          "from": "10:30pm",
-          "to": "12:30pm"
+          "day": "thur",
+          "from": "9:15 pm",
+          "to": "11:15 pm"
         }
-      ],
-      "email": "nour@gmail.com",
-      "email_verified_at": null,
-      "created_at": "2023-10-17T13:33:26.000000Z",
-      "updated_at": null,
-      "city_id": 1
+      ]
     },
     {
       "id": 2,
-      "title": "lawer Assistant",
-      "name": "Nourhan",
-      "subTitle": "BackEnd Devoloper -seinor at cu-iti good",
+      "title": "BackEnd",
+      "name": "Alaa2",
+      "image": "https://st2.depositphotos.com/1046535/7296/i/950/depositphotos_72966423-stock-photo-lawyer-with-civil-law-code.jpg",
+      "subTitle": "faculity of computer and artifcial intelgent",
       "rate": 5,
-      "visitor": 205,
-      "spicialize": "Child-Good",
-      "address": "cairo Univeristy : faculity",
-      "visita": 200,
-      "waiteTime": 50,
-      "phone": 6302141,
-      "image": "https://i.dummyjson.com/data/products/2/1.jpg",
-      "role": "user",
+      "visitor": 412,
+      "spicialize": "case-Study",
+      "visita": 300,
+      "waiteTime": 15,
+      "phone": "011111111",
       "dates": [
         {
-          "from": "10:30PM",
-          "to": "3030PM"
+          "day": "sat",
+          "from": "3:15 pm",
+          "to": "7:15 pm"
         },
         {
-          "from": "10:30AM",
-          "to": "5:30AM"
+          "day": "mon",
+          "from": "12:15 pm",
+          "to": "3:15 pm"
         },
         {
-          "from": "3:00PM",
-          "to": "2:30PM"
+          "day": "tus",
+          "from": "9:15 am",
+          "to": "1:15 pm"
         },
         {
-          "from": "6:30pm",
-          "to": "3:30pm"
-        },
-        {
-          "from": "7:30pm",
-          "to": "8:30pm"
+          "day": "thur",
+          "from": "9:15 pm",
+          "to": "11:15 pm"
         }
-      ],
-      "email": "nour@gmail.com",
-      "email_verified_at": null,
-      "created_at": "2023-10-17T13:33:26.000000Z",
-      "updated_at": null,
-      "city_id": 1
+      ]
     },
     {
       "id": 3,
-      "title": "football",
-      "name": "Alaa",
-      "subTitle": "FrontEnd-seinor and football",
-      "rate": 2,
-      "visitor": 741,
-      "spicialize": "Barcelona",
-      "address": "atfih-giza-giza",
-      "visita": 250,
-      "waiteTime": 40,
-      "phone": 3654144,
-      "image": "https://i.dummyjson.com/data/products/11/1.jpg",
-      "role": "user",
+      "title": "FullStackEnd",
+      "name": "Alaa3",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzd8nYlDMvpkCigcqHnyliTcwwc0SoB7pDnJv7G7IakNj5WMOmj_i1dmjvInE5EMX_-n4&usqp=CAU",
+      "subTitle": "faculity of computer and artifcial intelgent",
+      "rate": 5,
+      "visitor": 412,
+      "spicialize": "case-Study",
+      "visita": 300,
+      "waiteTime": 15,
+      "phone": "011111111",
       "dates": [
         {
-          "from": "5:00PM",
-          "to": "5:15PM"
+          "day": "sat",
+          "from": "3:15 pm",
+          "to": "7:15 pm"
         },
         {
-          "from": "11:30AM",
-          "to": "11:45AM"
+          "day": "mon",
+          "from": "12:15 pm",
+          "to": "3:15 pm"
         },
         {
-          "from": "6:00PM",
-          "to": "6:30PM"
+          "day": "tus",
+          "from": "9:15 am",
+          "to": "1:15 pm"
         },
         {
-          "from": "9:30pm",
-          "to": "9:30pm"
-        },
-        {
-          "from": "3:30pm",
-          "to": "3:50pm"
+          "day": "thur",
+          "from": "9:15 pm",
+          "to": "11:15 pm"
         }
-      ],
-      "email": "nour@gmail.com",
-      "email_verified_at": null,
-      "created_at": "2023-10-17T13:33:26.000000Z",
-      "updated_at": null,
-      "city_id": 1
+      ]
+    }
+  ],
+  "reservationTable": [
+    {
+      "name": null,
+      "email": null,
+      "mobile": null,
+      "userID": "1",
+      "dateFrom": "3:15 pm",
+      "dateTo": "7:15 pm",
+      "id": 1
+    },
+    {
+      "name": "alaaUser",
+      "email": "sa@gmail.com",
+      "mobile": "01111111111",
+      "userID": "1",
+      "dateFrom": "3:15 pm",
+      "dateTo": "7:15 pm",
+      "id": 2
+    },
+    {
+      "name": null,
+      "email": null,
+      "mobile": null,
+      "userID": "1",
+      "dateFrom": "3:15 pm",
+      "dateTo": "7:15 pm",
+      "id": 3
+    },
+    {
+      "name": null,
+      "email": null,
+      "mobile": null,
+      "userID": "3",
+      "dateFrom": "3:15 pm",
+      "dateTo": "7:15 pm",
+      "id": 4
+    },
+    {
+      "name": "ooooo",
+      "email": "oooo@gmail.com",
+      "mobile": "01010101010",
+      "userID": "3",
+      "dateFrom": "9:15 pm",
+      "dateTo": "11:15 pm",
+      "id": 5
+    },
+    {
+      "name": "ooooo3",
+      "email": "oooo3@gmail.com",
+      "mobile": "01010101013",
+      "userID": "3",
+      "dateFrom": "9:15 pm",
+      "dateTo": "11:15 pm",
+      "id": 6
     }
   ],
   "reviews": [
@@ -185,34 +233,24 @@
       "id": 1,
       "userReview": [
         {
+          "name": "re2",
           "rate": 5,
-          "comment": "oop ppdddsd sdsdsd",
-          "created_at": "2023-5-5 17:10:22",
-          "name": "alaa"
+          "created_at": "12-5-2020"
         },
         {
+          "name": "re2",
           "rate": 3,
-          "comment": "uny fhfbs jfsdif efhiefnkfs ksef",
-          "created_at": "2023-5-15 17:10:22",
-          "name": "alex"
+          "created_at": "12-5-2020"
         },
         {
-          "rate": 1,
-          "comment": "lora pora tora fora jhora ",
-          "created_at": "2023-5-20 17:10:22",
-          "name": "moka"
-        },
-        {
-          "rate": 4,
-          "comment": "lorem hate alkslfls nknkdfgdfgk,dfbnkpdfnbmfp[d",
-          "created_at": "2023-5-25 17:10:22",
-          "name": "fares"
-        },
-        {
+          "name": "re3",
           "rate": 2,
-          "comment": "lorem hate alkslfls nknkdfgdfgk,dfbnkpdfnbmfp[d",
-          "created_at": "2023-5-30 17:10:22",
-          "name": "oopp"
+          "created_at": "12-7-2020"
+        },
+        {
+          "name": "re4",
+          "rate": 4,
+          "created_at": "12-10-2020"
         }
       ]
     },
@@ -220,34 +258,24 @@
       "id": 2,
       "userReview": [
         {
-          "rate": 1,
-          "comment": "oop ppdddsd sdsdsd",
-          "created_at": "2023-7-5 17:10:22",
-          "name": "alaa222"
-        },
-        {
+          "name": "re2",
           "rate": 5,
-          "comment": "uny fhfbs jfsdif efhiefnkfs ksef",
-          "created_at": "2023-7-15 17:10:22",
-          "name": "alex222"
+          "created_at": "12-5-2020"
         },
         {
+          "name": "re2",
           "rate": 3,
-          "comment": "lora pora tora fora jhora ",
-          "created_at": "2023-7-20 17:10:22",
-          "name": "moka222"
+          "created_at": "12-5-2020"
         },
         {
+          "name": "re3",
+          "rate": 2,
+          "created_at": "12-7-2020"
+        },
+        {
+          "name": "re4",
           "rate": 4,
-          "comment": "lorem hate alkslfls nknkdfgdfgk,dfbnkpdfnbmfp[d",
-          "created_at": "2023-7-25 17:10:22",
-          "name": "fares2222"
-        },
-        {
-          "rate": 5,
-          "comment": "lorem hate alkslfls nknkdfgdfgk,dfbnkpdfnbmfp[d",
-          "created_at": "2023-7-30 17:10:22",
-          "name": "oopp2222"
+          "created_at": "12-10-2020"
         }
       ]
     },
@@ -255,48 +283,106 @@
       "id": 3,
       "userReview": [
         {
-          "rate": 1,
-          "comment": "oop ppdddsd sdsdsd",
-          "created_at": "2023-10-5 17:10:22",
-          "name": "alaa333"
-        },
-        {
+          "name": "re2",
           "rate": 5,
-          "comment": "uny fhfbs jfsdif efhiefnkfs ksef",
-          "created_at": "2023-10-15 17:10:22",
-          "name": "alex333"
+          "created_at": "12-5-2020"
         },
         {
+          "name": "re2",
           "rate": 3,
-          "comment": "lora pora tora fora jhora ",
-          "created_at": "2023-10-20 17:10:22",
-          "name": "moka333"
+          "created_at": "12-5-2020"
         },
         {
+          "name": "re3",
+          "rate": 2,
+          "created_at": "12-7-2020"
+        },
+        {
+          "name": "re4",
           "rate": 4,
-          "comment": "lorem hate alkslfls nknkdfgdfgk,dfbnkpdfnbmfp[d",
-          "created_at": "2023-10-25 17:10:22",
-          "name": "fares333"
+          "created_at": "12-10-2020"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "userReview": [
+        {
+          "name": "re2",
+          "rate": 5,
+          "created_at": "12-5-2020"
         },
         {
+          "name": "re2",
+          "rate": 3,
+          "created_at": "12-5-2020"
+        },
+        {
+          "name": "re3",
+          "rate": 2,
+          "created_at": "12-7-2020"
+        },
+        {
+          "name": "re4",
+          "rate": 4,
+          "created_at": "12-10-2020"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "userReview": [
+        {
+          "name": "re2",
           "rate": 5,
-          "comment": "lorem hate alkslfls nknkdfgdfgk,dfbnkpdfnbmfp[d",
-          "created_at": "2023-10-30 17:10:22",
-          "name": "oopp333"
+          "created_at": "12-5-2020"
+        },
+        {
+          "name": "re2",
+          "rate": 3,
+          "created_at": "12-5-2020"
+        },
+        {
+          "name": "re3",
+          "rate": 2,
+          "created_at": "12-7-2020"
+        },
+        {
+          "name": "re4",
+          "rate": 4,
+          "created_at": "12-10-2020"
         }
       ]
     }
   ],
-  "dates": [
+  "users": [
     {
-      "start_hour": 3,
-      "end_hour": 6,
-      "day": "monday"
+      "id": 1,
+      "name": "Alaa",
+      "image": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
+      "phone": "011214254",
+      "email": "alaa@gmail.com"
     },
     {
-      "start_hour": 3,
-      "end_hour": 6,
-      "day": "monday"
+      "id": 2,
+      "name": "Alaa2",
+      "image": "https://t3.ftcdn.net/jpg/02/00/90/24/360_F_200902415_G4eZ9Ok3Ypd4SZZKjc8nqJyFVp1eOD6V.jpg",
+      "phone": "011214254",
+      "email": "alaa@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "Alaa2",
+      "image": "https://t4.ftcdn.net/jpg/03/66/03/89/360_F_366038937_eUMw332IgsDz6l6dYgCyKEYE0ZVui7bD.webp",
+      "phone": "011214254",
+      "email": "alaa@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "Alaa2",
+      "image": "https://img.freepik.com/free-photo/expressive-young-woman-posing_344912-2420.jpg?size=626&ext=jpg",
+      "phone": "011214254",
+      "email": "alaa@gmail.com"
     }
   ]
 }

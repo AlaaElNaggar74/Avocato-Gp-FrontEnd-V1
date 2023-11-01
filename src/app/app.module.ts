@@ -52,6 +52,12 @@ import { OneLawersReservationComponent } from './one-lawers-reservation/one-lawe
 import { AboutLawerComponent } from './about-lawer/about-lawer.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { SkillsComponent } from './about/skills/skills.component';
+import { RullesComponent } from './about/rulles/rulles.component';
+
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 register();
 @NgModule({
@@ -91,6 +97,8 @@ register();
     OneLawersTestComponent,
     OneLawersReservationComponent,
     AboutLawerComponent,
+    SkillsComponent,
+    RullesComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,6 +108,8 @@ register();
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
