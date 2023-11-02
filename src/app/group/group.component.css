@@ -100,12 +100,32 @@
 
 .jionAndView.active {
   display: none;
-
   color: #c2b18f;
   background-color: #cc8800;
 }
 
+.createForm form
+{
+  background-color: #cc880073;
+  padding: 40px 30px;
+  border-radius: 10px;
+
+
+}
+
 .createForm input{
   box-shadow: none;
+
+}
+.createForm button.active{
+  background-color: #ffffff;
+  border: 2px solid rgb(167, 167, 167);
+  color: #cc8800;
+
+}
+.createForm button.active:hover{
+  background-color: #cc8800;
+  border: 2px solid rgb(167, 167, 167);
+  color: white;
 
 }

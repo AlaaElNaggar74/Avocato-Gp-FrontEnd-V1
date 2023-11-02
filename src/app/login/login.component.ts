@@ -21,7 +21,24 @@ export class LoginComponent {
     public _AuthService: AuthService,
     public _ToastrService: ToastrService,
     public _UsersService: UsersService
-  ) {}
+  ) {
+
+    _AuthService.userLogData.subscribe((data) => {
+      // console.log("User_Data_Is",data);
+
+      let obj=data;
+      let size =Object.keys(obj).length
+      if (size) {
+      
+        // console.log("User_Data_Is-FFF-TRRUE",obj);
+        
+      }else{
+        // console.log("User_Data_Is-FFF",obj);
+    
+      }
+    });
+    this._AuthService.logOut();
+  }
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
@@ -34,7 +51,7 @@ export class LoginComponent {
     ]),
   });
   submitGameForm(form: any) {
-    console.log(form);
+    // console.log(form);
   }
 
   bckHome() {
@@ -42,27 +59,27 @@ export class LoginComponent {
   }
 
   getLoginData(formLoginData: any) {
-    console.log('formLoginData-LOGINN', formLoginData.value);
+    // console.log('formLoginData-LOGINN', formLoginData.value);
     let loginUser = formLoginData.value;
 
     // this._UsersService.loginFun(formLoginData.value).subscribe((resLogin) => {
-    //   console.log('resLogin', resLogin);
+      // console.log('resLogin', resLogin);
     // });
 
     this._UsersService.getUserApi().subscribe((res) => {
-      console.log('userPart-api', res.data);
+      // console.log('userPart-api', res.data);
       let userPartList = res.data;
 
       let userPart = userPartList.find((ele: any) => {
         return ele.email == loginUser.email;
       });
-      console.log('0000000', userPart);
+      // console.log('0000000', userPart);
 
       if (userPart) {
         this.userTotalData = { ...userPart };
         this._AuthService.saveUserLoginData(this.userTotalData);
-        console.log('userTotalData', this.userTotalData);
-                  // this._Router.navigate(['/home']);
+        // console.log('userTotalData', this.userTotalData);
+                  this._Router.navigate(['/home']);
 
       }
 
@@ -77,12 +94,12 @@ export class LoginComponent {
       //   }
     });
 
-    //   // console.log(formLoginData);
+      // console.log(formLoginData);
     //   // this._AuthService.registrUserMethod(formLoginData.value);
     //   this._AuthService.loginUserJson().subscribe((res) => {
     //     this.userList = res;
-    //     // console.log('Success', res);
-    //     // console.log('Success', typeof res);
+        // console.log('Success', res);
+        // console.log('Success', typeof res);
     //     let userPart = this.userList.find((ele: any) => {
     //       return (
     //         ele.email == formLoginData.value.email &&
@@ -100,10 +117,10 @@ export class LoginComponent {
 
     //     // });
 
-    //     console.log('userPart', userPart);
-    //     // console.log("lawerPart",lawerPart);
+        // console.log('userPart', userPart);
+        // console.log("lawerPart",lawerPart);
 
-    //     // console.log('userPart', userPart);
+        // console.log('userPart', userPart);
 
     //     if (userPart) {
     //       this._AuthService.loginLawerJson().subscribe((res) => {
@@ -123,7 +140,7 @@ export class LoginComponent {
     //           this.userTotalData={...userPart};
     //           this._AuthService.saveUserLoginData(this.userTotalData);
     //         }
-    //         console.log('userTotalData', this.userTotalData);
+            // console.log('userTotalData', this.userTotalData);
     //       });
     //       this._ToastrService.success('Login Success Done !');
 

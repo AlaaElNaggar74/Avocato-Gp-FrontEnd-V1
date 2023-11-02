@@ -17,14 +17,14 @@ export class NavbarComponent {
 
   constructor(public _AuthService: AuthService ,public _Router:Router) {
     _AuthService.userLogData.subscribe((data) => {
-      console.log("User_Data_Is",data);
+      // console.log("User_Data_Is",data);
 
       let obj=data;
       let size =Object.keys(obj).length
       if (size) {
         this.isLogin = true;
         this.userInfo=obj;
-        console.log("User_Data_Is",obj);
+        // console.log("User_Data_Is",obj);
         
       }else{
         this.isLogin = false;
@@ -35,12 +35,12 @@ export class NavbarComponent {
       
       let obj=data;
       let size =Object.keys(obj).length
-      console.log("LAWERRRRR_Data_Is",data);
-      console.log("AND_SIZE_IS",size);
+      // console.log("LAWERRRRR_Data_Is",data);
+      // console.log("AND_SIZE_IS",size);
       if (size) {
         this.isLogin = true;
         this.lawerInfo=obj;
-        console.log("User_Data_Is",obj);
+        // console.log("User_Data_Is",obj);
       }else{
         this.isLogin = false;
       }
@@ -53,10 +53,9 @@ export class NavbarComponent {
   }
 
   logout(){
-    this._AuthService.logOut();
+    // this._AuthService.logOut();
    
-    console.log("logOut");
-    this._Router.navigate(["/login"])
+    // console.log("logOut");
     // _AuthService.userLogData.subscribe((data) => {
     //   let obj=data;
     //   let size =Object.keys(obj).length

@@ -19,7 +19,7 @@ export class LandingSearchComponent {
   ) {
     _AllLawerService.getCities().subscribe((data) => {
       this.cities = data.data;
-      console.log('citiies', data.data);
+      // console.log('citiies', data.data);
     });
     // _AllLawerService.getspecializations().subscribe((data)=>{
     //   // this.specializations=data.data;
@@ -27,7 +27,7 @@ export class LandingSearchComponent {
 
     // })
     _UsersService.getspecializationsApi().subscribe((res) => {
-      console.log('oooopp', res.data);
+      // console.log('oooopp', res.data);
 
       this.specializations = res.data;
       // console.log("getspecializations",data.data[1].name);

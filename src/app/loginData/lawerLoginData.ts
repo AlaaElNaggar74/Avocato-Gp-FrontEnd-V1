@@ -4,7 +4,7 @@ export class lawerLoginData {
     public city: any,
     public email: any,
     public image: any,
-    public mobile: any,
+    public phone: any,
     public password: any,
     public role: any,
     public about: any,

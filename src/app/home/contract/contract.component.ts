@@ -16,7 +16,7 @@ imagUrlProduct: string = '../../../assets/contract/';
 image1="../../../assets/contract/signature2.png";
 constructor(public _UsersService:UsersService){
   _UsersService.getUserApi().subscribe((res)=>{
-    console.log("aaaaaaaa",res.data);
+    // console.log("aaaaaaaa",res.data);
     
 this.x=res.data;
   });

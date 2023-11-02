@@ -26,7 +26,7 @@ export class OurClientComponent {
     });
     _AllLawerService.getAllUserApi().subscribe((data) => {
       this.objx = data.data;
-      console.log("API----Data",data.data);
+      // console.log("API----Data",data.data);
     });
   }
 }

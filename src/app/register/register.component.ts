@@ -27,7 +27,7 @@ export class RegisterComponent {
   ) {
     _UsersService.getCitiesApi().subscribe((data) => {
       this.cities = data.data;
-      console.log("citiies",data.data);
+      // console.log("citiies",data.data);
     });
     this._AuthService.logOut();
   }
@@ -141,7 +141,7 @@ export class RegisterComponent {
       // this._AuthService.registrUserMethod(obj).subscribe((data) => {
       //   console.log('resssss', data);
       // });
-      formUserData.value.role = 'user';
+      // formUserData.value.role = 'user';
       // formUserData.value.IsActive = 'active';
       formUserData.value.image = this.UserImageName;
       // formUserData.append('image', formUserData.get('fileSource').value);
@@ -155,7 +155,9 @@ export class RegisterComponent {
         // console.log("registerData",data);
         
       });
+
       console.log("registerData",formUserData);
+
 
       // console.log(formUserData.value);
       // this._Router.navigate(['/home']);

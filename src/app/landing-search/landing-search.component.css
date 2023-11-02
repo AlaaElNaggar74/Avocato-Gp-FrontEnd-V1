@@ -176,8 +176,15 @@ select:focus {
 
 }
 
+.select3 input {
+  font-weight: bold;
+}
 .select3 input:focus {
   box-shadow: none;
+}
+.select3 input::placeholder {
+  color: rgb(247, 151, 26);
+  font-weight: bold;
 }
 
 @media (max-width: 940px) {

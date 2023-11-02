@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { lawerLoginData } from './../loginData/lawerLoginData';
 import { userLoginData } from '../loginData/userLoginData';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
@@ -13,7 +14,7 @@ export class AuthService {
   userLogData=new BehaviorSubject<any>({});
   lawerLogData=new BehaviorSubject<any>({});
 
-  constructor(public _HttpClient: HttpClient) {}
+  constructor(public _HttpClient: HttpClient , public _Router:Router) {}
 
   registrUserMethod(formLoginData: any): Observable<any> {
     console.log(formLoginData);
@@ -57,11 +58,12 @@ export class AuthService {
 
   saveUserLoginData(objData: any) {
     let user = new userLoginData(
+      objData.id,
       objData.name,
       objData.city_id,
       objData.email,
       objData.image,
-      objData.mobile,
+      objData.phone,
       objData.password,
       objData.role
     );
@@ -74,7 +76,7 @@ export class AuthService {
       objData.city,
       objData.email,
       objData.image,
-      objData.mobile,
+      objData.phone,
       objData.password,
       objData.role,
       objData.about,
@@ -91,7 +93,9 @@ export class AuthService {
     this.lawerLogData.next({});
     this.userLogData.next({});
     // console.log("this.lawerLogData",this.lawerLogData);
-    // console.log("this.userLogData",this.userLogData);
+    // console.log("this.userLogData------JK",this.userLogData);
+    this._Router.navigate(["/login"])
+
     
   }
 }
