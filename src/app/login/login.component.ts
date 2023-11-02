@@ -1,3 +1,4 @@
+import { UsersService } from 'src/app/services/projectApis/users.service';
 import { Component } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -18,7 +19,8 @@ export class LoginComponent {
   constructor(
     public _Router: Router,
     public _AuthService: AuthService,
-    public _ToastrService: ToastrService
+    public _ToastrService: ToastrService,
+    public _UsersService: UsersService
   ) {}
 
   loginForm: FormGroup = new FormGroup({
@@ -40,65 +42,100 @@ export class LoginComponent {
   }
 
   getLoginData(formLoginData: any) {
-    // console.log(formLoginData);
-    // this._AuthService.registrUserMethod(formLoginData.value);
-    this._AuthService.loginUserJson().subscribe((res) => {
-      this.userList = res;
-      // console.log('Success', res);
-      // console.log('Success', typeof res);
-      let userPart = this.userList.find((ele: any) => {
-        return (
-          ele.email == formLoginData.value.email &&
-          ele.password == formLoginData.value.password
-        );
+    console.log('formLoginData-LOGINN', formLoginData.value);
+    let loginUser = formLoginData.value;
+
+    // this._UsersService.loginFun(formLoginData.value).subscribe((resLogin) => {
+    //   console.log('resLogin', resLogin);
+    // });
+
+    this._UsersService.getUserApi().subscribe((res) => {
+      console.log('userPart-api', res.data);
+      let userPartList = res.data;
+
+      let userPart = userPartList.find((ele: any) => {
+        return ele.email == loginUser.email;
       });
-
-      // this._AuthService.loginLawerJson().subscribe((res) => {
-      //   this.LawerList = res;
-
-      // let lawerPart = this.LawerList.find((ele: any) => {
-      //   return (
-      //     ele.UserId == userPart.id
-      //   );
-
-      // });
-
-      console.log('userPart', userPart);
-      // console.log("lawerPart",lawerPart);
-
-      // console.log('userPart', userPart);
+      console.log('0000000', userPart);
 
       if (userPart) {
-        this._AuthService.loginLawerJson().subscribe((res) => {
-          this.LawerList = res;
+        this.userTotalData = { ...userPart };
+        this._AuthService.saveUserLoginData(this.userTotalData);
+        console.log('userTotalData', this.userTotalData);
+                  // this._Router.navigate(['/home']);
 
-          let lawerPart = this.LawerList.find((ele: any) => {
-            return ele.UserId == userPart.id;
-          });
-          if (lawerPart) {
-            userPart.role = 'lawer';
-            this.userTotalData = {
-              ...userPart,
-              ...lawerPart,
-            };
-            this._AuthService.saveLawerLoginData(this.userTotalData);
-          } else {
-            this.userTotalData={...userPart};
-            this._AuthService.saveUserLoginData(this.userTotalData);
-          }
-          console.log('userTotalData', this.userTotalData);
-        });
-        this._ToastrService.success('Login Success Done !');
-
-        this._Router.navigate(['/home']);
-        // this._Router.navigate(['/home']);
-      } else {
-        this._ToastrService.warning('Error In Login Please Try Again !!');
       }
 
-      // this.userData=data;
+      // let lawerPart = this.LawerList.find((ele: any) => {
+      //   return ele.UserId == userPart.id;
+      // });
+      // if (lawerPart) {
+      //   this._AuthService.loginLawerJson().subscribe((res) => {
+      //     this.LawerList = res;
+
+      //     });
+      //   }
     });
 
-    // this._Router.navigate(['/home']);
+    //   // console.log(formLoginData);
+    //   // this._AuthService.registrUserMethod(formLoginData.value);
+    //   this._AuthService.loginUserJson().subscribe((res) => {
+    //     this.userList = res;
+    //     // console.log('Success', res);
+    //     // console.log('Success', typeof res);
+    //     let userPart = this.userList.find((ele: any) => {
+    //       return (
+    //         ele.email == formLoginData.value.email &&
+    //         ele.password == formLoginData.value.password
+    //       );
+    //     });
+
+    //     // this._AuthService.loginLawerJson().subscribe((res) => {
+    //     //   this.LawerList = res;
+
+    //     // let lawerPart = this.LawerList.find((ele: any) => {
+    //     //   return (
+    //     //     ele.UserId == userPart.id
+    //     //   );
+
+    //     // });
+
+    //     console.log('userPart', userPart);
+    //     // console.log("lawerPart",lawerPart);
+
+    //     // console.log('userPart', userPart);
+
+    //     if (userPart) {
+    //       this._AuthService.loginLawerJson().subscribe((res) => {
+    //         this.LawerList = res;
+
+    //         let lawerPart = this.LawerList.find((ele: any) => {
+    //           return ele.UserId == userPart.id;
+    //         });
+    //         if (lawerPart) {
+    //           userPart.role = 'lawer';
+    //           this.userTotalData = {
+    //             ...userPart,
+    //             ...lawerPart,
+    //           };
+    //           this._AuthService.saveLawerLoginData(this.userTotalData);
+    //         } else {
+    //           this.userTotalData={...userPart};
+    //           this._AuthService.saveUserLoginData(this.userTotalData);
+    //         }
+    //         console.log('userTotalData', this.userTotalData);
+    //       });
+    //       this._ToastrService.success('Login Success Done !');
+
+    //       this._Router.navigate(['/home']);
+    //       // this._Router.navigate(['/home']);
+    //     } else {
+    //       this._ToastrService.warning('Error In Login Please Try Again !!');
+    //     }
+
+    //     // this.userData=data;
+    //   });
+
+    //   // this._Router.navigate(['/home']);
   }
 }

@@ -57,6 +57,8 @@ import { RullesComponent } from './about/rulles/rulles.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GroupComponent } from './group/group.component';
+import { MyroupComponent } from './myroup/myroup.component';
 
 
 register();
@@ -99,6 +101,8 @@ register();
     AboutLawerComponent,
     SkillsComponent,
     RullesComponent,
+    GroupComponent,
+    MyroupComponent,
   ],
   imports: [
     BrowserModule,

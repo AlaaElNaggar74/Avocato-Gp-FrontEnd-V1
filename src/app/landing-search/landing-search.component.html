@@ -1,8 +1,6 @@
 <div class="landingSerach">
   <div class="imag">
-    <!-- <img [src]="image1" alt="" class="im1" /> -->
-    <!-- <img [src]="image2" alt="" class="im2" /> -->
-    <!-- <img [src]="image3" alt="" class="im3" /> -->
+ 
   </div>
   <div class="overLayer">
     <div class="lantText">
@@ -25,18 +23,14 @@
             >
               <option value="all">City</option>
               <ng-container *ngFor="let city of cities">
-                <option [value]="city.name" id="city.id">{{ city.name }}</option>
+                <option [value]="city.name" id="city.id">
+                  {{ city.name }}
+                </option>
               </ng-container>
-              <!-- <option value="cairo">Cairo</option>
-              <option value="Giza">giza</option>
-              <option value="sharqea">sharqea</option>
-              <option value="tanta">tanta</option>
-              <option value="alex">alex</option>
-              <option value="atfih">atfih</option>
-              <option value="catalonia">catalonia</option> -->
+        
             </select>
           </div>
-       
+
           <div class="select select2">
             <select
               id="doc"
@@ -46,43 +40,33 @@
             >
               <option value="all">Specialize</option>
               <ng-container *ngFor="let spec of specializations; index as i">
-                <option [value]="spec.name" [id]="spec.id" >{{ spec.name }}</option>
+                <option [value]="spec.name" [id]="spec.id">
+                  {{ spec.name }}
+                </option>
               </ng-container>
-              <!-- <option value="legal_advices">Legal Advices</option>
-              <option value="litigation">Litigation</option>
-              <option value="lawsuits">Lawsuits</option>
-              <option value="business_law">Business Law</option>
-              <option value="criminal_defense">Criminal Defense</option>
-              <option value="copyrights">Copyrights</option>
-              <option value="criminal_law">Criminal Law</option> -->
+         
             </select>
           </div>
-          <div class="select 3">
-            <select
-              id="doc"
-              name="doctor"
-              class="form-select"
-              (change)="getLawerName($event)"
-            >
-              <option value="javascript">Lawers</option>
-              <option value="ajmed">Ahmed</option>
-              <option value="mohammed">Mohammed</option>
-              <option value="mostafa">Mostafa</option>
-              <option value="joo">Joo</option>
-              <option value="maged">Maged</option>
-              <option value="">C++</option>
-              <option value="erlang">Erlang</option>
-            </select>
+          <div class="select select3">
+
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            [(ngModel)]="lawerName"          
+            name="name"
+            placeholder="Search by Name"
+            defaultValue="all"
+          />
           </div>
+      
           <button
             class="btn serchBtn"
-            [routerLink]="['/alllawer', city, speciali, lawerName]"
-          >
+            (click)="searchFun()"
+            >
             Search
           </button>
-          <!-- <button class="btn btn-danger" (click)="serch()">Search</button> -->
-
-          <!-- </form> -->
+       
         </div>
       </div>
     </div>

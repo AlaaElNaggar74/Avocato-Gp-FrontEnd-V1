@@ -83,12 +83,19 @@
         <li class="nav-item" *ngIf="isLogin">
           <a class="nav-link" routerLink="faq" routerLinkActive="active">FAQ</a>
         </li>
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="mygroup" routerLinkActive="active">MY-GROUP</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="allgroups" routerLinkActive="active">GROUPS</a>
+        </li>
         <!-- <li class="nav-item">
           <a class="nav-link" routerLink="blog" routerLinkActive="active"
             >Blog</a
           >
         </li> -->
-        <li class="nav-item" >
+
+        <li class="nav-item">
           <a class="nav-link" routerLink="contact" routerLinkActive="active"
             >Contact</a
           >
@@ -103,10 +110,10 @@
             Profile
           </a>
           <ul class="dropdown-menu">
-            <li *ngIf="lawerInfo">
+            <li *ngIf="lawerInfo?.role == 'lawer'">
               <a class="dropdown-item" routerLink="adminProfile">Setting</a>
             </li>
-            <li *ngIf="userInfo">
+            <li *ngIf="userInfo?.role == 'user'">
               <a class="dropdown-item" routerLink="userProfile">Setting</a>
             </li>
           </ul>
@@ -116,13 +123,13 @@
             >Login</a
           >
         </li>
-      
-          <li class="nav-item"  *ngIf="isLogin" >
-            <a class="nav-link" routerLink="register"  routerLinkActive="active"
-              >LogOut</a
-            >
-          </li>
-      
+
+        <li class="nav-item" *ngIf="isLogin">
+          <a class="nav-link" routerLink="register" routerLinkActive="active"
+            >LogOut</a
+          >
+        </li>
+
         <!-- <ng-container *ngIf="isLogin">
           <li class="nav-item"  (click)="logout()"  routerLinkActive="active">
             <a class="nav-link" 
@@ -130,7 +137,7 @@
             >
           </li>
         </ng-container> -->
-       
+
         <li class="nav-item">
           <a
             class="nav-link freeconsult"

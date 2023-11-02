@@ -164,7 +164,19 @@ select {
   color: rgb(247, 151, 26);
   border-radius: 0;
 }
+
 select:focus {
+  box-shadow: none;
+}
+
+.select3 input {
+  height: 100%;
+  border-radius: 0;
+  border: 1px solid rgba(184, 184, 184, 0.842);
+
+}
+
+.select3 input:focus {
   box-shadow: none;
 }
 

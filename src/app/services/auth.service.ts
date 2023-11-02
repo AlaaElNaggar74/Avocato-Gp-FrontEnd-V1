@@ -58,7 +58,7 @@ export class AuthService {
   saveUserLoginData(objData: any) {
     let user = new userLoginData(
       objData.name,
-      objData.city,
+      objData.city_id,
       objData.email,
       objData.image,
       objData.mobile,

@@ -163,7 +163,7 @@
               id="doc"
               name="doctor"
               class="form-select"
-              formControlName="city"
+              formControlName="city_id"
               (change)="getCity($event)"
             >
               <option value="all" selected>City</option>
@@ -180,42 +180,42 @@
             </select>
           </div>
           <div class="mb-1">
-            <label for="mobile" class="form-label">Mobile</label>
+            <label for="mobile" class="form-label">phone</label>
             <input
               type="tel"
               class="form-control"
-              id="mobile"
-              formControlName="mobile"
-              name="mobile"
+              id="phone"
+              formControlName="phone"
+              name="phone"
               [(ngModel)]="commonMobile"
-              aria-describedby="mobileHelp"
+              aria-describedby="phoneHelp"
               [ngStyle]="{
                 'border-color':
-                  RegisterUserForm.controls['mobile'].touched &&
-                  RegisterUserForm.controls['mobile'].invalid
+                  RegisterUserForm.controls['phone'].touched &&
+                  RegisterUserForm.controls['phone'].invalid
                     ? 'red'
                     : 'grey'
               }"
             />
-            <!-- [(ngModel)]="commonMobile" -->
+            <!-- [(ngModel)]="commonphone" -->
 
             <div
               class="text-danger"
               *ngIf="
-                RegisterUserForm.controls['mobile'].touched &&
-                RegisterUserForm.controls['mobile'].invalid
+                RegisterUserForm.controls['phone'].touched &&
+                RegisterUserForm.controls['phone'].invalid
               "
             >
               <small
-                *ngIf="RegisterUserForm.controls['mobile']?.errors?.['required']"
-                >Mobile is a required field!</small
+                *ngIf="RegisterUserForm.controls['phone']?.errors?.['required']"
+                >phone is a required field!</small
               >
-              <!-- <small *ngIf="RegisterUserForm.controls['mobile']?.errors?.['maxlength']"
-                  >mobile Should Greater Than 17 !!!
+              <!-- <small *ngIf="RegisterUserForm.controls['phone']?.errors?.['maxlength']"
+                  >phone Should Greater Than 17 !!!
                 </small> -->
               <small
-                *ngIf="RegisterUserForm.controls['mobile']?.errors?.['pattern']"
-                >Mobilee Not Correct !!!
+                *ngIf="RegisterUserForm.controls['phone']?.errors?.['pattern']"
+                >phonee Not Correct !!!
               </small>
             </div>
           </div>

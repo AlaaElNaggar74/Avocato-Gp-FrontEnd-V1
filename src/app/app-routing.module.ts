@@ -24,6 +24,8 @@ import { LawersTestComponent } from './lawers-test/lawers-test.component';
 import { OneLawersTestComponent } from './one-lawers-test/one-lawers-test.component';
 import { OneLawersReservationComponent } from './one-lawers-reservation/one-lawers-reservation.component';
 import { AboutLawerComponent } from './about-lawer/about-lawer.component';
+import { GroupComponent } from './group/group.component';
+import { MyroupComponent } from './myroup/myroup.component';
 
 const routes: Routes = [
   {
@@ -114,6 +116,14 @@ const routes: Routes = [
   {
     path: 'lawersTest',
     component: LawersTestComponent,
+  },
+  {
+    path: 'allgroups',
+    component: GroupComponent,
+  },
+  {
+    path: 'mygroup',
+    component: MyroupComponent,
   },
   {
     path: 'lawersTest/:id',

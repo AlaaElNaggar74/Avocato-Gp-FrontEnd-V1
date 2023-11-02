@@ -6,7 +6,7 @@ import { AuthService } from '../services/auth.service';
 
 import { matchpassword } from '../../matchPassword.validators';
 import { AllLawerService } from '../services/all-lawer.service';
-
+import { UsersService } from '../services/projectApis/users.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -22,11 +22,12 @@ export class RegisterComponent {
   constructor(
     public _Router: Router,
     public _AuthService: AuthService,
-    public _AllLawerService: AllLawerService
+    public _AllLawerService: AllLawerService,
+    public _UsersService:UsersService
   ) {
-    _AllLawerService.getCities().subscribe((data) => {
+    _UsersService.getCitiesApi().subscribe((data) => {
       this.cities = data.data;
-      // console.log("citiies",data.data);
+      console.log("citiies",data.data);
     });
     this._AuthService.logOut();
   }
@@ -40,7 +41,7 @@ export class RegisterComponent {
       Validators.minLength(3),
       Validators.maxLength(8),
     ]),
-    city: new FormControl(null, [
+    city_id: new FormControl(null, [
       Validators.required,
       Validators.min(1),
       Validators.max(10),
@@ -52,7 +53,7 @@ export class RegisterComponent {
     //   Validators.required
     // ]),
 
-    mobile: new FormControl(null, [
+    phone: new FormControl(null, [
       Validators.required,
       // Validators.minLength(11),
 
@@ -116,39 +117,46 @@ export class RegisterComponent {
       this.clickSubmit = !this.clickSubmit;
       this.checkLawer = false;
       formUserData.value.role = 'user';
-      formUserData.value.IsActive = 'active';
+      // formUserData.value.IsActive = 'active';
       formUserData.value.image = this.UserImageName;
       console.log('formUserData.value', formUserData.value);
 
-      this._AuthService
-        .registrUserJson(formUserData.value)
+      this._UsersService
+        .registrUserApi(formUserData.value)
         .subscribe((data) => {
-          console.log('status-id', data.id);
-          this.userId = data.id;
+          console.log('status-id-CHECK', data);
+          // this.userId = data.id;
         });
       console.log(formUserData);
     } else {
-      let obj = {
-        name: 'alaax',
-        image: 'alaax.png',
-        email: 'alla@gmail.com',
-        phone: '524141',
-        password: '21452145',
-        city_id: 1,
-        plan_id: 1,
-      };
+      // let obj = {
+      //   name: 'alaax',
+      //   image: 'alaax.png',
+      //   email: 'alla@gmail.com',
+      //   phone: '524141',
+      //   password: '21452145',
+      //   city_id: 1,
+      //   plan_id: 1,
+      // };
       // this._AuthService.registrUserMethod(obj).subscribe((data) => {
       //   console.log('resssss', data);
       // });
       formUserData.value.role = 'user';
-      formUserData.value.IsActive = 'active';
+      // formUserData.value.IsActive = 'active';
       formUserData.value.image = this.UserImageName;
+      // formUserData.append('image', formUserData.get('fileSource').value);
 
-      this._AuthService
-        .registrUserJson(formUserData.value)
-        .subscribe((data) => {
-          console.log('status', data);
-        });
+
+      this._UsersService
+      .registrUserApi(formUserData.value)
+      .subscribe((data) => {
+        console.log('status-id-NOT-CHECK', data);
+        // this.userId = data.id;
+        // console.log("registerData",data);
+        
+      });
+      console.log("registerData",formUserData);
+
       // console.log(formUserData.value);
       // this._Router.navigate(['/home']);
       this._Router.navigate(['/login']);
@@ -157,13 +165,13 @@ export class RegisterComponent {
 
   getLawerData(formLawerData: any) {
     formLawerData.value.idImage = this.LawerImageName;
-    let lawerWithID = { ...formLawerData.value, UserId: this.userId };
-    console.log(lawerWithID);
+    let lawerWithID = { ...formLawerData.value,  };
+    console.log("lawerWithID------- ",lawerWithID);
 
-    this._AuthService.registrLawerMethod(lawerWithID).subscribe((data) => {
-      console.log('status', data);
+    this._UsersService.registrLawerApi(lawerWithID).subscribe((data) => {
+      console.log('status---lawer', data);
     });
-    this._Router.navigate(['/login']);
+    // this._Router.navigate(['/login']);
   }
 
   showLawerRegis() {

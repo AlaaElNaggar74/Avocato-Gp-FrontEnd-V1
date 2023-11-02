@@ -1,3 +1,4 @@
+import { UsersService } from 'src/app/services/projectApis/users.service';
 import { Component } from '@angular/core';
 import { AllLawerService } from '../services/all-lawer.service';
 import { ActivatedRoute } from '@angular/router';
@@ -15,7 +16,8 @@ export class AboutLawerComponent {
 
   constructor(
     public _AllLawerService: AllLawerService,
-    public _ActivatedRoute: ActivatedRoute
+    public _ActivatedRoute: ActivatedRoute,
+    public _UsersService:UsersService
   ) {
     this.id = _ActivatedRoute.snapshot.paramMap.get('id');
 
@@ -33,8 +35,12 @@ export class AboutLawerComponent {
     // });
 
     _AllLawerService.getOneReviws(this.id).subscribe((data) => {
-      this.Reviws = data;
-      console.log(data);
+      // this.Reviws = data;
+      // console.log(data);
+    });
+    _UsersService.getAllReviews(this.id).subscribe((data) => {
+      this.Reviws = data.data;
+      console.log(this.Reviws);
     });
   
   }

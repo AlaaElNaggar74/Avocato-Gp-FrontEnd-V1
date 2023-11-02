@@ -1,0 +1,167 @@
+<div class="practiceDetails">
+  <div class="container">
+    <div class="headerMain">
+      <h2 class="practiceDetailsHeade text-center">Groups</h2>
+      <p class="text-center">Choose Your Groups</p>
+    </div>
+    <div class="leftEle d-flex justify-content-end">
+      <button class="createBtn btn mb-3" (click)="openCreatForm()">
+        <span>Create</span>
+      </button>
+    </div>
+    <div class="contentTabs" *ngIf="!openForm">
+      <div class="contentwrap row align-items-stretch">
+        <div class="col-md-4">
+          <div
+            class="nav flex-column nav-pills"
+            id="v-pills-tab"
+            role="tablist"
+            aria-orientation="vertical"
+          >
+            <ng-container *ngFor="let user of usersList; index as i">
+              <button
+                *ngFor="let group of user.groups; index as index"
+                class="nav-link"
+                [class.active]="index == xindex"
+                [id]="'v-pills-' + index + '-tab'"
+                data-bs-toggle="pill"
+                [data-bs-target]="'#v-pills-' + index"
+                type="button"
+                role="tab"
+                (click)="changeIndex(index)"
+                [aria-controls]="'v-pills-home' + index"
+                [aria-selected]="index == xindex ? true : false"
+              >
+                <i class="fa-solid fa-people-group me-2"></i>
+                <span>{{ group.name }}</span>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="tab-content  mt-3 mt-md-0" id="v-pills-tabContent">
+            <ng-container *ngFor="let user of usersList; index as i">
+              <div
+                *ngFor="let group of user.groups; index as index"
+                class="tab-pane fade show"
+                [class.active]="index == xindex"
+                [id]="'v-pills-' + index"
+                role="tabpanel"
+                [aria-labelledby]="'v-pills-' + index + '-tab'"
+                [tabindex]="index"
+              >
+                <div class="fle d-flex justify-content-between">
+                  <h4>{{ group.name }}</h4>
+                  <button
+                    class="jionAndView btn btn-info me-3"
+                    [class.active]="index !== xindexBtn + index"
+                    (click)="joinGroup(group.id)"
+                  >
+                    <span [class.d-block]="index == xindexBtn">Join</span>
+                  </button>
+                  <button
+                    class="jionAndView btn btn-info me-3"
+                    [class.active]="index == xindexBtn + index"
+                    (click)="joinGroup(group.id)"
+                  >
+                    <span [class.d-block]="index == xindexBtn">View</span>
+                  </button>
+                </div>
+                <div *ngFor="let post of group.posts">
+                  <h5>{{ post.post }} ---</h5>
+                  <h5>{{ user.name }}</h5>
+                  <h5>
+                    {{ user.image }}
+                    <img src="{{ user?.image }}" alt="" />
+                  </h5>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    <div class="createForm" *ngIf="openForm">
+     <div class="col-md-6 m-auto ">
+      <form
+      action="#"
+      method="POST"
+      [formGroup]="createForm"
+      (ngSubmit)="createPost(createForm)"
+    >
+      <div class="mb-1">
+        <label for="postname" class="form-label"
+          >Post Name</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="postname"
+          aria-describedby="emailHelp"
+          formControlName="postName"
+          [ngStyle]="{
+            'border-color':
+              createForm.controls['postName'].touched &&
+              createForm.controls['postName'].invalid
+                ? 'red'
+                : 'grey'
+          }"
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            createForm.controls['postName'].touched &&
+            createForm.controls['postName'].invalid
+          "
+        >
+          <small *ngIf="createForm.controls['postName']?.errors?.['required']"
+            >postName is a required field!</small
+          >
+
+        </div>
+      </div>
+
+      <div class="mb-1">
+        <label for="description" class="form-label">description</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="description"
+          id="description"
+          [ngStyle]="{
+            'border-color':
+              createForm.controls['description'].touched &&
+              createForm.controls['description'].invalid
+                ? 'red'
+                : 'grey'
+          }"
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            createForm.controls['description'].touched &&
+            createForm.controls['description'].invalid
+          "
+        >
+          <small *ngIf="createForm.controls['description']?.errors?.['required']"
+            >description is a required field!</small
+          >
+
+        </div>
+      </div>
+
+      <!-- <button type="submit" class="btn loginBtn">Submit</button> -->
+      <button
+        type="submit"
+        class="btn loginBtn mt-3 "
+        [ngClass]="{ active: createForm.valid }"
+        [disabled]="createForm.invalid"
+      >
+        Submit
+      </button>
+    </form>
+     </div>
+    </div>
+  </div>
+</div>

@@ -17,6 +17,9 @@
               Pediatrician Specialized in Pediatric Allergy and Immunology,
               Pediatric Dietitian and Nutrition, New Born and Pediatrics
             </p>
+            <p class="des mt-3">
+             Mobile {{ lawer.phone }}
+            </p>
             <div class="iconrate">
               <i
                 class="fa-solid fa-star"
@@ -78,7 +81,7 @@
             <h4 class="">Overall Rating</h4>
             <p>From 1095 Visitors</p>
           </div>
-          <div class="userReviws" *ngFor="let review of Reviws.userReview">
+          <div class="userReviws" *ngFor="let review of Reviws">
             <div class="le">
               <div class="iconrate d-flex align-items-center">
                 <i
@@ -87,8 +90,10 @@
                 >
                 </i>
               </div>
-              <h5 class="">Overall Rating</h5>
-              <p>{{ review.name }}</p>
+              <h5 class="">Rating</h5>
+              <p class="mb-0">" {{ review.comment }} "</p>
+              <p >{{ review.name }}</p>
+
               <p>{{ review.created_at }}</p>
             </div>
             <div class="rateNum">
