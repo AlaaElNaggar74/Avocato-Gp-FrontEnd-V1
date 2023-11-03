@@ -46,4 +46,9 @@ export class UsersService {
   loginFun(data:any): Observable<any> {
     return this._HttpClient.post(`http://127.0.0.1:8000/sanctum/token`,data);
   }
+  getGroupAsAdmin(id:any): Observable<any> {
+
+    return this._HttpClient.get(`http://127.0.0.1:8000/api/users/${id}`);
+    
+  }
 }

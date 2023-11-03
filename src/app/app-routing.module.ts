@@ -26,6 +26,7 @@ import { OneLawersReservationComponent } from './one-lawers-reservation/one-lawe
 import { AboutLawerComponent } from './about-lawer/about-lawer.component';
 import { GroupComponent } from './group/group.component';
 import { MyroupComponent } from './myroup/myroup.component';
+import { authgardGuard } from './services/guard/authgard.guard';
 
 const routes: Routes = [
   {
@@ -100,6 +101,7 @@ const routes: Routes = [
   {
     path: 'userProfile',
     component: UserProfileComponent,
+    // canActivate: [authgardGuard],
   },
   {
     path: 'topic/:id',

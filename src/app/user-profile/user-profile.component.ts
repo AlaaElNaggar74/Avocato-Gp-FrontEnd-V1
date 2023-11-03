@@ -11,17 +11,38 @@ export class UserProfileComponent {
   openBool: any = false;
   openTabs: any = 'all';
   usersList: any;
+  adminGroupsList: any;
+  subscripGroup:any;
   xindex = 0;
-
-
+  userIdGroup=0;
+  localStorValue:any;
 
   constructor(public _UsersService:UsersService){
     
+    if (localStorage.getItem('UserData')) {
+      this.localStorValue = localStorage.getItem('UserData');
+      this.localStorValue = JSON.parse(this.localStorValue);
+      this.userIdGroup = this.localStorValue.id;
+     
+      console.log("UserProfile-login-ID",this.userIdGroup);
+      
+    }
     this._UsersService.getUserApi().subscribe((res) => {
       console.log('res.data', res.data);
       console.log('res.data', res.data.groups);
       this.usersList = res.data;
     });
+
+    this._UsersService.getGroupAsAdmin(this.userIdGroup).subscribe((res)=>{
+      console.log("Groups-As-Admin",res.data.groupsAsAdmin);
+      // let x=
+      this.adminGroupsList=res.data.groupsAsAdmin;
+      this.subscripGroup=res.data.groups;
+
+      
+
+    });
+    
   }
   // oldPassword:any;
   image1 = '../../assets/ourExpert/team2.jpg';

@@ -23,13 +23,12 @@ export class RegisterComponent {
     public _Router: Router,
     public _AuthService: AuthService,
     public _AllLawerService: AllLawerService,
-    public _UsersService:UsersService
+    public _UsersService: UsersService
   ) {
     _UsersService.getCitiesApi().subscribe((data) => {
       this.cities = data.data;
       // console.log("citiies",data.data);
     });
-    this._AuthService.logOut();
   }
   checkLawer = false;
   clickSubmit = false;
@@ -119,15 +118,36 @@ export class RegisterComponent {
       formUserData.value.role = 'user';
       // formUserData.value.IsActive = 'active';
       formUserData.value.image = this.UserImageName;
-      console.log('formUserData.value', formUserData.value);
+      // console.log('formUserData.value', formUserData.value);
 
       this._UsersService
         .registrUserApi(formUserData.value)
         .subscribe((data) => {
-          console.log('status-id-CHECK', data);
+
+          this._UsersService.getUserApi().subscribe((res) => {
+            // console.log('userPart-api', res.data);
+            let userPartList = res.data;
+
+            let userPart = userPartList.find((ele: any) => {
+              return ele.email == formUserData.value.email;
+            });
+            // console.log('0000000', userPart);
+
+            if (userPart) {
+              console.log('AAA-status-userPart-CHECK', userPart.id);
+              this.userId=userPart.id;
+
+            }else{
+              console.log('Status-userPart-NOT-CHECK', userPart);
+
+            }
+      
+
+          });
+          // console.log('status-id-CHECK', data);
           // this.userId = data.id;
         });
-      console.log(formUserData);
+      // console.log(formUserData);
     } else {
       // let obj = {
       //   name: 'alaax',
@@ -146,18 +166,36 @@ export class RegisterComponent {
       formUserData.value.image = this.UserImageName;
       // formUserData.append('image', formUserData.get('fileSource').value);
 
-
       this._UsersService
-      .registrUserApi(formUserData.value)
-      .subscribe((data) => {
-        console.log('status-id-NOT-CHECK', data);
-        // this.userId = data.id;
-        // console.log("registerData",data);
-        
-      });
+        .registrUserApi(formUserData.value)
+        .subscribe((data) => {
+          // console.log('ASDASSDDD', data);
 
-      console.log("registerData",formUserData);
+              // this._UsersService.getUserApi().subscribe((res) => {
+              //   // console.log('userPart-api', res.data);
+              //   let userPartList = res.data;
 
+              //   let userPart = userPartList.find((ele: any) => {
+              //     return ele.email == formUserData.value.email;
+              //   });
+              //   // console.log('0000000', userPart);
+
+              //   if (userPart) {
+              //     console.log('AAA-status-userPart-CHECK', userPart);
+
+              //   }else{
+              //     console.log('Status-userPart-NOT-CHECK', userPart);
+
+              //   }
+          
+
+              // });
+              // console.log('status-id-NOT-CHECK', data);
+              // this.userId = data.id;
+              // console.log("registerData",data);
+        });
+
+      // console.log('registerData', formUserData);
 
       // console.log(formUserData.value);
       // this._Router.navigate(['/home']);
@@ -167,13 +205,14 @@ export class RegisterComponent {
 
   getLawerData(formLawerData: any) {
     formLawerData.value.idImage = this.LawerImageName;
-    let lawerWithID = { ...formLawerData.value,  };
-    console.log("lawerWithID------- ",lawerWithID);
+    formLawerData.value.user_id = this.userId;
+    let lawerWithID = { ...formLawerData.value };
+    console.log('lawerWithID------- ', lawerWithID);
 
     this._UsersService.registrLawerApi(lawerWithID).subscribe((data) => {
-      console.log('status---lawer', data);
+      console.log('status---lawer_with-IDDD', data);
     });
-    // this._Router.navigate(['/login']);
+    this._Router.navigate(['/login']);
   }
 
   showLawerRegis() {

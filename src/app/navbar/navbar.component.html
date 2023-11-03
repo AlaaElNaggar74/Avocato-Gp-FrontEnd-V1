@@ -110,7 +110,7 @@
             Profile
           </a>
           <ul class="dropdown-menu">
-            <li *ngIf="userInfo?.role == 'lawyer'">
+            <li *ngIf="userInfo?.user?.role == 'lawyer'">
               <a class="dropdown-item" routerLink="adminProfile">Setting</a>
             </li>
             <li *ngIf="userInfo?.role == 'user'">

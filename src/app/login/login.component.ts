@@ -22,19 +22,15 @@ export class LoginComponent {
     public _ToastrService: ToastrService,
     public _UsersService: UsersService
   ) {
-
     _AuthService.userLogData.subscribe((data) => {
       // console.log("User_Data_Is",data);
 
-      let obj=data;
-      let size =Object.keys(obj).length
+      let obj = data;
+      let size = Object.keys(obj).length;
       if (size) {
-      
         // console.log("User_Data_Is-FFF-TRRUE",obj);
-        
-      }else{
+      } else {
         // console.log("User_Data_Is-FFF",obj);
-    
       }
     });
     this._AuthService.logOut();
@@ -63,7 +59,7 @@ export class LoginComponent {
     let loginUser = formLoginData.value;
 
     // this._UsersService.loginFun(formLoginData.value).subscribe((resLogin) => {
-      // console.log('resLogin', resLogin);
+    // console.log('resLogin', resLogin);
     // });
 
     this._UsersService.getUserApi().subscribe((res) => {
@@ -76,30 +72,44 @@ export class LoginComponent {
       // console.log('0000000', userPart);
 
       if (userPart) {
-        this.userTotalData = { ...userPart };
-        this._AuthService.saveUserLoginData(this.userTotalData);
-        // console.log('userTotalData', this.userTotalData);
-                  this._Router.navigate(['/home']);
+        this._UsersService.getLawerApi().subscribe((res) => {
+          this.LawerList = res.data;
+          console.log('this.LawerList--', this.LawerList);
 
+          let lawerPart = this.LawerList.find((ele: any) => {
+            return ele.user.id == userPart.id;
+          });
+          if (lawerPart) {
+            this.userTotalData = { ...lawerPart };
+            localStorage.setItem(
+              'UserData',
+              JSON.stringify(this.userTotalData)
+            );
+            // this._AuthService.saveUserLoginData(this.userTotalData);
+            // this._AuthService.saveUserLoginData(this.userTotalData);
+            console.log('userTotalData-LAWER-TRUE', this.userTotalData);
+            this._Router.navigate(['/home']);
+          } else {
+            this.userTotalData = { ...userPart };
+            localStorage.setItem(
+              'UserData',
+              JSON.stringify(this.userTotalData)
+            );
+            // this._AuthService.saveUserLoginData(this.userTotalData);
+            // this._AuthService.saveUserLoginData(this.userTotalData);
+            console.log('userTotalData-USER-FALSE', this.userTotalData);
+            this._Router.navigate(['/home']);
+          }
+        });
       }
-
-      // let lawerPart = this.LawerList.find((ele: any) => {
-      //   return ele.UserId == userPart.id;
-      // });
-      // if (lawerPart) {
-      //   this._AuthService.loginLawerJson().subscribe((res) => {
-      //     this.LawerList = res;
-
-      //     });
-      //   }
     });
 
-      // console.log(formLoginData);
+    // console.log(formLoginData);
     //   // this._AuthService.registrUserMethod(formLoginData.value);
     //   this._AuthService.loginUserJson().subscribe((res) => {
     //     this.userList = res;
-        // console.log('Success', res);
-        // console.log('Success', typeof res);
+    // console.log('Success', res);
+    // console.log('Success', typeof res);
     //     let userPart = this.userList.find((ele: any) => {
     //       return (
     //         ele.email == formLoginData.value.email &&
@@ -117,10 +127,10 @@ export class LoginComponent {
 
     //     // });
 
-        // console.log('userPart', userPart);
-        // console.log("lawerPart",lawerPart);
+    // console.log('userPart', userPart);
+    // console.log("lawerPart",lawerPart);
 
-        // console.log('userPart', userPart);
+    // console.log('userPart', userPart);
 
     //     if (userPart) {
     //       this._AuthService.loginLawerJson().subscribe((res) => {
@@ -140,7 +150,7 @@ export class LoginComponent {
     //           this.userTotalData={...userPart};
     //           this._AuthService.saveUserLoginData(this.userTotalData);
     //         }
-            // console.log('userTotalData', this.userTotalData);
+    // console.log('userTotalData', this.userTotalData);
     //       });
     //       this._ToastrService.success('Login Success Done !');
 

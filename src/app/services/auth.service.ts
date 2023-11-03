@@ -13,6 +13,9 @@ export class AuthService {
 
   userLogData=new BehaviorSubject<any>({});
   lawerLogData=new BehaviorSubject<any>({});
+  isLogin =new BehaviorSubject<any>(false);
+
+  localStorValue:any;
 
   constructor(public _HttpClient: HttpClient , public _Router:Router) {}
 
@@ -56,19 +59,27 @@ export class AuthService {
     );
   }
 
-  saveUserLoginData(objData: any) {
-    let user = new userLoginData(
-      objData.id,
-      objData.name,
-      objData.city_id,
-      objData.email,
-      objData.image,
-      objData.phone,
-      objData.password,
-      objData.role
-    );
-    // this.userLogData=user;
-    this.userLogData.next(user);
+  saveUserLoginData(objData:any) {
+    // let objData={}
+    // let objData=JSON.parse(localStorValue);
+    if (localStorage.getItem("UserData")) {
+      this.localStorValue=localStorage.getItem("UserData");
+        let objData=JSON.parse(this.localStorValue);
+        let user = new userLoginData(
+          objData.id,
+          objData.name,
+          objData.city_id,
+          objData.email,
+          objData.image,
+          objData.phone,
+          objData.password,
+          objData.role
+        );
+        // this.userLogData=user;
+        this.userLogData.next(user);
+        this.isLogin.next(true)
+    }
+
   }
   saveLawerLoginData(objData: any) {
     let lawer = new lawerLoginData(
@@ -92,6 +103,11 @@ export class AuthService {
   logOut(){
     this.lawerLogData.next({});
     this.userLogData.next({});
+    let empty={};
+    // localStorage.setItem('UserData', JSON.stringify({}))
+    // localStorage.clear();
+    localStorage.removeItem('UserData');
+    this.isLogin.next(false)
     // console.log("this.lawerLogData",this.lawerLogData);
     // console.log("this.userLogData------JK",this.userLogData);
     this._Router.navigate(["/login"])
