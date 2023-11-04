@@ -18,9 +18,8 @@
             role="tablist"
             aria-orientation="vertical"
           >
-            <ng-container *ngFor="let user of usersList; index as i">
               <button
-                *ngFor="let group of user.groups; index as index"
+                *ngFor="let group of groupList; index as index"
                 class="nav-link"
                 [class.active]="index == xindex"
                 [id]="'v-pills-' + index + '-tab'"
@@ -35,14 +34,12 @@
                 <i class="fa-solid fa-people-group me-2"></i>
                 <span>{{ group.name }}</span>
               </button>
-            </ng-container>
           </div>
         </div>
         <div class="col-md-8">
           <div class="tab-content  mt-3 mt-md-0" id="v-pills-tabContent">
-            <ng-container *ngFor="let user of usersList; index as i">
               <div
-                *ngFor="let group of user.groups; index as index"
+                *ngFor="let group of groupList; index as index"
                 class="tab-pane fade show"
                 [class.active]="index == xindex"
                 [id]="'v-pills-' + index"
@@ -67,16 +64,15 @@
                     <span [class.d-block]="index == xindexBtn">View</span>
                   </button>
                 </div>
-                <div *ngFor="let post of group.posts">
+                <div *ngFor="let post of groupList">
                   <h5>{{ post.post }} ---</h5>
-                  <h5>{{ user.name }}</h5>
+                  <h5>{{ post.name }}</h5>
                   <h5>
-                    {{ user.image }}
-                    <img src="{{ user?.image }}" alt="" />
+                    {{ post.image }}
+                    <!-- <img src="{{ user?.image }}" alt="" /> -->
                   </h5>
                 </div>
               </div>
-            </ng-container>
           </div>
         </div>
       
@@ -88,22 +84,22 @@
       action="#"
       method="POST"
       [formGroup]="createForm"
-      (ngSubmit)="createPost(createForm)"
+      (ngSubmit)="createGroup(createForm)"
     >
       <div class="mb-1">
-        <label for="postname" class="form-label"
+        <label for="name" class="form-label"
           >Group Name</label
         >
         <input
           type="text"
           class="form-control"
-          id="postname"
+          id="name"
           aria-describedby="emailHelp"
-          formControlName="postName"
+          formControlName="name"
           [ngStyle]="{
             'border-color':
-              createForm.controls['postName'].touched &&
-              createForm.controls['postName'].invalid
+              createForm.controls['name'].touched &&
+              createForm.controls['name'].invalid
                 ? 'red'
                 : 'grey'
           }"
@@ -111,18 +107,26 @@
         <div
           class="text-danger"
           *ngIf="
-            createForm.controls['postName'].touched &&
-            createForm.controls['postName'].invalid
+            createForm.controls['name'].touched &&
+            createForm.controls['name'].invalid
           "
         >
-          <small *ngIf="createForm.controls['postName']?.errors?.['required']"
-            >postName is a required field!</small
+          <small *ngIf="createForm.controls['name']?.errors?.['required']"
+            >name is a required field!</small
           >
+          <small
+          *ngIf="createForm.controls['name']?.errors?.['minlength']"
+          >Length Should Be More Than 3 Char!!!
+        </small>
+        <small
+          *ngIf="createForm.controls['name']?.errors?.['maxlength']"
+          >Length Should Be Less Than 10 Char!!!
+        </small>
 
         </div>
       </div>
 
-      <div class="mb-1">
+      <!-- <div class="mb-1">
         <label for="description" class="form-label">Description</label>
         <input
           type="text"
@@ -149,7 +153,7 @@
           >
 
         </div>
-      </div>
+      </div> -->
 
       <!-- <button type="submit" class="btn loginBtn">Submit</button> -->
       <button

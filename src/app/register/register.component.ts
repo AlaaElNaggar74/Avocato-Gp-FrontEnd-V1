@@ -14,7 +14,9 @@ import { UsersService } from '../services/projectApis/users.service';
 })
 export class RegisterComponent {
   cities: any;
+  Specializes: any;
   cityX: any = 'all';
+  Specialize: any = 'all';
   userId: any;
 
   UserImageName = '';
@@ -27,7 +29,11 @@ export class RegisterComponent {
   ) {
     _UsersService.getCitiesApi().subscribe((data) => {
       this.cities = data.data;
-      // console.log("citiies",data.data);
+      console.log("citiies",data.data);
+    });
+    _UsersService.getspecializationsApi().subscribe((data) => {
+      this.Specializes = data.data;
+      console.log("citiies",data.data);
     });
   }
   checkLawer = false;
@@ -38,13 +44,13 @@ export class RegisterComponent {
     name: new FormControl(null, [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(8),
+      Validators.maxLength(20),
     ]),
     city_id: new FormControl(null, [
       Validators.required,
-      Validators.min(1),
-      Validators.max(10),
+   
     ]),
+
     email: new FormControl(null, [Validators.required, Validators.email]),
 
     image: new FormControl(null, [Validators.required]),
@@ -76,6 +82,10 @@ export class RegisterComponent {
       Validators.required,
       Validators.min(100),
       Validators.max(400),
+    ]),
+    specialization_id: new FormControl(null, [
+      Validators.required,
+    
     ]),
     location: new FormControl(null, [
       Validators.required,
@@ -134,11 +144,11 @@ export class RegisterComponent {
             // console.log('0000000', userPart);
 
             if (userPart) {
-              console.log('AAA-status-userPart-CHECK', userPart.id);
+              // console.log('AAA-status-userPart-CHECK', userPart.id);
               this.userId=userPart.id;
 
             }else{
-              console.log('Status-userPart-NOT-CHECK', userPart);
+              // console.log('Status-userPart-NOT-CHECK', userPart);
 
             }
       
@@ -212,6 +222,7 @@ export class RegisterComponent {
     this._UsersService.registrLawerApi(lawerWithID).subscribe((data) => {
       console.log('status---lawer_with-IDDD', data);
     });
+
     this._Router.navigate(['/login']);
   }
 
@@ -221,6 +232,12 @@ export class RegisterComponent {
 
   getCity(event: any) {
     this.cityX = event.target.value;
+
+    // console.log(event.target.value);
+  }
+
+  getSpecialize(event: any) {
+    this.Specialize = event.target.value;
 
     // console.log(event.target.value);
   }

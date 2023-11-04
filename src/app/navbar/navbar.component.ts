@@ -12,13 +12,15 @@ export class NavbarComponent {
   nav_log: any = '../../assets/logo.png';
   // BehaviorSubject<any>({})
   userInfo: any;
+  token:any;
   lawerInfo: any;
-  localStorValue: any;
+    localStorValue: any;
   isLogin=false;
   user: any = 'lawer';
 
   constructor(public _AuthService: AuthService, public _Router: Router) {
     if (localStorage.getItem('UserData')) {
+
       this._AuthService.isLogin.next(true);
       this._AuthService.isLogin.subscribe((data)=>{
         console.log("nnnnnn",data);
@@ -29,8 +31,12 @@ export class NavbarComponent {
       this.localStorValue = localStorage.getItem('UserData');
       let objData = JSON.parse(this.localStorValue);
       this.userInfo = objData;
-      console.log('fffffffff', this.userInfo);
-      console.log('this.isLogin', this._AuthService.isLogin);
+      this.token=objData.token
+
+      console.log('this.userInfo', this.userInfo);
+      console.log('this.token', this.token);
+      // console.log('this.isLogin', this._AuthService.isLogin);
+
     } else {
       this._AuthService.isLogin.next(false);
     }

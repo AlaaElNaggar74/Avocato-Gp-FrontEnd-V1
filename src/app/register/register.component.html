@@ -179,6 +179,7 @@
               <option value="catalonia">catalonia</option> -->
             </select>
           </div>
+      
           <div class="mb-1">
             <label for="mobile" class="form-label">phone</label>
             <input
@@ -381,6 +382,28 @@
                 >price Should Less Than 400 !!!
               </small>
             </div>
+          </div>
+          <div class="select select1">
+            <label for="name" class="form-label">specialize</label>
+            <select
+              id="doc"
+              name="doctor"
+              class="form-select"
+              formControlName="specialization_id"
+              (change)="getSpecialize($event)"
+            >
+              <option value="all" selected>Special</option>
+              <ng-container *ngFor="let special of Specializes">
+                <option [value]="special.id" id="special.id">{{ special.name }}</option>
+              </ng-container>
+              <!-- <option value="cairo">Cairo</option>
+              <option value="Giza">giza</option>
+              <option value="sharqea">sharqea</option>
+              <option value="tanta">tanta</option>
+              <option value="alex">alex</option>
+              <option value="atfih">atfih</option>
+              <option value="catalonia">catalonia</option> -->
+            </select>
           </div>
           <div class="mb-1">
             <label for="lawerPrice" class="form-label">Location</label>

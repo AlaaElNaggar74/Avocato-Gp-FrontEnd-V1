@@ -55,114 +55,139 @@ export class LoginComponent {
   }
 
   getLoginData(formLoginData: any) {
-    // console.log('formLoginData-LOGINN', formLoginData.value);
-    let loginUser = formLoginData.value;
 
-    // this._UsersService.loginFun(formLoginData.value).subscribe((resLogin) => {
-    // console.log('resLogin', resLogin);
-    // });
+    console.log('formUserData', formLoginData.value);
+    this._UsersService.loginFun(formLoginData.value).subscribe((res) => {
+      console.log('ressssssss', res);
+      let token=res[0];
+      let data=res[1][0]?res[1][0]:res[1];
+      
+      console.log('resssssssstoken', token);
+      console.log('ressssssssdata', data);
+      let userData={"token":token,...data}
+      localStorage.setItem(
+        'UserData',
+        JSON.stringify(userData)
+      );
 
-    this._UsersService.getUserApi().subscribe((res) => {
-      // console.log('userPart-api', res.data);
-      let userPartList = res.data;
-
-      let userPart = userPartList.find((ele: any) => {
-        return ele.email == loginUser.email;
-      });
-      // console.log('0000000', userPart);
-
-      if (userPart) {
-        this._UsersService.getLawerApi().subscribe((res) => {
-          this.LawerList = res.data;
-          console.log('this.LawerList--', this.LawerList);
-
-          let lawerPart = this.LawerList.find((ele: any) => {
-            return ele.user.id == userPart.id;
-          });
-          if (lawerPart) {
-            this.userTotalData = { ...lawerPart };
-            localStorage.setItem(
-              'UserData',
-              JSON.stringify(this.userTotalData)
-            );
-            // this._AuthService.saveUserLoginData(this.userTotalData);
-            // this._AuthService.saveUserLoginData(this.userTotalData);
-            console.log('userTotalData-LAWER-TRUE', this.userTotalData);
-            this._Router.navigate(['/home']);
-          } else {
-            this.userTotalData = { ...userPart };
-            localStorage.setItem(
-              'UserData',
-              JSON.stringify(this.userTotalData)
-            );
-            // this._AuthService.saveUserLoginData(this.userTotalData);
-            // this._AuthService.saveUserLoginData(this.userTotalData);
-            console.log('userTotalData-USER-FALSE', this.userTotalData);
-            this._Router.navigate(['/home']);
-          }
-        });
-      }
     });
 
-    // console.log(formLoginData);
-    //   // this._AuthService.registrUserMethod(formLoginData.value);
-    //   this._AuthService.loginUserJson().subscribe((res) => {
-    //     this.userList = res;
-    // console.log('Success', res);
-    // console.log('Success', typeof res);
-    //     let userPart = this.userList.find((ele: any) => {
-    //       return (
-    //         ele.email == formLoginData.value.email &&
-    //         ele.password == formLoginData.value.password
-    //       );
+        this._Router.navigate(['/home']);
+
+    // localStorage.setItem(
+    //               'UserData',
+    //               JSON.stringify(this.userTotalData)
+    //             );
+    
+
+    //   // console.log('formLoginData-LOGINN', formLoginData.value);
+    //   let loginUser = formLoginData.value;
+
+    //   // this._UsersService.loginFun(formLoginData.value).subscribe((resLogin) => {
+    //   // console.log('resLogin', resLogin);
+    //   // });
+
+    //   this._UsersService.getUserApi().subscribe((res) => {
+    //     // console.log('userPart-api', res.data);
+    //     let userPartList = res.data;
+
+    //     let userPart = userPartList.find((ele: any) => {
+    //       return ele.email == loginUser.email;
     //     });
-
-    //     // this._AuthService.loginLawerJson().subscribe((res) => {
-    //     //   this.LawerList = res;
-
-    //     // let lawerPart = this.LawerList.find((ele: any) => {
-    //     //   return (
-    //     //     ele.UserId == userPart.id
-    //     //   );
-
-    //     // });
-
-    // console.log('userPart', userPart);
-    // console.log("lawerPart",lawerPart);
-
-    // console.log('userPart', userPart);
+    //     // console.log('0000000', userPart);
 
     //     if (userPart) {
-    //       this._AuthService.loginLawerJson().subscribe((res) => {
-    //         this.LawerList = res;
+    //       this._UsersService.getLawerApi().subscribe((res) => {
+    //         this.LawerList = res.data;
+    //         console.log('this.LawerList--', this.LawerList);
 
     //         let lawerPart = this.LawerList.find((ele: any) => {
-    //           return ele.UserId == userPart.id;
+    //           return ele.user.id == userPart.id;
     //         });
     //         if (lawerPart) {
-    //           userPart.role = 'lawer';
-    //           this.userTotalData = {
-    //             ...userPart,
-    //             ...lawerPart,
-    //           };
-    //           this._AuthService.saveLawerLoginData(this.userTotalData);
+    //           this.userTotalData = { ...lawerPart };
+    //           localStorage.setItem(
+    //             'UserData',
+    //             JSON.stringify(this.userTotalData)
+    //           );
+    //           // this._AuthService.saveUserLoginData(this.userTotalData);
+    //           // this._AuthService.saveUserLoginData(this.userTotalData);
+    //           console.log('userTotalData-LAWER-TRUE', this.userTotalData);
+    //           this._Router.navigate(['/home']);
     //         } else {
-    //           this.userTotalData={...userPart};
-    //           this._AuthService.saveUserLoginData(this.userTotalData);
+    //           this.userTotalData = { ...userPart };
+    //           localStorage.setItem(
+    //             'UserData',
+    //             JSON.stringify(this.userTotalData)
+    //           );
+    //           // this._AuthService.saveUserLoginData(this.userTotalData);
+    //           // this._AuthService.saveUserLoginData(this.userTotalData);
+    //           console.log('userTotalData-USER-FALSE', this.userTotalData);
+    //           this._Router.navigate(['/home']);
     //         }
-    // console.log('userTotalData', this.userTotalData);
     //       });
-    //       this._ToastrService.success('Login Success Done !');
-
-    //       this._Router.navigate(['/home']);
-    //       // this._Router.navigate(['/home']);
-    //     } else {
-    //       this._ToastrService.warning('Error In Login Please Try Again !!');
     //     }
-
-    //     // this.userData=data;
     //   });
 
-    //   // this._Router.navigate(['/home']);
+    //   console.log(formLoginData);
+    //     // this._AuthService.registrUserMethod(formLoginData.value);
+    //     this._AuthService.loginUserJson().subscribe((res) => {
+    //       this.userList = res;
+    //   console.log('Success', res);
+    //   console.log('Success', typeof res);
+    //       let userPart = this.userList.find((ele: any) => {
+    //         return (
+    //           ele.email == formLoginData.value.email &&
+    //           ele.password == formLoginData.value.password
+    //         );
+    //       });
+
+    //       // this._AuthService.loginLawerJson().subscribe((res) => {
+    //       //   this.LawerList = res;
+
+    //       // let lawerPart = this.LawerList.find((ele: any) => {
+    //       //   return (
+    //       //     ele.UserId == userPart.id
+    //       //   );
+
+    //       // });
+
+    //   console.log('userPart', userPart);
+    //   // console.log("lawerPart",lawerPart);
+
+    //   console.log('userPart', userPart);
+
+    //       if (userPart) {
+    //         this._AuthService.loginLawerJson().subscribe((res) => {
+    //           this.LawerList = res;
+
+    //           let lawerPart = this.LawerList.find((ele: any) => {
+    //             return ele.UserId == userPart.id;
+    //           });
+    //           if (lawerPart) {
+    //             userPart.role = 'lawer';
+    //             this.userTotalData = {
+    //               ...userPart,
+    //               ...lawerPart,
+    //             };
+    //             this._AuthService.saveLawerLoginData(this.userTotalData);
+    //           } else {
+    //             this.userTotalData={...userPart};
+    //             this._AuthService.saveUserLoginData(this.userTotalData);
+    //           }
+    //   console.log('userTotalData', this.userTotalData);
+    //         });
+    //         this._ToastrService.success('Login Success Done !');
+
+    //         this._Router.navigate(['/home']);
+    //         // this._Router.navigate(['/home']);
+    //       } else {
+    //         this._ToastrService.warning('Error In Login Please Try Again !!');
+    //       }
+
+    //       // this.userData=data;
+    //     });
+
+    //     // this._Router.navigate(['/home']);
   }
 }

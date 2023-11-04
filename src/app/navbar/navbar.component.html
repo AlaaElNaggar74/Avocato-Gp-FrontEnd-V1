@@ -70,24 +70,24 @@
             >landing Search</a
           >
         </li> -->
-        <li class="nav-item" *ngIf="isLogin">
+        <li class="nav-item" >
           <a class="nav-link" routerLink="about" routerLinkActive="active"
             >About Us</a
           >
         </li>
-        <li class="nav-item" *ngIf="isLogin">
+        <li class="nav-item" >
           <a class="nav-link" routerLink="practice" routerLinkActive="active"
             >Practice-Areas</a
           >
         </li>
-        <li class="nav-item" *ngIf="isLogin">
+        <li class="nav-item" >
           <a class="nav-link" routerLink="faq" routerLinkActive="active">FAQ</a>
         </li>
         <!-- <li class="nav-item" >
           <a class="nav-link" routerLink="mygroup" routerLinkActive="active">MY-GROUP</a>
         </li> -->
-        <li class="nav-item" >
-          <a class="nav-link" routerLink="allgroups" routerLinkActive="active">GROUPS</a>
+        <li class="nav-item" *ngIf="isLogin">
+          <a class="nav-link" routerLink="allgroups" routerLinkActive="active" >GROUPS</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" routerLink="blog" routerLinkActive="active"
@@ -110,7 +110,7 @@
             Profile
           </a>
           <ul class="dropdown-menu">
-            <li *ngIf="userInfo?.user?.role == 'lawyer'">
+            <li *ngIf="userInfo?.user?.role == 'lawyer' || userInfo?.role == 'lawyer'">
               <a class="dropdown-item" routerLink="adminProfile">Setting</a>
             </li>
             <li *ngIf="userInfo?.role == 'user'">

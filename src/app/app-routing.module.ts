@@ -27,6 +27,8 @@ import { AboutLawerComponent } from './about-lawer/about-lawer.component';
 import { GroupComponent } from './group/group.component';
 import { MyroupComponent } from './myroup/myroup.component';
 import { authgardGuard } from './services/guard/authgard.guard';
+import { lawergaurdGuard } from './services/guard/lawergaurd.guard';
+import { isloginGuard } from './services/guard/islogin.guard';
 
 const routes: Routes = [
   {
@@ -73,6 +75,7 @@ const routes: Routes = [
   {
     path: 'alllawer',
     component: AllLawerComponent,
+    canActivate: [authgardGuard],
   },
   {
     path: 'topic',
@@ -81,27 +84,32 @@ const routes: Routes = [
   {
     path: 'Reservation',
     component: ReservationComponent,
+    canActivate: [authgardGuard],
   },
   {
     path: 'oneLawerReservation/:id/:from/:to',
     component: OneLawersReservationComponent,
+    canActivate: [authgardGuard],
   },
-  {
-    path: 'oneLawerReservation/:id/:from/:to',
-    component: OneLawersReservationComponent,
-  },
+  // {
+  //   path: 'oneLawerReservation/:id/:from/:to',
+  //   component: OneLawersReservationComponent,
+  // },
   {
     path: 'landingSearch',
     component: LandingSearchComponent,
+    canActivate: [authgardGuard],
   },
   {
     path: 'adminProfile',
     component: AdminProfileComponent,
+    canActivate: [lawergaurdGuard],
+
   },
   {
     path: 'userProfile',
     component: UserProfileComponent,
-    // canActivate: [authgardGuard],
+    canActivate: [authgardGuard],
   },
   {
     path: 'topic/:id',
@@ -122,10 +130,12 @@ const routes: Routes = [
   {
     path: 'allgroups',
     component: GroupComponent,
+    canActivate: [isloginGuard],
   },
   {
     path: 'mygroup',
     component: MyroupComponent,
+    canActivate: [authgardGuard],
   },
   {
     path: 'lawersTest/:id',
@@ -138,11 +148,12 @@ const routes: Routes = [
   {
     path: 'alllawer/:city/:specializ/:name',
     component: LawersTestComponent,
+    canActivate: [authgardGuard],
   },
   {
     path: '**',
     component: ErrorPageComponent,
-  }
+  },
 ];
 
 @NgModule({

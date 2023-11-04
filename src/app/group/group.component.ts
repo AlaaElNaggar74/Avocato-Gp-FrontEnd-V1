@@ -22,6 +22,13 @@ export class GroupComponent {
   xindex = 0;
   xindexBtn = 0;
   openForm = false;
+  localStorValue: any;
+  userInfo: any;
+  userRole: any;
+  GroupsById: any;
+  isLogin: any;
+  userId: any;
+  token:any;
 
   constructor(
     public _UsersService: UsersService,
@@ -29,23 +36,71 @@ export class GroupComponent {
     public _AuthService: AuthService,
     public _ToastrService: ToastrService
   ) {
+    if (localStorage.getItem('UserData')) {
+      this._AuthService.isLogin.next(true);
+      this._AuthService.isLogin.subscribe((data) => {
+        console.log('nnnnnn', data);
+        this.isLogin = data;
+      });
+
+      this.localStorValue = localStorage.getItem('UserData');
+      let objData = JSON.parse(this.localStorValue);
+      this.userInfo = objData;
+      this.token=this.userInfo.token
+      this.userId = this.userInfo.id;
+
+      console.log('this.userInfo-groups', this.userInfo);
+      console.log('this.userId-groups', this.userId);
+      // console.log('this.token', this.token);
+      // console.log('this.isLogin', this._AuthService.isLogin);
+    } else {
+      this._AuthService.isLogin.next(false);
+    }
+
     _UsersService.getAllGroupsApi().subscribe((res) => {
-      // console.log(res.data);
+      console.log(res.data);
 
       this.groupList = res.data;
     });
+
+    // if (this.userRole == 'user') {
+    //   this._UsersService
+    //     .getGroupsByIdApi(this.userInfo?.id)
+    //     .subscribe((res) => {
+    //       console.log('res.data', res.data);
+    //       console.log('res.data', res.data.groups);
+    //       this.GroupsById = res.data;
+    //     });
+    // } else if (this.userRole == 'lawyer') {
+    //   this._UsersService
+    //     .getGroupsByIdApi(this.userInfo?.user_id)
+    //     .subscribe((res) => {
+    //       console.log('res.data', res.data);
+    //       console.log('res.data', res.data.groups);
+    //       this.GroupsById = res.data;
+    //     });
+    // }
+    // console.log("this.GroupsById" , this.GroupsById);
 
     this._UsersService.getUserApi().subscribe((res) => {
       console.log('res.data', res.data);
       console.log('res.data', res.data.groups);
       this.usersList = res.data;
     });
+
+    // this._UsersService.getGroupsByIdApi().subscribe((res) => {
+    //   console.log('res.data', res.data);
+    //   console.log('res.data', res.data.groups);
+    //   this.usersList = res.data;
+    // });
   }
 
   createForm: FormGroup = new FormGroup({
-    postName: new FormControl(null, [Validators.required]),
-
-    description: new FormControl(null, [Validators.required]),
+    name: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(8),
+    ]),
   });
 
   viewPost(id: any) {
@@ -86,9 +141,11 @@ export class GroupComponent {
     this.openForm = !this.openForm;
   }
 
-  createPost(formData:any){
-
-    console.log("formCreateData " ,formData);
-    
+  createGroup(formData: any) {
+    formData.value.user_id = this.userId;
+    console.log('formCreateData ', formData.value);
+    this._UsersService.createGroupsApi(formData.value).subscribe((res) => {
+      console.log('createGroupsApi');
+    });
   }
 }
