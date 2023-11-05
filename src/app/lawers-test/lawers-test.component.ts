@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AllLawerService } from '../services/all-lawer.service';
 import { ActivatedRoute } from '@angular/router';
+import { SearchService } from '../services/projectApis/search.service';
 
 @Component({
   selector: 'app-lawers-test',
@@ -10,31 +11,42 @@ import { ActivatedRoute } from '@angular/router';
 export class LawersTestComponent {
   allLawers: any = [];
   allReviw: any = [];
-  
-  lawerCity:any;
-  lawerSpecia:any;
-  lawerName:any;
-  constructor(public _AllLawerService: AllLawerService,public _ActivatedRoute:ActivatedRoute) {
 
-    this.lawerCity=_ActivatedRoute.snapshot.paramMap.get('city');
-    this.lawerSpecia=_ActivatedRoute.snapshot.paramMap.get('specializ');
-    this.lawerName=_ActivatedRoute.snapshot.paramMap.get('name');
+  lawerCity: any;
+  lawerSpecia: any;
+  lawersData: any;
 
-    console.log("----",this.lawerCity);
-    console.log("----",this.lawerSpecia);
-    console.log("----",this.lawerName);
-    
+  searchData: any;
+
+  constructor(
+    public _AllLawerService: AllLawerService,
+    public _ActivatedRoute: ActivatedRoute,
+    public _SearchService: SearchService
+  ) {
+    _SearchService.searchData.subscribe((data) => {
+      console.log('_SearchService.searchData', data);
+
+      this.allLawers = data;
+    });
+    // this.lawerCity=_ActivatedRoute.snapshot.paramMap.get('city');
+    // this.lawerSpecia=_ActivatedRoute.snapshot.paramMap.get('specializ');
+    // this.lawerName=_ActivatedRoute.snapshot.paramMap.get('name');
+
+    this.lawersData = _ActivatedRoute.snapshot.paramMap.get('data');
+
+    // console.log("----",this.lawerCity);
+    // console.log("----",this.lawerSpecia);
+    console.log('----', this.lawersData);
 
     // _AllLawerService.searchApi(this.lawerCity,this.lawerSpecia,this.lawerName).subscribe((data) => {
     //   this.allLawers = data;
     //   console.log(data);
     // });
 
-    _AllLawerService.getAllLawers().subscribe((data) => {
-      this.allLawers = data;
-      console.log(data);
-    });
- 
+    // _AllLawerService.getAllLawers().subscribe((data) => {
+    //   this.allLawers = data;
+    //   console.log(data);
+    // });
 
     // _AllLawerService.getReview().subscribe((data)=>{
     //   this.getReview=data;

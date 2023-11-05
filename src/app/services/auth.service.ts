@@ -11,13 +11,38 @@ export class AuthService {
   urlUser = 'https://avoca-a8fd3-default-rtdb.firebaseio.com/';
   urlLawer = 'http://localhost:5050/registerLawerData';
 
-  userLogData=new BehaviorSubject<any>({});
-  lawerLogData=new BehaviorSubject<any>({});
-  isLogin =new BehaviorSubject<any>(false);
+  userLogData = new BehaviorSubject<any>({});
+  lawerLogData = new BehaviorSubject<any>({});
+  isLogin = new BehaviorSubject<any>(false);
+  userDataLogin = new BehaviorSubject<any>({});
 
-  localStorValue:any;
+  localStorValue: any;
 
-  constructor(public _HttpClient: HttpClient , public _Router:Router) {}
+  constructor(public _HttpClient: HttpClient, public _Router: Router) {
+    if (localStorage.getItem('UserData')) {
+      this.localStorValue = localStorage.getItem('UserData');
+      let objData = JSON.parse(this.localStorValue);
+      this.isLogin.next(true);
+      this.isLogin.next(objData);
+
+      // this.isLogin.next(true);
+      //   this.isLogin.subscribe((data) => {
+      //     console.log('nnnnnn', data);
+      //     this.isLogin = data;
+      //   });
+
+      //   this.localStorValue = localStorage.getItem('UserData');
+      //   let objData = JSON.parse(this.localStorValue);
+
+      //   this.userDataLogin.subscribe((data)=>{
+      //     this.userDataLogin=objData;
+      //   });
+
+      //   console.log('this.isLogin', this.userDataLogin);
+      // } else {
+      //   this.isLogin.next(false);
+    }
+  }
 
   registrUserMethod(formLoginData: any): Observable<any> {
     console.log(formLoginData);
@@ -59,27 +84,26 @@ export class AuthService {
     );
   }
 
-  saveUserLoginData(objData:any) {
+  saveUserLoginData(objData: any) {
     // let objData={}
     // let objData=JSON.parse(localStorValue);
-    if (localStorage.getItem("UserData")) {
-      this.localStorValue=localStorage.getItem("UserData");
-        let objData=JSON.parse(this.localStorValue);
-        let user = new userLoginData(
-          objData.id,
-          objData.name,
-          objData.city_id,
-          objData.email,
-          objData.image,
-          objData.phone,
-          objData.password,
-          objData.role
-        );
-        // this.userLogData=user;
-        this.userLogData.next(user);
-        this.isLogin.next(true)
+    if (localStorage.getItem('UserData')) {
+      this.localStorValue = localStorage.getItem('UserData');
+      let objData = JSON.parse(this.localStorValue);
+      let user = new userLoginData(
+        objData.id,
+        objData.name,
+        objData.city_id,
+        objData.email,
+        objData.image,
+        objData.phone,
+        objData.password,
+        objData.role
+      );
+      // this.userLogData=user;
+      this.userLogData.next(user);
+      this.isLogin.next(true);
     }
-
   }
   saveLawerLoginData(objData: any) {
     let lawer = new lawerLoginData(
@@ -100,18 +124,17 @@ export class AuthService {
     // console.log("this.lawerLogData",this.lawerLogData.value);
     // console.log("this.userLogData",this.userLogData.value);
   }
-  logOut(){
+  logOut() {
     this.lawerLogData.next({});
     this.userLogData.next({});
-    let empty={};
+    let empty = {};
     // localStorage.setItem('UserData', JSON.stringify({}))
     // localStorage.clear();
     localStorage.removeItem('UserData');
-    this.isLogin.next(false)
+    localStorage.removeItem('searchData');
+    this.isLogin.next(false);
     // console.log("this.lawerLogData",this.lawerLogData);
     // console.log("this.userLogData------JK",this.userLogData);
-    this._Router.navigate(["/login"])
-
-    
+    this._Router.navigate(['/login']);
   }
 }

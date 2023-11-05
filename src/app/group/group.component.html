@@ -18,115 +18,110 @@
             role="tablist"
             aria-orientation="vertical"
           >
-              <button
-                *ngFor="let group of groupList; index as index"
-                class="nav-link"
-                [class.active]="index == xindex"
-                [id]="'v-pills-' + index + '-tab'"
-                data-bs-toggle="pill"
-                [data-bs-target]="'#v-pills-' + index"
-                type="button"
-                role="tab"
-                (click)="changeIndex(index)"
-                [aria-controls]="'v-pills-home' + index"
-                [aria-selected]="index == xindex ? true : false"
-              >
-                <i class="fa-solid fa-people-group me-2"></i>
-                <span>{{ group.name }}</span>
-              </button>
+            <button
+              *ngFor="let group of groupList; index as index"
+              class="nav-link"
+              [class.active]="index == xindex"
+              [id]="'v-pills-' + index + '-tab'"
+              data-bs-toggle="pill"
+              [data-bs-target]="'#v-pills-' + index"
+              type="button"
+              role="tab"
+              (click)="changeIndex(index)"
+              [aria-controls]="'v-pills-home' + index"
+              [aria-selected]="index == xindex ? true : false"
+            >
+              <i class="fa-solid fa-people-group me-2"></i>
+              <span>{{ group.name }}</span>
+            </button>
           </div>
         </div>
         <div class="col-md-8">
-          <div class="tab-content  mt-3 mt-md-0" id="v-pills-tabContent">
-              <div
-                *ngFor="let group of groupList; index as index"
-                class="tab-pane fade show"
-                [class.active]="index == xindex"
-                [id]="'v-pills-' + index"
-                role="tabpanel"
-                [aria-labelledby]="'v-pills-' + index + '-tab'"
-                [tabindex]="index"
-              >
-                <div class="fle d-flex justify-content-between">
-                  <h4>{{ group.name }}</h4>
-                  <button
-                    class="jionAndView btn btn-info me-3"
-                    [class.active]="index !== xindexBtn + index"
-                    (click)="joinGroup(group.id)"
-                  >
-                    <span [class.d-block]="index == xindexBtn">Join</span>
-                  </button>
-                  <button
-                    class="jionAndView btn btn-info me-3"
-                    [class.active]="index == xindexBtn + index"
-                    (click)="joinGroup(group.id)"
-                  >
-                    <span [class.d-block]="index == xindexBtn">View</span>
-                  </button>
-                </div>
-                <div *ngFor="let post of groupList">
-                  <h5>{{ post.post }} ---</h5>
-                  <h5>{{ post.name }}</h5>
-                  <h5>
-                    {{ post.image }}
-                    <!-- <img src="{{ user?.image }}" alt="" /> -->
-                  </h5>
-                </div>
+          <div class="tab-content mt-3 mt-md-0" id="v-pills-tabContent">
+            <div
+              *ngFor="let group of groupList; index as index"
+              class="tab-pane fade show"
+              [class.active]="index == xindex"
+              [id]="'v-pills-' + index"
+              role="tabpanel"
+              [aria-labelledby]="'v-pills-' + index + '-tab'"
+              [tabindex]="index"
+            >
+              <div class="fle d-flex justify-content-between">
+                <h4>{{ group.name }}</h4>
+                <button
+                  *ngIf="indexName !== group.id"
+                  class="jionAndView btn btn-info me-3"
+                  (click)="joinGroup(group.id)"
+                >
+                  <span>Join</span>
+                </button>
+                <button
+                  *ngIf="indexName == group.id"
+                  class="jionAndView btn btn-info me-3"
+                  (click)="joinGroup(group.id)"
+                >
+                  <span>View </span>
+                </button>
               </div>
+              <div *ngFor="let post of group.posts">
+                <h5>{{ post.post }} ---</h5>
+                <h5>{{ post.name }}</h5>
+
+                <h5>
+                  {{ post.image }}
+                  <!-- <img src="{{ user?.image }}" alt="" /> -->
+                </h5>
+              </div>
+            </div>
           </div>
         </div>
-      
       </div>
     </div>
     <div class="createForm" *ngIf="openForm">
-     <div class="col-md-6 m-auto ">
-      <form
-      action="#"
-      method="POST"
-      [formGroup]="createForm"
-      (ngSubmit)="createGroup(createForm)"
-    >
-      <div class="mb-1">
-        <label for="name" class="form-label"
-          >Group Name</label
+      <div class="col-md-6 m-auto">
+        <form
+          action="#"
+          method="POST"
+          [formGroup]="createForm"
+          (ngSubmit)="createGroup(createForm)"
         >
-        <input
-          type="text"
-          class="form-control"
-          id="name"
-          aria-describedby="emailHelp"
-          formControlName="name"
-          [ngStyle]="{
-            'border-color':
-              createForm.controls['name'].touched &&
-              createForm.controls['name'].invalid
-                ? 'red'
-                : 'grey'
-          }"
-        />
-        <div
-          class="text-danger"
-          *ngIf="
-            createForm.controls['name'].touched &&
-            createForm.controls['name'].invalid
-          "
-        >
-          <small *ngIf="createForm.controls['name']?.errors?.['required']"
-            >name is a required field!</small
-          >
-          <small
-          *ngIf="createForm.controls['name']?.errors?.['minlength']"
-          >Length Should Be More Than 3 Char!!!
-        </small>
-        <small
-          *ngIf="createForm.controls['name']?.errors?.['maxlength']"
-          >Length Should Be Less Than 10 Char!!!
-        </small>
+          <div class="mb-1">
+            <label for="name" class="form-label">Group Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              aria-describedby="emailHelp"
+              formControlName="name"
+              [ngStyle]="{
+                'border-color':
+                  createForm.controls['name'].touched &&
+                  createForm.controls['name'].invalid
+                    ? 'red'
+                    : 'grey'
+              }"
+            />
+            <div
+              class="text-danger"
+              *ngIf="
+                createForm.controls['name'].touched &&
+                createForm.controls['name'].invalid
+              "
+            >
+              <small *ngIf="createForm.controls['name']?.errors?.['required']"
+                >name is a required field!</small
+              >
+              <small *ngIf="createForm.controls['name']?.errors?.['minlength']"
+                >Length Should Be More Than 3 Char!!!
+              </small>
+              <small *ngIf="createForm.controls['name']?.errors?.['maxlength']"
+                >Length Should Be Less Than 10 Char!!!
+              </small>
+            </div>
+          </div>
 
-        </div>
-      </div>
-
-      <!-- <div class="mb-1">
+          <!-- <div class="mb-1">
         <label for="description" class="form-label">Description</label>
         <input
           type="text"
@@ -155,17 +150,17 @@
         </div>
       </div> -->
 
-      <!-- <button type="submit" class="btn loginBtn">Submit</button> -->
-      <button
-        type="submit"
-        class="btn loginBtn mt-3 "
-        [ngClass]="{ active: createForm.valid }"
-        [disabled]="createForm.invalid"
-      >
-        Submit
-      </button>
-    </form>
-     </div>
+          <!-- <button type="submit" class="btn loginBtn">Submit</button> -->
+          <button
+            type="submit"
+            class="btn loginBtn mt-3"
+            [ngClass]="{ active: createForm.valid }"
+            [disabled]="createForm.invalid"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

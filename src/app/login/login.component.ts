@@ -69,6 +69,10 @@ export class LoginComponent {
         'UserData',
         JSON.stringify(userData)
       );
+      this._AuthService.isLogin.next(true);
+      this._AuthService.userDataLogin.next(userData);
+  //     isLogin = new BehaviorSubject<any>(false);
+  // userDataLogin
 
     });
 

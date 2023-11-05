@@ -28,7 +28,8 @@ export class GroupComponent {
   GroupsById: any;
   isLogin: any;
   userId: any;
-  token:any;
+  token: any;
+  indexName = -1;
 
   constructor(
     public _UsersService: UsersService,
@@ -46,7 +47,7 @@ export class GroupComponent {
       this.localStorValue = localStorage.getItem('UserData');
       let objData = JSON.parse(this.localStorValue);
       this.userInfo = objData;
-      this.token=this.userInfo.token
+      this.token = this.userInfo.token;
       this.userId = this.userInfo.id;
 
       console.log('this.userInfo-groups', this.userInfo);
@@ -60,7 +61,11 @@ export class GroupComponent {
     _UsersService.getAllGroupsApi().subscribe((res) => {
       console.log(res.data);
 
+      // let all = res.data;
+      // let allBoll = all.bool;
       this.groupList = res.data;
+
+
     });
 
     // if (this.userRole == 'user') {
@@ -123,7 +128,7 @@ export class GroupComponent {
   }
   joinGroup(id: any) {
     // this._UsersService.getUserApi().subscribe((res)=>{
-
+    this.indexName = id;
     console.log('ooooooo', id);
     //   console.log("res.data",res.data);
     //   this.usersList=res.data;

@@ -127,6 +127,29 @@
   color: #cc8800;
 }
 
+.email {
+  position: relative;
+  /* background-color: aqua; */
+  width: fit-content;
+}
+
+.email .icon {
+  padding: 14px;
+  border-radius: 50%;
+  background-color: white;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: -35px;
+  top: 0px;
+  cursor: pointer;
+  border: 1px solid rgba(128, 128, 128, 0.397);
+  color: #cc8800;
+}
+
 .address {
   position: relative;
   /* background-color: aqua; */

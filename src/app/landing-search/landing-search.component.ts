@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AllLawerService } from '../services/all-lawer.service';
 import { UsersService } from '../services/projectApis/users.service';
 import { Router } from '@angular/router';
+import { SearchService } from '../services/projectApis/search.service';
 
 @Component({
   selector: 'app-landing-search',
@@ -15,7 +16,8 @@ export class LandingSearchComponent {
   constructor(
     public _AllLawerService: AllLawerService,
     public _UsersService: UsersService,
-    public _Router: Router
+    public _Router: Router,
+    public _SearchService: SearchService
   ) {
     _AllLawerService.getCities().subscribe((data) => {
       this.cities = data.data;
@@ -34,8 +36,9 @@ export class LandingSearchComponent {
     });
   }
 
-  city: any = 'all';
-  speciali: any = 'all';
+  city: any = '';
+  speciali: any = '';
+  name: any;
   lawerName: any = '';
 
   image1 = '../../../assets/landing/landing1.jpg';
@@ -43,21 +46,44 @@ export class LandingSearchComponent {
   image3 = '../../../assets/landing/landing5.jpg';
 
   serch() {
-    if (this.lawerName == '') {
-      this.lawerName = 'all';
-    }
+    // if (this.lawerName == '') {
+    //   this.lawerName = 'all';
+    // }
     console.log('city', this.city);
     console.log('speciali', this.speciali);
     console.log('doctor', this.lawerName);
   }
   searchFun() {
-    if (this.lawerName == '') {
-      this.lawerName = 'all';
-      this._Router.navigate(['/alllawer',this.city,this.speciali,this.lawerName]);
-    }else{
-      this._Router.navigate(['/alllawer',this.city,this.speciali,this.lawerName]);
+    let data = {
+      specialization: this.speciali,
+      city: this.city,
+      name_lawyer: this.lawerName,
+    };
+    this._UsersService.lawerSearch(data).subscribe((res) => {
+      let valueSearch = res.data;
 
-    }
+      console.log('valueSearch', valueSearch);
+      localStorage.setItem('searchData', JSON.stringify(valueSearch));
+
+      this._SearchService.searchData.next(valueSearch ? valueSearch : []);
+      this._Router.navigate(['/lawersTest']);
+    });
+    // if (this.lawerName == '') {
+    //   this.lawerName = 'all';
+    //   this._Router.navigate([
+    //     '/alllawer',
+    //     this.city,
+    //     this.speciali,
+    //     this.lawerName,
+    //   ]);
+    // } else {
+    //   this._Router.navigate([
+    //     '/alllawer',
+    //     this.city,
+    //     this.speciali,
+    //     this.lawerName,
+    //   ]);
+    // }
   }
   getCity(event: any) {
     this.city = event.target.value;

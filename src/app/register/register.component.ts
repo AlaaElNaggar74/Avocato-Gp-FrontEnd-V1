@@ -179,7 +179,7 @@ export class RegisterComponent {
       this._UsersService
         .registrUserApi(formUserData.value)
         .subscribe((data) => {
-          // console.log('ASDASSDDD', data);
+          console.log('ASDASSDDD', data);
 
               // this._UsersService.getUserApi().subscribe((res) => {
               //   // console.log('userPart-api', res.data);

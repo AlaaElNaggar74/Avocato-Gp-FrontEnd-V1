@@ -12,10 +12,10 @@
                 </div>
                 <div class="content">
                   <h5 class="name">
-                    <span class="doctor">{{lawer.title}}</span> {{lawer.name}}
+                    <span class="doctor">{{lawer.user.name}}</span> {{lawer.name}}
                   </h5>
                   <p class="title">
-                    {{lawer.email}}
+                    {{lawer.user.phone}}
                   </p>
                   <div class="iconrate">
                     <i class="fa-solid fa-star" *ngFor="let star of numSequence(lawer.rate)"> </i>
@@ -30,7 +30,7 @@
                     <i class="fa-solid fa-scale-balanced"></i> {{lawer.spicialize}}
                   </div>
                   <div class="feess">
-                    <i class="fa-solid fa-money-bill-wave"></i> Fees : {{lawer.visita}} EGP
+                    <i class="fa-solid fa-money-bill-wave"></i> Fees : {{lawer.price}} EGP
                   </div>
                   <div class="waitTime">
                     <i class="fa-regular fa-clock"></i> Waiting Time : {{lawer.waiteTime}} Minutes

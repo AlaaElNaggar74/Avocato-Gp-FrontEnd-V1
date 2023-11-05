@@ -128,6 +128,10 @@ const routes: Routes = [
     component: LawersTestComponent,
   },
   {
+    path: 'lawersTest/:data',
+    component: LawersTestComponent,
+  },
+  {
     path: 'allgroups',
     component: GroupComponent,
     canActivate: [isloginGuard],
