@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TestComponent } from './admin/test/test.component';
 import { AcityCreateComponent } from './admin/test/acity-create/acity-create.component';
+import { AcityEditComponent } from './admin/test/acity-edit/acity-edit.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,10 @@ const routes: Routes = [
     {
       path:'admin/cities/create',
       component:AcityCreateComponent
+    },
+    {
+      path:'admin/cities/edit/:id',
+      component:AcityEditComponent
     },
   
 ];

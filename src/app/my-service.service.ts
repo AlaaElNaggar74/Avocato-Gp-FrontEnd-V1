@@ -27,8 +27,8 @@ export class MyServiceService {
   }
 
   // PUT request example
-  public put(endpoint: string, data: any): Observable<any> {
-    const url = `${this.apiUrl}/${endpoint}`;
+  put(id: string,endpoint: string, data: any): Observable<any> {
+    const url = `${this.apiUrl}/${endpoint}/${id}`;
     return this.http.put(url, data)
       .pipe(catchError(this.handleError));
   }
