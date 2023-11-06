@@ -21,6 +21,8 @@ import { TestComponent } from './test/test.component';
 import { UserFunModule } from './users/user-fun/user-fun.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AcityCreateComponent } from './test/acity-create/acity-create.component';
+import { AcityEditComponent } from './test/acity-edit/acity-edit.component';
+import { AspecializationComponent } from './aspecialization/aspecialization.component';
 // import { AdminComponent } from './admin.component';
 
 const adminRoutes: Routes = [
@@ -43,7 +45,9 @@ const adminRoutes: Routes = [
     DashchartComponent,
     UsersComponent,
     TestComponent,
-    AcityCreateComponent
+    AcityCreateComponent,
+    AcityEditComponent,
+    AspecializationComponent
   ],
   imports: [
     CommonModule,

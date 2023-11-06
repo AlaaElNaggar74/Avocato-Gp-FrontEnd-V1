@@ -1,5 +1,6 @@
 import { Component , inject} from '@angular/core';
 import { MyServiceService } from 'src/app/my-service.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
@@ -7,7 +8,7 @@ import { MyServiceService } from 'src/app/my-service.service';
 })
 export class TestComponent {
   data!:any
-  constructor(private MyService: MyServiceService) { }
+  constructor(private MyService: MyServiceService,private router:Router) { }
   ngOnInit() {
     this.getData();
   }
@@ -25,5 +26,8 @@ export class TestComponent {
         
         console.log(response);
       });
+  }
+  redirectToEdit(id:any){
+    this.router.navigate(['admin/cities/edit', id]);
   }
 }
