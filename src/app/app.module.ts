@@ -59,6 +59,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GroupComponent } from './group/group.component';
 import { MyroupComponent } from './myroup/myroup.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 register();
@@ -103,6 +104,7 @@ register();
     RullesComponent,
     GroupComponent,
     MyroupComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

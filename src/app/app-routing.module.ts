@@ -29,6 +29,7 @@ import { MyroupComponent } from './myroup/myroup.component';
 import { authgardGuard } from './services/guard/authgard.guard';
 import { lawergaurdGuard } from './services/guard/lawergaurd.guard';
 import { isloginGuard } from './services/guard/islogin.guard';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   {
@@ -90,6 +91,10 @@ const routes: Routes = [
     path: 'oneLawerReservation/:id/:from/:to',
     component: OneLawersReservationComponent,
     canActivate: [authgardGuard],
+  },
+  {
+    path: 'chat',
+    component: ChatComponent,
   },
   // {
   //   path: 'oneLawerReservation/:id/:from/:to',
