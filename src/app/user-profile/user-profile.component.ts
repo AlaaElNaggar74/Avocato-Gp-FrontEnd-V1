@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../services/projectApis/users.service';
 import { AuthService } from '../services/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,10 +27,14 @@ export class UserProfileComponent {
   phone = '';
   password = '';
   city_id = '';
+  UserImageName: any;
 
   constructor(
     public _UsersService: UsersService,
-    public _AuthService: AuthService
+    public _AuthService: AuthService,
+    public _Router:Router,
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     if (localStorage.getItem('UserData')) {
       this.localStorValue = localStorage.getItem('UserData');
@@ -67,13 +73,16 @@ export class UserProfileComponent {
     });
   }
   // oldPassword:any;
+
   uploadeImage = '../../assets/imageDataBase/';
-  image1 = '../../assets/ourExpert/team2.jpg';
-  image2 = '../../../assets/caseLike/case2.jpg';
-  image3 = '../../../assets/caseLike/case3.jpg';
-  image4 = '../../../assets/caseLike/case4.jpg';
-  image5 = '../../../assets/caseLike/case5.jpg';
-  image6 = '../../../assets/caseLike/case6.jpg';
+
+
+  // image1 = '../../assets/ourExpert/team2.jpg';
+  // image2 = '../../../assets/caseLike/case2.jpg';
+  // image3 = '../../../assets/caseLike/case3.jpg';
+  // image4 = '../../../assets/caseLike/case4.jpg';
+  // image5 = '../../../assets/caseLike/case5.jpg';
+  // image6 = '../../../assets/caseLike/case6.jpg';
 
   editUserForm: FormGroup = new FormGroup({
     // let x="";
@@ -136,6 +145,8 @@ export class UserProfileComponent {
       formdata.value.name = this.userInfo.name;
       formdata.value.email = this.userInfo.email;
       formdata.value.phone = this.userInfo.phone;
+      formdata.value.image = this.UserImageName;
+
       formdata.value.password = 'qazxswe@#$12QAZ';
       formdata.value.city_id = this.userInfo.city_id;
       formdata.value.id = this.userInfo.id;
@@ -162,7 +173,7 @@ export class UserProfileComponent {
     } else if (formdata.value.city_id) {
       formdata.value.name = this.userInfo.name;
       formdata.value.email = this.userInfo.email;
-      formdata.value.image = this.userInfo.image;
+      // formdata.value.image = this.UserImageName;
       formdata.value.phone = this.userInfo.phone;
       formdata.value.password = 'qazxswe@#$12QAZ';
       formdata.value.id = this.userInfo.id;
@@ -180,8 +191,30 @@ export class UserProfileComponent {
 
     console.log('formData-formData', formdata.value);
     localStorage.setItem('UserData', JSON.stringify(formdata.value));
-  }
+    this._AuthService.userDataLogin.subscribe((res) => {
+      this.userInfoServ = res;
 
+  
+      
+    });
+
+  
+
+    this.openBool = false;
+    this.openTabs = 'all';
+
+    this._Router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+      this._Router.navigate([this.location.path()]);
+    });
+  }
+  onFileUserChange(event: any) {
+    if (event.target.files.length > 0) {
+      this.UserImageName = event.target.files[0].name;
+      // this.RegisterUserForm.patchValue({
+      //   fileSource: file.name
+      // });
+    }
+  }
   changeIndex(inde: any) {
     this.xindex = inde;
   }

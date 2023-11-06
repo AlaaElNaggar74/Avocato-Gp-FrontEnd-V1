@@ -99,8 +99,8 @@ export class RegisterComponent {
     ]),
     span: new FormControl(null, [
       Validators.required,
-      Validators.min(100),
-      Validators.max(400),
+      Validators.minLength(4),
+      Validators.maxLength(7),
     ]),
   });
 
@@ -112,6 +112,7 @@ export class RegisterComponent {
       // });
     }
   }
+  
   onFileLawerChange(event: any) {
     if (event.target.files.length > 0) {
       this.LawerImageName = event.target.files[0].name;

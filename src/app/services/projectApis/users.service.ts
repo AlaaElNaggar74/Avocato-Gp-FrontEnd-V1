@@ -139,4 +139,12 @@ export class UsersService {
     );
   }
 
+  addComment(data:any){
+    
+    return this._HttpClient.post(
+      `http://127.0.0.1:8000/api/addcomment`,
+      data
+    );
+  }
+
 }

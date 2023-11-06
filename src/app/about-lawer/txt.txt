@@ -1,0 +1,65 @@
+  <form
+            action="#"
+            method="POST"
+            [formGroup]="commentForm"
+            (ngSubmit)="getLoginData(commentForm)"
+          >
+           
+            <div class="mb-1">
+              <label for="exampleInputEmail1" class="form-label"
+                >Comment</label
+              >
+              <!-- <input
+                type="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                formControlName="email"
+                [ngStyle]="{
+                  'border-color':
+                    loginForm.controls['email'].touched &&
+                    loginForm.controls['email'].invalid
+                      ? 'red'
+                      : 'grey'
+                }"
+              /> -->
+              <textarea name="" id="" cols="30" rows="10" class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              formControlName="comment"
+              [ngStyle]="{
+                'border-color':
+                  commentForm.controls['comment'].touched &&
+                  commentForm.controls['comment'].invalid
+                    ? 'red'
+                    : 'grey'
+              }"
+              
+              ></textarea>
+              <div
+                class="text-danger"
+                *ngIf="
+                  commentForm.controls['comment'].touched &&
+                  commentForm.controls['comment'].invalid
+                "
+              >
+                <small *ngIf="commentForm.controls['comment']?.errors?.['required']"
+                  >comment is a required field!</small
+                >
+    
+              </div>
+            </div>
+    
+           
+    
+        
+            <!-- <button type="submit" class="btn loginBtn">Submit</button> -->
+            <button
+              type="submit"
+              class="btn loginBtn"
+              [ngClass]="{ active: loginForm.valid }"
+              [disabled]="loginForm.invalid"
+            >
+              Submit
+            </button>
+          </form>

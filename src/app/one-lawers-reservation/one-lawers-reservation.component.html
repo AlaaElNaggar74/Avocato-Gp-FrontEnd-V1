@@ -6,20 +6,18 @@
           <div class="flexInfo">
             <div class="image">
               <!-- <img [src]="oneLawerReserv?.image" alt="" /> -->
-              <img [src]="uploadeImage + oneLawerReserv?.image" alt="" />
-
+              <img [src]="uploadeImage + oneLawerReserv.user.image" alt="" />
             </div>
             <div class="infoText">
               <h5 class="name">
-                <span class="doctor">{{ oneLawerReserv?.title }}</span>
-                {{ oneLawerReserv?.name }}
+                {{ oneLawerReserv.user.name }}
               </h5>
-              <p>{{ oneLawerReserv?.subTitle }}</p>
+              <p>0{{ oneLawerReserv.user.phone }}</p>
             </div>
           </div>
           <p class="details">
-            Today October 25 - From {{ lawerfrom }} To {{ lawerto }} ,
-            Reservation required, first-come, first-served
+            {{ lawerday }} - From {{ lawerfrom }} To {{ lawerto }} , Reservation
+            required, first-come, first-served
           </p>
         </div>
       </div>
@@ -174,18 +172,17 @@
                 }"
               />
               <div
-              class="text-danger mt-1"
-              *ngIf="
-                reservationForm.controls['appointment_date'].touched &&
-                reservationForm.controls['appointment_date'].invalid
-              "
-            >
-              <small
-                *ngIf="reservationForm.controls['appointment_date']?.errors?.['required']"
-                >Date is a required field!</small
+                class="text-danger mt-1"
+                *ngIf="
+                  reservationForm.controls['appointment_date'].touched &&
+                  reservationForm.controls['appointment_date'].invalid
+                "
               >
-          
-            </div>
+                <small
+                  *ngIf="reservationForm.controls['appointment_date']?.errors?.['required']"
+                  >Date is a required field!</small
+                >
+              </div>
             </div>
             <div class="mb-5">
               <div

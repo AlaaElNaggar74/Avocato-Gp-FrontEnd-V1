@@ -4,29 +4,26 @@
       <div class="left">
         <div class="singleImagDetail">
           <div class="image">
-            <img [src]="lawer.image" alt="" />
+            <img [src]="uploadeImage + lawer?.user?.image" alt="" />
           </div>
           <div class="content">
             <h5 class="name">
-              <span class="doctor">{{ lawer.title }}</span> {{ lawer.name }}
+              {{ lawer?.user?.name }}
             </h5>
             <p class="title">
-              {{ lawer.email }}
+              Mobile :
+              {{ lawer?.user?.phone }}
             </p>
-            <p class="des mt-3">
-              Pediatrician Specialized in Pediatric Allergy and Immunology,
-              Pediatric Dietitian and Nutrition, New Born and Pediatrics
-            </p>
-            <p class="des mt-3">
-             Mobile {{ lawer.phone }}
-            </p>
-            <div class="iconrate">
+
+            <p class="des mt-3">Email {{ lawer?.user?.email }}</p>
+            <!-- <p class="des mt-3">Email {{ lawer.user.image }}</p> -->
+            <!-- <div class="iconrate">
               <i
                 class="fa-solid fa-star"
                 *ngFor="let star of numSequence(lawer.rate)"
               >
               </i>
-            </div>
+            </div> -->
             <!-- <p class="rate">Overall Rating From {{ lawer.visitor }} Visitors</p>
 
             <div class="category">
@@ -51,13 +48,108 @@
             <i class="fa-solid fa-info"></i>
           </div>
           <div class="text">
-            <h4>About The Doctor</h4>
+            <h4>About The Lawer</h4>
             <p>
-              -Professor of child health -Consultant of pediatrics and pediatric
-              nutrition -PhD Child health and nutrition -Msc of Pediatrics
+              <!-- {{ lawer.about }} -->
             </p>
           </div>
         </div>
+
+        <div class="about mt-3" *ngIf="false">
+          <div class="text">
+            <h4>Add Comment</h4>
+            <form
+              action="#"
+              method="POST"
+              [formGroup]="commentForm"
+              (ngSubmit)="addComment(commentForm)"
+            >
+              <div class="mb-1">
+                <textarea
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  formControlName="comment"
+                  [ngStyle]="{
+                    'border-color':
+                      commentForm.controls['comment'].touched &&
+                      commentForm.controls['comment'].invalid
+                        ? 'red'
+                        : 'grey'
+                  }"
+                ></textarea>
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    commentForm.controls['comment'].touched &&
+                    commentForm.controls['comment'].invalid
+                  "
+                >
+                  <small
+                    *ngIf="commentForm.controls['comment']?.errors?.['required']"
+                    >comment is a required field!</small
+                  >
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="rate">Rate</label>
+                <input
+                  type="number"
+                  class="form-control w-25"
+                  id="rate"
+                  aria-describedby="emailHelp"
+                  formControlName="rate"
+                  min="0"
+                  max="5"
+                  [ngStyle]="{
+                    'border-color':
+                      commentForm.controls['rate'].touched &&
+                      commentForm.controls['rate'].invalid
+                        ? 'red'
+                        : 'grey'
+                  }"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    commentForm.controls['rate'].touched &&
+                    commentForm.controls['rate'].invalid
+                  "
+                >
+                  <small
+                    *ngIf="commentForm.controls['rate']?.errors?.['required']"
+                    >comment is a required field!</small
+                  >
+              
+                  <small
+                    *ngIf="commentForm.controls['rate']?.errors?.['min']"
+                    >Rate Min More Than 0 </small
+                  >
+               
+                  <small
+                    *ngIf="commentForm.controls['rate']?.errors?.['max']"
+                    >Rate Max less than 5!</small
+                  >
+                </div>
+              </div>
+              <!-- <button type="submit" class="btn loginBtn">Submit</button> -->
+              <button
+                type="submit"
+                class="btn loginBtn"
+           
+              >
+              <!-- [ngClass]="{ active: commentForm.valid }"
+              [disabled]="commentForm.invalid" -->
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+
         <div class="doctorReview mt-3">
           <div class="d-flex align-items-start">
             <div class="ico me-3">
@@ -92,7 +184,7 @@
               </div>
               <h5 class="">Rating</h5>
               <p class="mb-0">" {{ review.comment }} "</p>
-              <p >{{ review.name }}</p>
+              <p>{{ review.name }}</p>
 
               <p>{{ review.created_at }}</p>
             </div>
@@ -150,21 +242,21 @@
           </div>
 
           <div
-            class="detaIcon d-flex align-iteems-center justify-content-between py-3 px-2"
+            class="detaIcon d-flex align-iteems-center justify-content-center py-3 px-2"
           >
             <div class="detai text-center">
               <i class="fa-solid fa-money-bill-wave"></i>
               <p>
-                Fees <span>{{ lawer.visita }} EGP</span>
+                Fees <span>{{ lawer.price }} EGP</span>
               </p>
             </div>
-            <div class="detai text-center">
+            <!-- <div class="detai text-center">
               <i class="fa-solid fa-dollar-sign"></i>
               <p>You’ll <span> earn300 points</span></p>
-            </div>
+            </div> -->
             <div class="detai text-center">
               <i class="fa-regular fa-clock"></i>
-              <p>Waiting Time : {{ lawer.waiteTime }}</p>
+              <p>session Time : {{ lawer.span }}</p>
             </div>
           </div>
 
@@ -173,8 +265,7 @@
             <div class="tex">
               <h6 class="mb-0">{{ lawer.address }}</h6>
               <p class="mb-0">
-                Book now to receive the clinic’s address details and phone
-                number
+                Book now to receive the office address details and phone number
               </p>
             </div>
           </div>
@@ -182,26 +273,28 @@
             <h5>Choose your appointment</h5>
             <div class="singleRight py-2">
               <swiper-container navigation="true">
-                <swiper-slide *ngFor="let date of lawer.dates"
+                <swiper-slide *ngFor="let date of lawer.lawyer_times"
                   ><div class="slide text-center">
                     <h6 class="bg-secondary text-white">{{ date.day }}</h6>
                     <div class="date">
                       <p>
-                        From <span class="">{{ date.from }}</span>
+                        From <span class="">{{ date.start_hour }}</span>
                       </p>
                       <p>
-                        To <span class="">{{ date.to }}</span>
+                        To <span class="">{{ date.end_hour }}</span>
                       </p>
                     </div>
                     <a
                       [routerLink]="[
                         '/oneLawerReservation',
                         lawer.id,
-                        date.from,
-                        date.to
+                        date.id,
+                        date.day,
+                        date.start_hour,
+                        date.end_hour
                       ]"
                     >
-                      <h6 class="bg-secondary text-white">Bookv</h6></a
+                      <h6 class="bg-secondary text-white">Book</h6></a
                     >
                   </div></swiper-slide
                 >

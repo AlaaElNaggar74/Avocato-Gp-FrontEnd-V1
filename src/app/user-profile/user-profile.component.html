@@ -221,6 +221,8 @@
           class="form-control"
           id="image"
           formControlName="image"
+          (change)="onFileUserChange($event)"
+
           name="image"
           aria-describedby="imageHelp"
           [ngStyle]="{

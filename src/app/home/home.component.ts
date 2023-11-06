@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { UsersService } from '../services/projectApis/users.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,9 @@ export class HomeComponent {
     public _Router: Router,
     public _AuthService: AuthService,
     public _ToastrService: ToastrService,
-    public _UsersService: UsersService
+    public _UsersService: UsersService,
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     _AuthService.userLogData.subscribe((data) => {
       let obj = data;
@@ -47,10 +50,15 @@ export class HomeComponent {
 
       console.log('this.userInfo', this.userInfo);
       console.log('this.token', this.token);
+      
+    // this._Router.navigateByUrl('/userProfile', { skipLocationChange: true }).then(() => {
+    //   this._Router.navigate([this.location.path()]);
+    // });
       // console.log('this.isLogin', this._AuthService.isLogin);
     } else {
       this._AuthService.isLogin.next(false);
     }
     // this._AuthService.logOut();
   }
+  
 }

@@ -482,13 +482,14 @@
             </div>
           </div>
           <div class="mb-1">
-            <label for="lawerPrice" class="form-label">Span</label>
+            <label for="lawerPrice" class="form-label">Session Time</label>
             <input
               type="number"
               class="form-control"
               id="lawerspan"
               formControlName="span"
               name="span"
+              placeholder="ex : 1:00 or 4:15"
               aria-describedby="lawerspanHelp"
               [ngStyle]="{
                 'border-color':
@@ -509,11 +510,11 @@
                 *ngIf="RegisterLawerForm.controls['span']?.errors?.['required']"
                 >span is a required field!</small
               >
-              <small *ngIf="RegisterLawerForm.controls['span']?.errors?.['min']"
-                >span Should Greater Than 100 !!!
+              <small *ngIf="RegisterLawerForm.controls['span']?.errors?.['minlength']"
+                >minlength Should 4 !!!
               </small>
-              <small *ngIf="RegisterLawerForm.controls['span']?.errors?.['max']"
-                >span Should Less Than 400 !!!
+              <small *ngIf="RegisterLawerForm.controls['span']?.errors?.['maxlength']"
+                >maxlength Should 7 !!!
               </small>
             </div>
           </div>

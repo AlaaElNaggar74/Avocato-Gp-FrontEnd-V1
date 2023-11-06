@@ -14,11 +14,13 @@ export class OneLawersReservationComponent implements OnInit {
   lawerId: any;
   dateId: any;
   lawerfrom: any;
+  lawerday: any;
   lawerto: any;
   amount = '300';
   paypal_d_none = false;
   localStorValue: any;
   userInfo: any;
+  lawer:any;
   uploadeImage = '../../assets/imageDataBase/';
 
   @ViewChild('paymentRef', { static: true }) paymentRef!: ElementRef;
@@ -31,10 +33,11 @@ export class OneLawersReservationComponent implements OnInit {
   ) {
     this.lawerId = _ActivatedRoute.snapshot.paramMap.get('id');
     this.dateId = _ActivatedRoute.snapshot.paramMap.get('dateId');
+    this.lawerday = _ActivatedRoute.snapshot.paramMap.get('day');
     this.lawerfrom = _ActivatedRoute.snapshot.paramMap.get('start_hour');
     this.lawerto = _ActivatedRoute.snapshot.paramMap.get('end_hour');
     _UsersService.getOneLawerApi(this.lawerId).subscribe((data) => {
-      this.oneLawerReserv = data;
+      this.oneLawerReserv = data.data;
       // console.log(data);
     });
 
@@ -45,6 +48,11 @@ export class OneLawersReservationComponent implements OnInit {
 
       // console.log('this.isLogin', this._AuthService.isLogin);
     }
+    // _UsersService.getOneLawerApi(this.lawerId).subscribe((data) => {
+    //   this.lawer = data.data;
+    //   console.log(this.lawer);
+    // });
+  
   }
 
   reservationForm: FormGroup = new FormGroup({
