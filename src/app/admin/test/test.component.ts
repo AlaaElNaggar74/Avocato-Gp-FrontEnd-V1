@@ -1,6 +1,7 @@
 import { Component , inject} from '@angular/core';
 import { MyServiceService } from 'src/app/my-service.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
@@ -8,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class TestComponent {
   data!:any
-  constructor(private MyService: MyServiceService,private router:Router) { }
+  constructor(private MyService: MyServiceService,private router: Router,
+    private route: ActivatedRoute,
+    private location: Location) { }
   ngOnInit() {
     this.getData();
   }
@@ -23,9 +26,12 @@ export class TestComponent {
   deleteData(id:any) {
     this.MyService.delete(`cities/${id}`)
       .subscribe(response => {
-        
+        this.router.navigateByUrl('/admin', { skipLocationChange: true }).then(() => {
+          this.router.navigate([this.location.path()]);
+        });
         console.log(response);
       });
+      
   }
   redirectToEdit(id:any){
     this.router.navigate(['admin/cities/edit', id]);

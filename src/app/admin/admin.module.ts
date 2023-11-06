@@ -23,6 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AcityCreateComponent } from './test/acity-create/acity-create.component';
 import { AcityEditComponent } from './test/acity-edit/acity-edit.component';
 import { AspecializationComponent } from './aspecialization/aspecialization.component';
+import { AspecializationsCreateComponent } from './aspecialization/aspecializations-create/aspecializations-create.component';
+import { AspecializationsEditComponent } from './aspecialization/aspecializations-edit/aspecializations-edit.component';
 // import { AdminComponent } from './admin.component';
 
 const adminRoutes: Routes = [
@@ -47,7 +49,9 @@ const adminRoutes: Routes = [
     TestComponent,
     AcityCreateComponent,
     AcityEditComponent,
-    AspecializationComponent
+    AspecializationComponent,
+    AspecializationsCreateComponent,
+    AspecializationsEditComponent
   ],
   imports: [
     CommonModule,

@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { TestComponent } from './admin/test/test.component';
 import { AcityCreateComponent } from './admin/test/acity-create/acity-create.component';
 import { AcityEditComponent } from './admin/test/acity-edit/acity-edit.component';
+import { AspecializationComponent } from './admin/aspecialization/aspecialization.component';
+import { AspecializationsCreateComponent } from './admin/aspecialization/aspecializations-create/aspecializations-create.component';
+import { AspecializationsEditComponent } from './admin/aspecialization/aspecializations-edit/aspecializations-edit.component';
 
 
 const routes: Routes = [
@@ -24,6 +27,18 @@ const routes: Routes = [
     {
       path:'admin/cities/edit/:id',
       component:AcityEditComponent
+    },
+    {
+      path:'admin/specializations',
+      component:AspecializationComponent
+    },
+    {
+      path:'admin/specializations/create',
+      component:AspecializationsCreateComponent
+    },
+    {
+      path:'admin/specializations/edit/:id',
+      component:AspecializationsEditComponent
     },
   
 ];

@@ -1,46 +1,45 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { MyServiceService } from 'src/app/my-service.service';
 import { FormGroup, NgForm, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-acity-edit',
-  templateUrl: './acity-edit.component.html',
-  styleUrls: ['./acity-edit.component.css']
+  selector: 'app-aspecializations-create',
+  templateUrl: './aspecializations-create.component.html',
+  styleUrls: ['./aspecializations-create.component.css']
 })
-export class AcityEditComponent {
-  cityId:string='';
-  cityForm!:FormGroup;
+export class AspecializationsCreateComponent {
+  specForm!:FormGroup;
   data: any = {
     name: '',}
   error:any={
     name: '',}
-    constructor(private MyService: MyServiceService,private http: HttpClient,private activeRoute:ActivatedRoute,private router: Router) { 
+    constructor(private MyService: MyServiceService,private http: HttpClient,private router: Router) { 
 
     }
     ngOnInit(){
-this.cityId=this.activeRoute.snapshot.params['id']
-        this.cityForm=new FormGroup({
+
+        this.specForm=new FormGroup({
           'name':new FormControl(null,[Validators.required,Validators.minLength(4)]),
 })}
 
-submitForm(cityForm:FormGroup){
-  console.log(cityForm)
+submitForm(specForm:FormGroup){
+  console.log(specForm)
   console.log(this.data)
-  this.putData()
+  this.postData()
 
  }
 
 
- putData() {
+ postData() {
  
-  this.MyService.put(this.cityId,'cities',this.data)
+  this.MyService.post('specializations',this.data)
     .subscribe(response => {
       console.log('Success:', response);
-      this.router.navigate(['admin/cities']);
+      this.router.navigate(['admin/specializations']);
       
     },
     error => {
@@ -48,5 +47,4 @@ submitForm(cityForm:FormGroup){
       console.error('Errorr:', error);
     });
 }
-
 }

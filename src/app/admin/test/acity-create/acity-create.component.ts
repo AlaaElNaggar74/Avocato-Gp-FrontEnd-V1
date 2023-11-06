@@ -3,6 +3,8 @@ import { MyServiceService } from 'src/app/my-service.service';
 import { FormGroup, NgForm, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-acity-create',
@@ -15,7 +17,7 @@ export class AcityCreateComponent {
     name: '',}
   error:any={
     name: '',}
-    constructor(private MyService: MyServiceService,private http: HttpClient) { 
+    constructor(private MyService: MyServiceService,private http: HttpClient,private router: Router) { 
 
     }
     ngOnInit(){
@@ -37,7 +39,7 @@ submitForm(cityForm:FormGroup){
   this.MyService.post('cities',this.data)
     .subscribe(response => {
       console.log('Success:', response);
-      // Reset the form after successful submission
+      this.router.navigate(['admin/cities']);
       
     },
     error => {

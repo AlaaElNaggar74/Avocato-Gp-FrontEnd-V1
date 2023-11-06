@@ -22,9 +22,9 @@ ngOnInit() {
         // Handle the response data here
         this.data=response.data
         console.log(this.data);
-        for (const obj of this.data) {
-          this.getCityData(obj.city_id) 
-        }
+        // for (const obj of this.data) {
+        //   this.getCityData(obj.city_id) 
+        // }
       });
   }
   getCityData(id:any) {
