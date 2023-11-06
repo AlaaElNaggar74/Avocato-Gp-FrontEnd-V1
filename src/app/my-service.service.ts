@@ -36,7 +36,7 @@ export class MyServiceService {
   // DELETE request example
   public delete(endpoint: string): Observable<any> {
     const url = `${this.apiUrl}/${endpoint}`;
-    let token="9|COHLS7AECZFUbFOE0gzw1xzAd2HIBRcXYqOQD6ic8e688bf7"
+    let token="1|JFDJaW1c7h54tsktBrQ9lL9CMtPnyOGd2S0W40pdcf12e387"
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.delete(url,{headers})
       .pipe(catchError(this.handleError));

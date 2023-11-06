@@ -8,7 +8,11 @@
           </div>
 
           <div class="card-body">
-            <form (ngSubmit)="submitForm(specForm)" [formGroup]="specForm">
+            <form
+              (ngSubmit)="submitForm(specForm)"
+              [formGroup]="specForm"
+              enctype="multipart/form-data"
+            >
               <!-- name -->
               <div class="form-group row mb-3">
                 <label for="name" class="col-md-4 col-form-label text-md-end"
@@ -36,6 +40,65 @@
                     class="text-danger"
                   >
                     <div>Name is required.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row mb-3">
+                <label class="col-md-4 col-form-label text-md-end" for="image"
+                  >Image:</label
+                >
+                <div class="col-md-6">
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="image"
+                    name="image"
+                    required
+                    [(ngModel)]="data.image"
+                    formControlName="image"
+                  />
+
+                  <div
+                    *ngIf="
+                      specForm.get('image')?.errors != null &&
+                      specForm.get('image')?.touched
+                    "
+                    class="text-danger"
+                  >
+                    <div *ngIf="specForm.get('image')?.errors?.['required']">
+                      Image is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row mb-3">
+                <label for="name" class="col-md-4 col-form-label text-md-end"
+                  >Description</label
+                >
+
+                <div class="col-md-6">
+                  <input
+                    id="Description"
+                    type="text"
+                    class="form-control"
+                    name="Description"
+                    value=""
+                    required
+                    [(ngModel)]="data.Description"
+                    formControlName="Description"
+                    autocomplete="Description"
+                    autofocus
+                  />
+                  <div
+                    *ngIf="
+                      specForm.get('Description')?.errors != null &&
+                      specForm.get('Description')?.touched
+                    "
+                    class="text-danger"
+                  >
+                    <div>Description is required.</div>
                   </div>
                 </div>
               </div>

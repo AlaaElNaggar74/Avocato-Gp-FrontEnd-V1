@@ -14,9 +14,13 @@ import { Location } from '@angular/common';
 export class AspecializationsCreateComponent {
   specForm!:FormGroup;
   data: any = {
-    name: '',}
+    name: '',
+    image: '',
+    Description: ''}
   error:any={
-    name: '',}
+    name: '',
+    image: '',
+    Description: ''}
     constructor(private MyService: MyServiceService,private http: HttpClient,private router: Router) { 
 
     }
@@ -24,7 +28,9 @@ export class AspecializationsCreateComponent {
 
         this.specForm=new FormGroup({
           'name':new FormControl(null,[Validators.required,Validators.minLength(4)]),
-})}
+          'Description':new FormControl(null,[Validators.required,Validators.minLength(4)]),
+          'image':new FormControl(null,[Validators.required]),
+        })}
 
 submitForm(specForm:FormGroup){
   console.log(specForm)
@@ -35,7 +41,9 @@ submitForm(specForm:FormGroup){
 
 
  postData() {
- 
+  // uploadImage(imageFile: File) {
+  //   const formData = new FormData();
+  //   formData.append('image', imageFile);
   this.MyService.post('specializations',this.data)
     .subscribe(response => {
       console.log('Success:', response);
@@ -46,5 +54,6 @@ submitForm(specForm:FormGroup){
       this.error=error.error.errors;
       console.error('Errorr:', error);
     });
-}
+  }
+// }
 }
