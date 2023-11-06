@@ -21,13 +21,14 @@ export class AcityCreateComponent {
     ngOnInit(){
 
         this.cityForm=new FormGroup({
-          'name':new FormControl(null,[Validators.required,Validators.minLength(3)]),
+          'name':new FormControl(null,[Validators.required,Validators.minLength(4)]),
 })}
 
 submitForm(cityForm:FormGroup){
+  console.log(cityForm)
+  console.log(this.data)
   this.postData()
- console.log(cityForm)
- // console.log(this.data)
+
  }
 
 
@@ -44,4 +45,6 @@ submitForm(cityForm:FormGroup){
       console.error('Errorr:', error.error.errors);
     });
 }
+
+
 }

@@ -49,13 +49,13 @@
                               word-break: break-word;
                             "
                           >
-                            mostafa
+                            {{ userData.name }}
                           </h5>
                         </div>
                       </div>
                     </td>
                     <td style="">egy</td>
-                    <td style="">user</td>
+                    <td style="">{{ userData.role }}</td>
 
                     <td>
                       <a class="btn" href="#">
@@ -96,7 +96,10 @@
                         method="post"
                         onSubmit="return confirm('Are You Sure To Delete This User?')"
                       >
-                        <button class="btn btn-sm bg-transparent">
+                        <button
+                          (click)="deleteData(userData.id)"
+                          class="btn btn-sm bg-transparent"
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
@@ -132,6 +135,6 @@
     <div class="container text-right"></div>
   </div>
 </div>
-<button (click)="getData()">Get Users</button>
+<!-- <button (click)="getData()">Get Users</button>
 <button (click)="deleteData()">delete User</button>
-<button (click)="postData()">post User</button>
+<button (click)="postData()">post User</button> -->

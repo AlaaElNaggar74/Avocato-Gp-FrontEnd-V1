@@ -19,4 +19,11 @@ export class TestComponent {
         // console.log(this.data);
       });
   }
+  deleteData(id:any) {
+    this.MyService.delete(`cities/${id}`)
+      .subscribe(response => {
+        
+        console.log(response);
+      });
+  }
 }

@@ -93,7 +93,10 @@
                         method="post"
                         onSubmit="return confirm('Are You Sure To Delete This User?')"
                       >
-                        <button class="btn btn-sm bg-transparent">
+                        <button
+                          (click)="deleteData(userData.id)"
+                          class="btn btn-sm bg-transparent"
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"

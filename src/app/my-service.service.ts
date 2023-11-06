@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -36,7 +36,9 @@ export class MyServiceService {
   // DELETE request example
   public delete(endpoint: string): Observable<any> {
     const url = `${this.apiUrl}/${endpoint}`;
-    return this.http.delete(url)
+    let token="9|COHLS7AECZFUbFOE0gzw1xzAd2HIBRcXYqOQD6ic8e688bf7"
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(url,{headers})
       .pipe(catchError(this.handleError));
   }
 
