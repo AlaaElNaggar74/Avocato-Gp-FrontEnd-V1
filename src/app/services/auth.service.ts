@@ -23,7 +23,7 @@ export class AuthService {
       this.localStorValue = localStorage.getItem('UserData');
       let objData = JSON.parse(this.localStorValue);
       this.isLogin.next(true);
-      this.isLogin.next(objData);
+      this.userDataLogin.next(objData);
 
       // this.isLogin.next(true);
       //   this.isLogin.subscribe((data) => {

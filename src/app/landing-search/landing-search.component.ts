@@ -59,15 +59,28 @@ export class LandingSearchComponent {
       city: this.city,
       name_lawyer: this.lawerName,
     };
-    this._UsersService.lawerSearch(data).subscribe((res) => {
-      let valueSearch = res.data;
+    if (this.speciali == '' && this.city == '' && this.lawerName == '') {
+      this._UsersService.getLawerApi().subscribe((res) => {
+        let valueSearch = res.data;
 
-      console.log('valueSearch', valueSearch);
-      localStorage.setItem('searchData', JSON.stringify(valueSearch));
+        console.log('valueSearch', valueSearch);
+        localStorage.setItem('searchData', JSON.stringify(valueSearch));
 
-      this._SearchService.searchData.next(valueSearch ? valueSearch : []);
-      this._Router.navigate(['/lawersTest']);
-    });
+        this._SearchService.searchData.next(valueSearch ? valueSearch : []);
+        this._Router.navigate(['/lawersTest']);
+      });
+    } else {
+      this._UsersService.lawerSearch(data).subscribe((res) => {
+        let valueSearch = res.data;
+
+        console.log('valueSearch', valueSearch);
+        localStorage.setItem('searchData', JSON.stringify(valueSearch));
+
+        this._SearchService.searchData.next(valueSearch ? valueSearch : []);
+        this._Router.navigate(['/lawersTest']);
+      });
+    }
+
     // if (this.lawerName == '') {
     //   this.lawerName = 'all';
     //   this._Router.navigate([

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../services/projectApis/users.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,6 +18,7 @@ export class UserProfileComponent {
   userIdGroup = 0;
   localStorValue: any;
   userInfo: any;
+  userInfoServ: any;
   name = '';
   email = '';
   image = '';
@@ -24,10 +26,18 @@ export class UserProfileComponent {
   password = '';
   city_id = '';
 
-  constructor(public _UsersService: UsersService) {
+  constructor(
+    public _UsersService: UsersService,
+    public _AuthService: AuthService
+  ) {
     if (localStorage.getItem('UserData')) {
       this.localStorValue = localStorage.getItem('UserData');
       this.localStorValue = JSON.parse(this.localStorValue);
+      _AuthService.userDataLogin.next(this.localStorValue);
+      _AuthService.userDataLogin.subscribe((res) => {
+        this.userInfoServ = res;
+      });
+
       this.userInfo = this.localStorValue;
       this.name = this.userInfo.name;
       this.email = this.userInfo.email;
@@ -51,7 +61,7 @@ export class UserProfileComponent {
       console.log('Groups-As-Admin', res);
       // let x=
       // console.log("adminGroupsList",adminGroupsList);
-      
+
       this.adminGroupsList = res.data.group_creator;
       this.subscripGroup = res;
     });
@@ -122,7 +132,6 @@ export class UserProfileComponent {
       formdata.value.id = this.userInfo.id;
       formdata.value.token = this.userInfo.token;
       formdata.value.role = this.userInfo.role;
-
     } else if (formdata.value.image) {
       formdata.value.name = this.userInfo.name;
       formdata.value.email = this.userInfo.email;
@@ -132,7 +141,6 @@ export class UserProfileComponent {
       formdata.value.id = this.userInfo.id;
       formdata.value.token = this.userInfo.token;
       formdata.value.role = this.userInfo.role;
-
     } else if (formdata.value.phone) {
       formdata.value.name = this.userInfo.name;
       formdata.value.email = this.userInfo.email;
@@ -142,7 +150,6 @@ export class UserProfileComponent {
       formdata.value.id = this.userInfo.id;
       formdata.value.token = this.userInfo.token;
       formdata.value.role = this.userInfo.role;
-
     } else if (formdata.value.password) {
       formdata.value.name = this.userInfo.name;
       formdata.value.email = this.userInfo.email;
@@ -152,7 +159,6 @@ export class UserProfileComponent {
       formdata.value.id = this.userInfo.id;
       formdata.value.token = this.userInfo.token;
       formdata.value.role = this.userInfo.role;
-
     } else if (formdata.value.city_id) {
       formdata.value.name = this.userInfo.name;
       formdata.value.email = this.userInfo.email;

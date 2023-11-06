@@ -54,7 +54,7 @@
             </div> -->
             <div class="mobile mb-3">
               <h5>
-                Mobile : <span>{{ userInfo.phone }}</span>
+                Mobile : <span>{{ userInfo.phone  || userInfoServ.phone}} </span>
               </h5>
               <div class="icon" (click)="openWindow('phone')">
                 <i class="fa-solid fa-pen"></i>

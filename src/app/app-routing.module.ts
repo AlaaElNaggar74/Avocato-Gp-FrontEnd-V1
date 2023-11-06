@@ -87,7 +87,7 @@ const routes: Routes = [
     canActivate: [authgardGuard],
   },
   {
-    path: 'oneLawerReservation/:id/:from/:to',
+    path: 'oneLawerReservation/:id/:dateId/:start_hour/:end_hour',
     component: OneLawersReservationComponent,
     canActivate: [authgardGuard],
   },

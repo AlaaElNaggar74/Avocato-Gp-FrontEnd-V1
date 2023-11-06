@@ -67,6 +67,9 @@ export class UsersService {
   getLawerApi(): Observable<any> {
     return this._HttpClient.get('http://127.0.0.1:8000/api/lawyers');
   }
+  getOneLawerApi(id:any): Observable<any> {
+    return this._HttpClient.get(`http://127.0.0.1:8000/api/lawyers/${id}`);
+  }
   getCitiesApi(): Observable<any> {
     return this._HttpClient.get(`http://127.0.0.1:8000/api/cities`);
   }
@@ -123,5 +126,17 @@ export class UsersService {
         headers,
       }
     );
+
   }
+  getLawersDate(id: any): Observable<any> {
+    return this._HttpClient.get(`http://127.0.0.1:8000/api/lawyerTimes/${id}`);
+  }
+
+  createAppontment(data:any){
+    return this._HttpClient.post(
+      `http://127.0.0.1:8000/api/appointments`,
+      data
+    );
+  }
+
 }

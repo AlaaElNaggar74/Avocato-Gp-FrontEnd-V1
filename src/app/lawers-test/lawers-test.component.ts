@@ -1,3 +1,4 @@
+import { UsersService } from 'src/app/services/projectApis/users.service';
 import { Component } from '@angular/core';
 import { AllLawerService } from '../services/all-lawer.service';
 import { ActivatedRoute } from '@angular/router';
@@ -15,13 +16,15 @@ export class LawersTestComponent {
   lawerCity: any;
   lawerSpecia: any;
   lawersData: any;
+  dates: any;
 
   searchData: any;
 
   constructor(
     public _AllLawerService: AllLawerService,
     public _ActivatedRoute: ActivatedRoute,
-    public _SearchService: SearchService
+    public _SearchService: SearchService,
+    public _UsersService: UsersService
   ) {
     _SearchService.searchData.subscribe((data) => {
       console.log('_SearchService.searchData', data);
@@ -54,6 +57,8 @@ export class LawersTestComponent {
 
     // });
   }
+  uploadeImage = '../../assets/imageDataBase/';
+
 
   image1 = '../../assets/ourExpert/team5.jpg';
   image2 = '../../assets/ourExpert/team6.jpg';
@@ -106,5 +111,13 @@ export class LawersTestComponent {
 
   numSequence(n: number): Array<number> {
     return Array(n);
+  }
+  getLawerDates(id: any) {
+    let dates: any;
+    this._UsersService.getLawersDate(id).subscribe((res) => {
+      console.log('getLawersDate', res.data);
+      this.dates = res.date;
+    });
+    return dates;
   }
 }
