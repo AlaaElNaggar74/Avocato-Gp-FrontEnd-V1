@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import Pusher from 'pusher-js';
+import { PusherService } from '../pusher.service';
+import { AuthService } from '../auth.service';
 import {HttpClient} from "@angular/common/http";
 import { Message } from './message.interface';
 @Component({
@@ -7,34 +9,22 @@ import { Message } from './message.interface';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent {
-  username = 'username';
-  message = '';
-  messages:any = [];
-  
+export class ChatComponent implements OnInit {
+  private channel: any; // Chat channel
+  messages: string[] = []; // Store chat messages
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private pusherService: PusherService, private authService: AuthService) {}
 
-  ngOnInit(): void {
-    Pusher.logToConsole = true;
-
-    const pusher = new Pusher('98cfc6e5a017947b4ba9', {
-      cluster: 'eu'
-    });
-
-    const channel = pusher.subscribe('chat');
-    channel.bind('message', (data:any) => {
-      this.messages.push(data);
+  ngOnInit() {
+    // Get the chat channel for the current user
+    const currentUser = this.authService.getCurrentUser(); // Implement this method in AuthService
+    this.channel = this.pusherService.getChannel(`private-chat-${currentUser.id}`);
+    this.channel.bind('message', (data:any) => {
+      this.messages.push(data.message);
     });
   }
 
-  submit(): void {
-    console.log(this.username,this.message)
-    this.http.post('http://localhost:8000/api/messages', {
-      username: this.username,
-      message: 'thismessage'
-    }).subscribe(() => this.message = '');
+  sendMessage(message: string) {
+    this.channel.trigger('client-message', { message });
   }
-  
 }
