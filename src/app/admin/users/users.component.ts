@@ -12,6 +12,7 @@ import { AdminListUsersComponent } from './user-fun/admin-list-users/admin-list-
 export class UsersComponent {
   constructor(private MyService: MyServiceService) { }
 data!:any
+cityName:any
 ngOnInit() {
   this.getData();
   
@@ -22,17 +23,25 @@ ngOnInit() {
         // Handle the response data here
         this.data=response.data
         console.log(this.data);
-        // for (const obj of this.data) {
-        //   this.getCityData(obj.city_id) 
-        // }
+        for (const obj of this.data) {
+         this.getCityData(obj.city_id) 
+         obj.cityName = this.cityName
+        console.log('mostafa',obj.cityName)
+        }
+        
       });
   }
   getCityData(id:any) {
+  
     this.MyService.get(`cities/${id}`)
       .subscribe(response => {
-        // Handle the response data here
-        console.log(id);
+        
+       this.cityName=response.data[0].name;
+     
+        
       });
+    
+     
   }
   postData() {
     let data ={

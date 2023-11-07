@@ -54,6 +54,7 @@
                     class="form-control"
                     id="image"
                     name="image"
+                    (change)="onFileUserChange($event)"
                     required
                     [(ngModel)]="data.image"
                     formControlName="image"

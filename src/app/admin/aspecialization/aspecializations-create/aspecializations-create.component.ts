@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 })
 export class AspecializationsCreateComponent {
   specForm!:FormGroup;
+  UserImageName = '';
   data: any = {
     name: '',
     image: '',
@@ -35,6 +36,7 @@ export class AspecializationsCreateComponent {
 submitForm(specForm:FormGroup){
   console.log(specForm)
   console.log(this.data)
+  this.data.image= this.UserImageName;
   this.postData()
 
  }
@@ -56,4 +58,13 @@ submitForm(specForm:FormGroup){
     });
   }
 // }
+onFileUserChange(event: any) {
+  if (event.target.files.length > 0) {
+    this.UserImageName = event.target.files[0].name;
+    // this.RegisterUserForm.patchValue({
+    //   fileSource: file.name
+    // });
+    console.log(this.UserImageName)
+  }
+}
 }
