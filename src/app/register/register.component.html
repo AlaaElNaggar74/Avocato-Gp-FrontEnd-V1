@@ -59,6 +59,7 @@
             <label for="exampleInputEmail1" class="form-label"
               >Email address</label
             >
+          
             <input
               type="email"
               class="form-control"
@@ -73,6 +74,7 @@
                     : 'grey'
               }"
             />
+
             <div
               class="text-danger"
               *ngIf="
@@ -88,6 +90,9 @@
                 *ngIf="RegisterUserForm.controls['email']?.errors?.['email']"
                 >E-Mail Don't Match !!!
               </small>
+            </div>
+            <div *ngIf="errorData.email" class="text-danger col-md-6 col-form-label">
+              <div>Email Already Taken</div>
             </div>
             <!-- <div class="mb-1">
               <label for="age" class="form-label">Age</label>
@@ -166,9 +171,9 @@
               formControlName="city_id"
               (change)="getCity($event)"
             >
-              <option value="all" selected>City</option>
-              <ng-container *ngFor="let cit of cities">
-                <option [value]="cit.id" id="cit.id">{{ cit.name }}</option>
+              <option value="" >Select City</option>
+              <ng-container >
+                <option [value]="cit.id" id="cit.id" *ngFor="let cit of cities">{{ cit.name }}</option>
               </ng-container>
               <!-- <option value="cairo">Cairo</option>
               <option value="Giza">giza</option>
@@ -218,6 +223,9 @@
                 *ngIf="RegisterUserForm.controls['phone']?.errors?.['pattern']"
                 >phonee Not Correct !!!
               </small>
+            </div>
+            <div *ngIf="errorData.phone" class="text-danger col-md-6 col-form-label">
+              <div>Phone Already Taken</div>
             </div>
           </div>
           <div class="mb-1">

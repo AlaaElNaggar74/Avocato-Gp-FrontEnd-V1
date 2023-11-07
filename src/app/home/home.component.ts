@@ -17,6 +17,7 @@ export class HomeComponent {
   localStorValue:any;
   userInfo:any;
   token:any;
+
   constructor(
     public _Router: Router,
     public _AuthService: AuthService,
@@ -59,6 +60,11 @@ export class HomeComponent {
       this._AuthService.isLogin.next(false);
     }
     // this._AuthService.logOut();
+
+    
+    // this._Router.navigateByUrl('/login', { skipLocationChange: true }).then(() => {
+    //   this._Router.navigate([this.location.path()]);
+    // });
   }
   
 }

@@ -19,7 +19,7 @@
             aria-orientation="vertical"
           >
             <button
-              *ngFor="let group of groupList; index as index"
+              *ngFor="let group of arrOfObj; index as index"
               class="nav-link"
               [class.active]="index == xindex"
               [id]="'v-pills-' + index + '-tab'"
@@ -39,7 +39,7 @@
         <div class="col-md-8">
           <div class="tab-content mt-3 mt-md-0" id="v-pills-tabContent">
             <div
-              *ngFor="let group of groupList; index as index"
+              *ngFor="let group of arrOfObj; index as index"
               class="tab-pane fade show"
               [class.active]="index == xindex"
               [id]="'v-pills-' + index"
@@ -50,14 +50,14 @@
               <div class="fle d-flex justify-content-between">
                 <h4>{{ group.name }}</h4>
                 <button
-                  *ngIf="indexName !== group.id"
+                  *ngIf="!group.joined"
                   class="jionAndView btn btn-info me-3"
                   (click)="joinGroup(group.id)"
                 >
                   <span>Join</span>
                 </button>
                 <button
-                  *ngIf="indexName == group.id"
+                  *ngIf="group.joined"
                   class="jionAndView btn btn-info me-3"
                   (click)="joinGroup(group.id)"
                 >

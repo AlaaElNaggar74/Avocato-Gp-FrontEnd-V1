@@ -55,7 +55,7 @@
           </div>
         </div>
 
-        <div class="about mt-3" *ngIf="false">
+        <div class="about mt-3" *ngIf="true">
           <div class="text">
             <h4>Add Comment</h4>
             <form
@@ -124,25 +124,19 @@
                     *ngIf="commentForm.controls['rate']?.errors?.['required']"
                     >comment is a required field!</small
                   >
-              
-                  <small
-                    *ngIf="commentForm.controls['rate']?.errors?.['min']"
-                    >Rate Min More Than 0 </small
-                  >
-               
-                  <small
-                    *ngIf="commentForm.controls['rate']?.errors?.['max']"
+
+                  <small *ngIf="commentForm.controls['rate']?.errors?.['min']"
+                    >Rate Min More Than 0
+                  </small>
+
+                  <small *ngIf="commentForm.controls['rate']?.errors?.['max']"
                     >Rate Max less than 5!</small
                   >
                 </div>
               </div>
               <!-- <button type="submit" class="btn loginBtn">Submit</button> -->
-              <button
-                type="submit"
-                class="btn loginBtn"
-           
-              >
-              <!-- [ngClass]="{ active: commentForm.valid }"
+              <button type="submit" class="btn loginBtn">
+                <!-- [ngClass]="{ active: commentForm.valid }"
               [disabled]="commentForm.invalid" -->
                 Submit
               </button>
@@ -192,6 +186,7 @@
               <p>{{ review.rate }}</p>
             </div>
           </div>
+
           <!-- <div class="userReviws">
             <div class="le">
               <div class="iconrate d-flex align-items-center">

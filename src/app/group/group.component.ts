@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-group',
@@ -11,7 +12,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./group.component.css'],
 })
 export class GroupComponent {
-  groupList: any;
   postList: any;
   usersList: any;
   show = false;
@@ -30,6 +30,12 @@ export class GroupComponent {
   userId: any;
   token: any;
   indexName = -1;
+  // groupsUpdate:BehaviorSubject
+  groupList: any;
+  arrOfObj: any;
+  newArrOfObj: any;
+  // groupList=new BehaviorSubject<any>([]);
+  groupsUpdate = new BehaviorSubject<any>({});
 
   constructor(
     public _UsersService: UsersService,
@@ -50,22 +56,51 @@ export class GroupComponent {
       this.token = this.userInfo.token;
       this.userId = this.userInfo.id;
 
-      console.log('this.userInfo-groups', this.userInfo);
-      console.log('this.userId-groups', this.userId);
+      // console.log('this.userInfo-groups', this.userInfo);
+      // console.log('this.userId-groups', this.userId);
       // console.log('this.token', this.token);
       // console.log('this.isLogin', this._AuthService.isLogin);
     } else {
       this._AuthService.isLogin.next(false);
     }
 
-    _UsersService.getAllGroupsApi().subscribe((res) => {
-      console.log(res.data);
+    // _UsersService.getAllGroupsApi().subscribe((res) => {
+    //   console.log('res.data-----X----', res.data);
 
-      // let all = res.data;
+    //   let all = res.data;
+    //   // let allBoll = all.bool;
+    //   console.log('allall', all);
+    //   this.groupsUpdate.next(all);
+    //   console.log('ssssssss', this.groupsUpdate.value);
+    //   this.groupList = this.groupsUpdate.value;
+    // });
+      _UsersService.getAllGroupsApi().subscribe((res) => {
+      // console.log('res.data-----X----', res.data);
+
+      this.arrOfObj = res.data;
+
+      for (const iterator of this.arrOfObj) {
+        // console.log("this.userId",this.userId);
+        
+       for (const user of iterator.users) {
+        if (user.id == this.userId) {
+          iterator.joined=true;
+          // console.log("hello",user.id);
+          
+          
+        }
+       }
+    
+        
+      }
+      console.log("this.arrOfObj",this.arrOfObj);
+      console.log("this.groupList",this.groupList);
+      
       // let allBoll = all.bool;
-      this.groupList = res.data;
-
-
+      // console.log('allall', this.arrOfObj);
+      // this.groupsUpdate.next(all);
+      // console.log('ssssssss', this.groupsUpdate.value);
+      // this.groupList = this.groupsUpdate.value;
     });
 
     // if (this.userRole == 'user') {
@@ -88,8 +123,8 @@ export class GroupComponent {
     // console.log("this.GroupsById" , this.GroupsById);
 
     this._UsersService.getUserApi().subscribe((res) => {
-      console.log('res.data', res.data);
-      console.log('res.data', res.data.groups);
+      // console.log('res.data', res.data);
+      // console.log('res.data', res.data.groups);
       this.usersList = res.data;
     });
 
@@ -104,7 +139,7 @@ export class GroupComponent {
     name: new FormControl(null, [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(8),
+      Validators.maxLength(20),
     ]),
   });
 
@@ -121,7 +156,7 @@ export class GroupComponent {
   viewPostUser() {
     // this._UsersService.getUserApi().subscribe((res)=>{
 
-    console.log('IIIDDDD');
+    // console.log('IIIDDDD');
     //   console.log("res.data",res.data);
     //   this.usersList=res.data;
     // });
@@ -129,7 +164,24 @@ export class GroupComponent {
   joinGroup(id: any) {
     // this._UsersService.getUserApi().subscribe((res)=>{
     this.indexName = id;
-    console.log('ooooooo', id);
+    // console.log('ooooooo', id);
+    // let obj={}
+
+    let isjoin = 1;
+    let obj={
+      "isjoin":1
+    }
+
+
+    // this.groupsUpdate.next(all)
+
+    // this._UsersService.updateGroupsApi(id, obj).subscribe((res) => {
+    //   console.log('xxxxxxxx', res);
+    // });
+    this._UsersService.checkJoining(id, obj).subscribe((res) => {
+      // console.log('checkJoining', res);
+    });
+
     //   console.log("res.data",res.data);
     //   this.usersList=res.data;
     // });
@@ -148,9 +200,9 @@ export class GroupComponent {
 
   createGroup(formData: any) {
     formData.value.user_id = this.userId;
-    console.log('formCreateData ', formData.value);
+    // console.log('formCreateData ', formData.value);
     this._UsersService.createGroupsApi(formData.value).subscribe((res) => {
-      console.log('createGroupsApi');
+      // console.log('createGroupsApi');
     });
   }
 }

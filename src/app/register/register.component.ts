@@ -7,6 +7,7 @@ import { AuthService } from '../services/auth.service';
 import { matchpassword } from '../../matchPassword.validators';
 import { AllLawerService } from '../services/all-lawer.service';
 import { UsersService } from '../services/projectApis/users.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -21,19 +22,21 @@ export class RegisterComponent {
 
   UserImageName = '';
   LawerImageName = '';
+  errorData: any = { email: '', phone: '' };
   constructor(
     public _Router: Router,
     public _AuthService: AuthService,
     public _AllLawerService: AllLawerService,
-    public _UsersService: UsersService
+    public _UsersService: UsersService,
+    public _ToastrService: ToastrService
   ) {
     _UsersService.getCitiesApi().subscribe((data) => {
       this.cities = data.data;
-      console.log("citiies",data.data);
+      console.log('citiies', data.data);
     });
     _UsersService.getspecializationsApi().subscribe((data) => {
       this.Specializes = data.data;
-      console.log("citiies",data.data);
+      console.log('citiies', data.data);
     });
   }
   checkLawer = false;
@@ -46,10 +49,7 @@ export class RegisterComponent {
       Validators.minLength(3),
       Validators.maxLength(20),
     ]),
-    city_id: new FormControl(null, [
-      Validators.required,
-   
-    ]),
+    city_id: new FormControl('', [Validators.required]),
 
     email: new FormControl(null, [Validators.required, Validators.email]),
 
@@ -83,10 +83,7 @@ export class RegisterComponent {
       Validators.min(100),
       Validators.max(400),
     ]),
-    specialization_id: new FormControl(null, [
-      Validators.required,
-    
-    ]),
+    specialization_id: new FormControl('', [Validators.required]),
     location: new FormControl(null, [
       Validators.required,
       Validators.minLength(3),
@@ -112,7 +109,7 @@ export class RegisterComponent {
       // });
     }
   }
-  
+
   onFileLawerChange(event: any) {
     if (event.target.files.length > 0) {
       this.LawerImageName = event.target.files[0].name;
@@ -131,10 +128,8 @@ export class RegisterComponent {
       formUserData.value.image = this.UserImageName;
       // console.log('formUserData.value', formUserData.value);
 
-      this._UsersService
-        .registrUserApi(formUserData.value)
-        .subscribe((data) => {
-
+      this._UsersService.registrUserApi(formUserData.value).subscribe(
+        (data) => {
           this._UsersService.getUserApi().subscribe((res) => {
             // console.log('userPart-api', res.data);
             let userPartList = res.data;
@@ -146,71 +141,36 @@ export class RegisterComponent {
 
             if (userPart) {
               // console.log('AAA-status-userPart-CHECK', userPart.id);
-              this.userId=userPart.id;
-
-            }else{
+              this.userId = userPart.id;
+            } else {
               // console.log('Status-userPart-NOT-CHECK', userPart);
-
             }
-      
-
           });
           // console.log('status-id-CHECK', data);
           // this.userId = data.id;
-        });
+
+          this._ToastrService.success('Login Success Done !');
+        },
+        (error) => {
+          // this._ToastrService.warning('Error In Login Please Try Again !!');
+          console.log(' this.errorData', error.error.errors);
+          this.errorData = error.error.errors;
+        }
+      );
       // console.log(formUserData);
     } else {
-      // let obj = {
-      //   name: 'alaax',
-      //   image: 'alaax.png',
-      //   email: 'alla@gmail.com',
-      //   phone: '524141',
-      //   password: '21452145',
-      //   city_id: 1,
-      //   plan_id: 1,
-      // };
-      // this._AuthService.registrUserMethod(obj).subscribe((data) => {
-      //   console.log('resssss', data);
-      // });
-      // formUserData.value.role = 'user';
-      // formUserData.value.IsActive = 'active';
       formUserData.value.image = this.UserImageName;
-      // formUserData.append('image', formUserData.get('fileSource').value);
 
-      this._UsersService
-        .registrUserApi(formUserData.value)
-        .subscribe((data) => {
+      this._UsersService.registrUserApi(formUserData.value).subscribe(
+        (data) => {
           console.log('ASDASSDDD', data);
-
-              // this._UsersService.getUserApi().subscribe((res) => {
-              //   // console.log('userPart-api', res.data);
-              //   let userPartList = res.data;
-
-              //   let userPart = userPartList.find((ele: any) => {
-              //     return ele.email == formUserData.value.email;
-              //   });
-              //   // console.log('0000000', userPart);
-
-              //   if (userPart) {
-              //     console.log('AAA-status-userPart-CHECK', userPart);
-
-              //   }else{
-              //     console.log('Status-userPart-NOT-CHECK', userPart);
-
-              //   }
-          
-
-              // });
-              // console.log('status-id-NOT-CHECK', data);
-              // this.userId = data.id;
-              // console.log("registerData",data);
-        });
-
-      // console.log('registerData', formUserData);
-
-      // console.log(formUserData.value);
-      // this._Router.navigate(['/home']);
-      this._Router.navigate(['/login']);
+        },
+        (error) => {
+          // this._ToastrService.warning('Error In Login Please Try Again !!');
+          console.log(' this.errorData', error.error.errors);
+          this.errorData = error.error.errors;
+        }
+      );
     }
   }
 

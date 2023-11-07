@@ -67,7 +67,7 @@ export class UsersService {
   getLawerApi(): Observable<any> {
     return this._HttpClient.get('http://127.0.0.1:8000/api/lawyers');
   }
-  getOneLawerApi(id:any): Observable<any> {
+  getOneLawerApi(id: any): Observable<any> {
     return this._HttpClient.get(`http://127.0.0.1:8000/api/lawyers/${id}`);
   }
   getCitiesApi(): Observable<any> {
@@ -89,6 +89,30 @@ export class UsersService {
     return this._HttpClient.post(`http://127.0.0.1:8000/api/groups`, data, {
       headers,
     });
+  }
+  updateGroupsApi(id: any, obj: any): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+
+    return this._HttpClient.put(`http://127.0.0.1:8000/api/groups/${id}`, obj, {
+      headers,
+    });
+  }
+  checkJoining(id: any, obj: any): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+
+    return this._HttpClient.put(
+      `http://127.0.0.1:8000/api/checkJoining/${id}`,
+      obj,
+      {
+        headers,
+      }
+    );
   }
   getGroupsByIdApi(id: any): Observable<any> {
     return this._HttpClient.get(`http://127.0.0.1:8000/api/users/${id}`);
@@ -116,8 +140,7 @@ export class UsersService {
       .set('specialization', data.name_lawyer);
 
     // this.http.post(url, null, { params });
-    console.log("data-data-data",data);
-    
+    console.log('data-data-data', data);
 
     return this._HttpClient.post(
       `http://127.0.0.1:8000/api/lawyers/search?specialization=${data.specialization}&city=${data.city}&name_lawyer=${data.name_lawyer}`,
@@ -126,25 +149,19 @@ export class UsersService {
         headers,
       }
     );
-
   }
   getLawersDate(id: any): Observable<any> {
     return this._HttpClient.get(`http://127.0.0.1:8000/api/lawyerTimes/${id}`);
   }
 
-  createAppontment(data:any){
+  createAppontment(data: any) {
     return this._HttpClient.post(
       `http://127.0.0.1:8000/api/appointments`,
       data
     );
   }
 
-  addComment(data:any){
-    
-    return this._HttpClient.post(
-      `http://127.0.0.1:8000/api/addcomment`,
-      data
-    );
+  addComment(data: any) {
+    return this._HttpClient.post(`http://127.0.0.1:8000/api/addcomment`, data);
   }
-
 }

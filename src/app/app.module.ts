@@ -59,6 +59,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GroupComponent } from './group/group.component';
 import { MyroupComponent } from './myroup/myroup.component';
+import { DatesComponent } from './dates/dates.component';
+import { MydatesComponent } from './mydates/mydates.component';
 
 
 register();
@@ -103,6 +105,8 @@ register();
     RullesComponent,
     GroupComponent,
     MyroupComponent,
+    DatesComponent,
+    MydatesComponent,
   ],
   imports: [
     BrowserModule,

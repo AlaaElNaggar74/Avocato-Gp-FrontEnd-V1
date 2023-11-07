@@ -15,6 +15,7 @@ export class LoginComponent {
   userList: any;
   LawerList: any;
   userTotalData: any;
+  errorData: any = { email: '', pasword: '' };
 
   constructor(
     public _Router: Router,
@@ -41,9 +42,9 @@ export class LoginComponent {
 
     password: new FormControl(null, [
       Validators.required,
-      Validators.pattern(
-        '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
-      ),
+      // Validators.pattern(
+      //   '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+      // ),
     ]),
   });
   submitGameForm(form: any) {
@@ -55,34 +56,37 @@ export class LoginComponent {
   }
 
   getLoginData(formLoginData: any) {
-
     console.log('formUserData', formLoginData.value);
-    this._UsersService.loginFun(formLoginData.value).subscribe((res) => {
-      console.log('ressssssss', res);
-      let token=res[0];
-      let data=res[1][0]?res[1][0]:res[1];
-      
-      console.log('resssssssstoken', token);
-      console.log('ressssssssdata', data);
-      let userData={"token":token,...data}
-      localStorage.setItem(
-        'UserData',
-        JSON.stringify(userData)
-      );
-      this._AuthService.isLogin.next(true);
-      this._AuthService.userDataLogin.next(userData);
-  //     isLogin = new BehaviorSubject<any>(false);
-  // userDataLogin
+    this._UsersService.loginFun(formLoginData.value).subscribe(
+      (res) => {
+        // console.log('ressssssss', res.error.error);
+        let token = res[0];
+        let data = res[1][0] ? res[1][0] : res[1];
 
-    });
-
+        // console.log('resssssssstoken', token);
+        // console.log('ressssssssdata', data);
+        let userData = { token: token, ...data };
+        localStorage.setItem('UserData', JSON.stringify(userData));
+        this._AuthService.isLogin.next(true);
+        this._AuthService.userDataLogin.next(userData);
+        //     isLogin = new BehaviorSubject<any>(false);
+        // userDataLogin
+        this._ToastrService.success('Login Success Done !');
         this._Router.navigate(['/home']);
+
+      },
+      (error) => {
+        // console.log(' this.errorData', error.error);
+        // this.errorData = error.error.errors;
+        this._ToastrService.warning('Error In Login Please Try Again !!');
+      }
+    );
+
 
     // localStorage.setItem(
     //               'UserData',
     //               JSON.stringify(this.userTotalData)
     //             );
-    
 
     //   // console.log('formLoginData-LOGINN', formLoginData.value);
     //   let loginUser = formLoginData.value;

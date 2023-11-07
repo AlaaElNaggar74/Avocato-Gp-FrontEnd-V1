@@ -29,6 +29,8 @@ import { MyroupComponent } from './myroup/myroup.component';
 import { authgardGuard } from './services/guard/authgard.guard';
 import { lawergaurdGuard } from './services/guard/lawergaurd.guard';
 import { isloginGuard } from './services/guard/islogin.guard';
+import { DatesComponent } from './dates/dates.component';
+import { MydatesComponent } from './mydates/mydates.component';
 
 const routes: Routes = [
   {
@@ -59,6 +61,14 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactComponent,
+  },
+  {
+    path: 'dates',
+    component: DatesComponent,
+  },
+  {
+    path: 'mydates',
+    component: MydatesComponent,
   },
   {
     path: 'freeConsult',
