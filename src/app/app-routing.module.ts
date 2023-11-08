@@ -31,6 +31,13 @@ import { lawergaurdGuard } from './services/guard/lawergaurd.guard';
 import { isloginGuard } from './services/guard/islogin.guard';
 import { DatesComponent } from './dates/dates.component';
 import { MydatesComponent } from './mydates/mydates.component';
+import { TestComponent } from './admin/test/test.component';
+import { AcityCreateComponent } from './admin/test/acity-create/acity-create.component';
+import { AcityEditComponent } from './admin/test/acity-edit/acity-edit.component';
+import { AspecializationComponent } from './admin/aspecialization/aspecialization.component';
+import { AspecializationsCreateComponent } from './admin/aspecialization/aspecializations-create/aspecializations-create.component';
+import { AspecializationsEditComponent } from './admin/aspecialization/aspecializations-edit/aspecializations-edit.component';
+
 
 const routes: Routes = [
   {
@@ -164,6 +171,32 @@ const routes: Routes = [
     component: LawersTestComponent,
     canActivate: [authgardGuard],
   },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module')
+  .then(m => m.AdminModule) },
+  {
+      path:'admin/cities',
+      component:TestComponent
+    },
+    {
+      path:'admin/cities/create',
+      component:AcityCreateComponent
+    },
+    {
+      path:'admin/cities/edit/:id',
+      component:AcityEditComponent
+    },
+    {
+      path:'admin/specializations',
+      component:AspecializationComponent
+    },
+    {
+      path:'admin/specializations/create',
+      component:AspecializationsCreateComponent
+    },
+    {
+      path:'admin/specializations/edit/:id',
+      component:AspecializationsEditComponent
+    },
   {
     path: '**',
     component: ErrorPageComponent,

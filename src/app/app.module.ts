@@ -62,6 +62,8 @@ import { MyroupComponent } from './myroup/myroup.component';
 import { DatesComponent } from './dates/dates.component';
 import { MydatesComponent } from './mydates/mydates.component';
 
+import { AdminModule } from './admin/admin.module';
+
 
 register();
 @NgModule({
@@ -117,7 +119,8 @@ register();
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent],
