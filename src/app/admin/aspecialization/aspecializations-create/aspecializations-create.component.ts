@@ -13,7 +13,7 @@ import { Location } from '@angular/common';
 })
 export class AspecializationsCreateComponent {
   specForm!:FormGroup;
-  UserImageName = '';
+  UserImageName :any;
   data: any = {
     name: '',
     image: '',
@@ -34,19 +34,26 @@ export class AspecializationsCreateComponent {
         })}
 
 submitForm(specForm:FormGroup){
-  console.log(specForm)
-  console.log(this.data)
-  this.data.image= this.UserImageName;
-  this.postData()
+  // console.log(specForm)
+
+  // this.data.image= this.UserImageName;
+  const formData=new FormData();
+  formData.append('name',this.data.name)
+  formData.append('description',this.data.Description)
+  formData.append('image',this.UserImageName,this.UserImageName.name)
+  console.log('Data before post',this.data)
+  console.log('FormData before post',formData)
+  this.postData(formData)
 
  }
 
 
- postData() {
+ postData(formaData:any) {
   // uploadImage(imageFile: File) {
   //   const formData = new FormData();
   //   formData.append('image', imageFile);
-  this.MyService.post('specializations',this.data)
+  console.log('FormData',formaData)
+  this.MyService.post('specializations',formaData)
     .subscribe(response => {
       console.log('Success:', response);
       this.router.navigate(['admin/specializations']);
@@ -54,13 +61,13 @@ submitForm(specForm:FormGroup){
     },
     error => {
       this.error=error.error.errors;
-      console.error('Errorr:', error);
+      console.error('Error uploading file.', error);
     });
   }
 // }
 onFileUserChange(event: any) {
   if (event.target.files.length > 0) {
-    this.UserImageName = event.target.files[0].name;
+    this.UserImageName = event.target.files[0];
     // this.RegisterUserForm.patchValue({
     //   fileSource: file.name
     // });

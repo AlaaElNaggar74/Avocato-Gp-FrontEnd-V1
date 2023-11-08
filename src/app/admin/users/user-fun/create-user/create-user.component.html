@@ -94,10 +94,12 @@
                     required
                     [(ngModel)]="data.role"
                     formControlName="role"
+                    #role
                   >
                     <option value="">Select Role</option>
                     <option value="Admin">Admin</option>
                     <option value="User">User</option>
+                    <option value="lawyer">lawyer</option>
                   </select>
 
                   <div
@@ -109,6 +111,45 @@
                   >
                     <div *ngIf="userForm.get('role')?.errors?.['required']">
                       Role is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- spec -->
+              <div *ngIf="data.role == 'lawyer'" class="form-group row mb-3">
+                <label
+                  for="specialization"
+                  class="col-md-4 col-form-label text-md-end"
+                  >specialization</label
+                >
+                <div class="col-md-6">
+                  <select
+                    class="form-control"
+                    id="specialization"
+                    name="specialization"
+                    required
+                    [(ngModel)]="specialization"
+                    formControlName="specialization"
+                  >
+                    <option value="">Select specialization</option>
+                    <option
+                      *ngFor="let spec of specData; let i = index"
+                      value="{{ spec.id }}"
+                    >
+                      {{ spec.name }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="
+                      userForm.get('specialization')?.errors != null &&
+                      userForm.get('specialization')?.touched
+                    "
+                    class="text-danger col-md-6 col-form-label"
+                  >
+                    <div
+                      *ngIf="userForm.get('specialization')?.errors?.['required']"
+                    >
+                      specialization is required.
                     </div>
                   </div>
                 </div>
