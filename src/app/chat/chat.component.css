@@ -1,0 +1,37 @@
+.containerr{
+    display: flex;
+    height: calc(100vh - 70px);
+}
+.chat-list{
+    width: 40%;
+    margin: 16px;
+    background:#c5cae9;
+    border-radius: 16px;
+}
+.messages{
+    width: 60%;
+    margin: 16px;
+    border-radius: 16px;
+}
+.search-input{
+    margin: 24px;
+}
+/* .optionDude{
+    height: 100px;
+} */
+
+.chat-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.chat-name{
+    /* margin-top: 15px; */
+    font-weight: 500;
+}
+
+.chat-date{
+    /* margin-top: 0; */
+    font-size: 0.7rem;
+    color: rgba(0, 0, 0, 0.7);
+}

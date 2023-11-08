@@ -35,7 +35,6 @@ import { AllLawerComponent } from './all-lawer/all-lawer.component';
 import { CommonModule } from '@angular/common';
 import { TestTopicComponent } from './test-topic/test-topic.component';
 // register Swiper custom elements
-import { FormsModule } from '@angular/forms';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { TopicDeatailsComponent } from './topic-deatails/topic-deatails.component';
 import { LandingSearchComponent } from './landing-search/landing-search.component';
@@ -51,7 +50,6 @@ import { OneLawersTestComponent } from './one-lawers-test/one-lawers-test.compon
 import { OneLawersReservationComponent } from './one-lawers-reservation/one-lawers-reservation.component';
 import { AboutLawerComponent } from './about-lawer/about-lawer.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
 import { SkillsComponent } from './about/skills/skills.component';
 import { RullesComponent } from './about/rulles/rulles.component';
 
@@ -60,6 +58,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GroupComponent } from './group/group.component';
 import { MyroupComponent } from './myroup/myroup.component';
 import { ChatComponent } from './chat/chat.component';
+import {MatAutocomplete} from '@angular/material/autocomplete';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgFor} from '@angular/common';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 
@@ -117,7 +123,19 @@ register();
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+     MatFormFieldModule, 
+     MatInputModule,
+     FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    NgFor,
+    MatListModule,
+    MatDividerModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,6 +1,29 @@
-<div *ngFor="let message of messages">
-  <p>{{ message }}</p>
+<div class="containerr">
+  <div class="chat-list mat-elevation-z5">
+    <div class="search-input">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="search for users...."
+          [formControl]="searchControl"
+          [matAutocomplete]="users"
+        />
+      </mat-form-field>
+      <mat-autocomplete #users="matAutocomplete">
+        <mat-option>helo</mat-option>
+      </mat-autocomplete>
+    </div>
+    <mat-selection-list class="optionDude" [multiple]="false">
+      <mat-divider></mat-divider>
+      <mat-list-option>
+        <p mat-line class="chat-title">
+          <span class="chat-name"> mostafa</span>
+          <span class="chat-date">1/1/2000</span>
+        </p>
+        <p mat-line>hello there pusher</p>
+        <mat-divider></mat-divider>
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+  <div class="messages mat-elevation-z5"></div>
 </div>
-
-<input type="text" #messageInput />
-<button (click)="sendMessage(messageInput.value)">Send</button>

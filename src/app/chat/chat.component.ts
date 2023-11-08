@@ -4,6 +4,8 @@ import { PusherService } from '../pusher.service';
 import { AuthService } from '../auth.service';
 import {HttpClient} from "@angular/common/http";
 import { Message } from './message.interface';
+import { FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -12,6 +14,7 @@ import { Message } from './message.interface';
 export class ChatComponent implements OnInit {
   private channel: any; // Chat channel
   messages: string[] = []; // Store chat messages
+  searchControl=new FormControl('');
 
   constructor(private pusherService: PusherService, private authService: AuthService) {}
 
