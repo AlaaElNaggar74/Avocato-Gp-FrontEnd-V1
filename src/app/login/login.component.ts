@@ -41,9 +41,9 @@ export class LoginComponent {
 
     password: new FormControl(null, [
       Validators.required,
-      Validators.pattern(
-        '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
-      ),
+      // Validators.pattern(
+      //   '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+      // ),
     ]),
   });
   submitGameForm(form: any) {

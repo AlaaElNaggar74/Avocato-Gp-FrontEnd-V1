@@ -29,7 +29,7 @@ import { MyroupComponent } from './myroup/myroup.component';
 import { authgardGuard } from './services/guard/authgard.guard';
 import { lawergaurdGuard } from './services/guard/lawergaurd.guard';
 import { isloginGuard } from './services/guard/islogin.guard';
-import { ChatComponent } from './chat/chat.component';
+import { ChatComponent } from './chatt/components/chat/chat.component';
 
 const routes: Routes = [
   {

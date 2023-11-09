@@ -66,6 +66,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
+import { ChattModule } from './chatt/chatt.module';
+
 
 
 
@@ -134,7 +136,8 @@ register();
     ReactiveFormsModule,
     NgFor,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    ChattModule
     
   ],
   providers: [],
