@@ -6,6 +6,7 @@ import { AcityEditComponent } from './admin/test/acity-edit/acity-edit.component
 import { AspecializationComponent } from './admin/aspecialization/aspecialization.component';
 import { AspecializationsCreateComponent } from './admin/aspecialization/aspecializations-create/aspecializations-create.component';
 import { AspecializationsEditComponent } from './admin/aspecialization/aspecializations-edit/aspecializations-edit.component';
+import { CreateLawyerDeatailsComponent } from './admin/alawyer-details/create-lawyer-deatails/create-lawyer-deatails.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,10 @@ const routes: Routes = [
     {
       path:'admin/specializations/edit/:id',
       component:AspecializationsEditComponent
+    },
+    {
+      path:'admin/lawyerDetails/create/:id',
+      component:CreateLawyerDeatailsComponent
     },
   
 ];

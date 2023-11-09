@@ -48,9 +48,8 @@ this.getSpecData()
     'email':new FormControl(null,[Validators.required,Validators.email]),
     'role':new FormControl(null,[Validators.required]),
     'city':new FormControl(null,[Validators.required]),
-    'specialization':new FormControl(null,[Validators.required]),
     'image':new FormControl(null,[Validators.required]),
-    'phone':new FormControl(null,[Validators.required,Validators.pattern("^(011|012|015)[0-9]{8}$")]),
+    'phone':new FormControl(null,[Validators.required,Validators.pattern("^(011|012|015|010)[0-9]{8}$")]),
     'password':new FormControl(null,[Validators.required,Validators.minLength(8)]),
     'confirmpassword':new FormControl(null,[Validators.required])
   },
@@ -61,21 +60,21 @@ this.getSpecData()
 
 //////////////
   submitForm(userForm:FormGroup){
-    if(this.data.role=='lawyer')
-    {
-      this.tempLawyerDataService.LawyerObj=this.data
-      this.router.navigate(['/target-component']);
-    }
-    else{
+    // if(this.data.role=='lawyer')
+    // {
+    //   this.tempLawyerDataService.LawyerObj=this.data
+    //   this.router.navigate(['/target-component']);
+    // }
+    // else{
    this.postData()
   console.log(userForm)
   // console.log(this.data)
-  }
+  // }
   }
 
 /////////////
   postData() {
- 
+ if(this.userForm.valid){
     this.MyService.post('users',this.data)
       .subscribe(response => {
         console.log('Success:', response);
@@ -86,12 +85,13 @@ this.getSpecData()
         // formData.append('specialization_id',this.specialization)
         // this.postSpecData(formData)
         // this.resetForm();
+        this.router.navigate(['admin/users']);
       },
       error => {
         this.error=error.error.errors;
         console.error('Errorr:', error.error.errors);
       });
-      
+    }
   }
   postSpecData(formData:any) {
  
@@ -138,5 +138,29 @@ this.getSpecData()
         this.specData=response.data
         console.log(this.cityData);
       });
+  }
+  nextStep(){
+    if(this.userForm.valid){
+      this.MyService.post('users',this.data)
+        .subscribe(response => {
+          console.log('Success:', response);
+          // Reset the form after successful submission
+          this.lawyerId=response.data.id
+          // const formData=new FormData();
+          // formData.append('lawyer_id', this.lawyerId)
+          // formData.append('specialization_id',this.specialization)
+          // this.postSpecData(formData)
+          // this.resetForm();
+          this.router.navigate([`admin/lawyerDetails/create/${this.lawyerId}`]);
+        },
+        error => {
+          this.error=error.error.errors;
+          console.error('Errorr:', error.error.errors);
+        });
+      }
+      else{
+        console.log('wrong in')
+      }
+ 
   }
 }

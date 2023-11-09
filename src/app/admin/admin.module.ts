@@ -25,6 +25,8 @@ import { AcityEditComponent } from './test/acity-edit/acity-edit.component';
 import { AspecializationComponent } from './aspecialization/aspecialization.component';
 import { AspecializationsCreateComponent } from './aspecialization/aspecializations-create/aspecializations-create.component';
 import { AspecializationsEditComponent } from './aspecialization/aspecializations-edit/aspecializations-edit.component';
+import { AlawyerDetailsComponent } from './alawyer-details/alawyer-details.component';
+import { CreateLawyerDeatailsComponent } from './alawyer-details/create-lawyer-deatails/create-lawyer-deatails.component';
 // import { AdminComponent } from './admin.component';
 
 const adminRoutes: Routes = [
@@ -51,7 +53,9 @@ const adminRoutes: Routes = [
     AcityEditComponent,
     AspecializationComponent,
     AspecializationsCreateComponent,
-    AspecializationsEditComponent
+    AspecializationsEditComponent,
+    AlawyerDetailsComponent,
+    CreateLawyerDeatailsComponent
   ],
   imports: [
     CommonModule,

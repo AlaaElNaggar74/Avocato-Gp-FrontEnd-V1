@@ -116,44 +116,7 @@
                 </div>
               </div>
               <!-- spec -->
-              <div *ngIf="data.role == 'lawyer'" class="form-group row mb-3">
-                <label
-                  for="specialization"
-                  class="col-md-4 col-form-label text-md-end"
-                  >specialization</label
-                >
-                <div class="col-md-6">
-                  <select
-                    class="form-control"
-                    id="specialization"
-                    name="specialization"
-                    required
-                    [(ngModel)]="specialization"
-                    formControlName="specialization"
-                  >
-                    <option value="">Select specialization</option>
-                    <option
-                      *ngFor="let spec of specData; let i = index"
-                      value="{{ spec.id }}"
-                    >
-                      {{ spec.name }}
-                    </option>
-                  </select>
-                  <div
-                    *ngIf="
-                      userForm.get('specialization')?.errors != null &&
-                      userForm.get('specialization')?.touched
-                    "
-                    class="text-danger col-md-6 col-form-label"
-                  >
-                    <div
-                      *ngIf="userForm.get('specialization')?.errors?.['required']"
-                    >
-                      specialization is required.
-                    </div>
-                  </div>
-                </div>
-              </div>
+
               <!-- city -->
               <div class="form-group row mb-3">
                 <label for="city" class="col-md-4 col-form-label text-md-end"
@@ -227,7 +190,7 @@
                 <div class="col-md-6">
                   <input
                     id="phone"
-                    type="text"
+                    type="tel"
                     class="form-control"
                     name="phone"
                     value=""
@@ -327,21 +290,37 @@
                     >
                       password required.
                     </div>
-                    <div *ngIf="userForm.errors?.['passwordmatcherror']">
-                      password dont match.
-                    </div>
+                  </div>
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      userForm.hasError('passwordMismatch') &&
+                      userForm.get('confirmpassword')?.touched
+                    "
+                  >
+                    password dont match.
                   </div>
                 </div>
               </div>
 
-              <div class="row mb-0">
+              <div *ngIf="data.role != 'lawyer'" class="row mb-0">
+                <div class="col-md-6 offset-md-4">
+                  <button type="submit" class="btn btn-primary">
+                    Add User
+                  </button>
+                </div>
+              </div>
+              <div *ngIf="data.role == 'lawyer'" class="row mb-0">
                 <div class="col-md-6 offset-md-4">
                   <button
-                    type="submit"
+                    type="button"
+                    (click)="nextStep()"
                     class="btn btn-primary"
-                    [disabled]="userForm.invalid"
                   >
-                    Add User
+                    Next step
+                  </button>
+                  <button type="submit" class="btn btn-primary ms-4">
+                    Add details later
                   </button>
                 </div>
               </div>
