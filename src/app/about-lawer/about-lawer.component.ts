@@ -15,7 +15,11 @@ export class AboutLawerComponent {
 
   lawer: any = [];
   Reviws: any = [];
-
+  error: any;
+  localStorValue: any;
+  userInfo: any;
+  userInfo_id: any;
+  errorData: any = { email: '', phone: '' };
   constructor(
     public _AllLawerService: AllLawerService,
     public _ActivatedRoute: ActivatedRoute,
@@ -25,10 +29,18 @@ export class AboutLawerComponent {
   ) {
     this.id = _ActivatedRoute.snapshot.paramMap.get('id');
 
-    _AllLawerService.getOneLawer(this.id).subscribe((data) => {
-      // this.lawer = data;
-      // console.log(data);
-    });
+    if (localStorage.getItem('UserData')) {
+      this.localStorValue = localStorage.getItem('UserData');
+      let objData = JSON.parse(this.localStorValue);
+      this.userInfo = objData;
+      this.userInfo_id = objData.id;
+
+      console.log('this.userInfo', this.userInfo.id);
+    }
+    // _AllLawerService.getOneLawer(this.id).subscribe((data) => {
+    //   // this.lawer = data;
+    //   // console.log(data);
+    // });
     // _AllLawerService.getOneLawerApi(this.id).subscribe((data) => {
     //   this.lawer = data.data;
     //   // console.log(data.data);
@@ -38,10 +50,10 @@ export class AboutLawerComponent {
     //   console.log(data.data);
     // });
 
-    _AllLawerService.getOneReviws(this.id).subscribe((data) => {
-      // this.Reviws = data;
-      // console.log(data);
-    });
+    // _AllLawerService.getOneReviws(this.id).subscribe((data) => {
+    //   // this.Reviws = data;
+    //   // console.log(data);
+    // });
     _UsersService.getAllReviews(this.id).subscribe((data) => {
       this.Reviws = data.data;
       console.log(this.Reviws);
@@ -68,24 +80,46 @@ export class AboutLawerComponent {
     //   ),
     // ]),
   });
-  
+
   addComment(formData: any) {
-
     console.log('formUserData', formData.value);
-    // this._UsersService.addComment(formData.value).subscribe((res: any) => {
-    //   console.log('ressssssss', res);
-    //   let token = res[0];
-    //   let data = res[1][0] ? res[1][0] : res[1];
+    console.log('this.lawer.id', this.lawer.id);
 
-    //   console.log('resssssssstoken', token);
-    //   console.log('ressssssssdata', data);
-    //   let userData = { token: token, ...data };
-    //   localStorage.setItem('UserData', JSON.stringify(userData));
-    // });
+    this._UsersService.addComment(this.lawer.id, formData.value).subscribe(
+      (res: any) => {
+        // console.log('ressssssss', res);
+        let token = res[0];
+        let data = res[1][0] ? res[1][0] : res[1];
+
+        // console.log('resssssssstoken', token);
+        // console.log('ressssssssdata', data);
+        let userData = { token: token, ...data };
+        localStorage.setItem('UserData', JSON.stringify(userData));
+      },
+      (error: any) => {
+        console.log(' this.errorData', error.error);
+        this.error = error.error;
+        this.commentForm.reset();
+      }
+    );
 
     // this._Router.navigate(['/home']);
   }
   numSequence(n: number): Array<number> {
     return Array(n);
+  }
+
+  addToFollowers(id: any) {
+    console.log('addToFollowers_lawyer_id', id);
+    console.log('addToFollowers_userInfo_id', this.userInfo_id);
+    let data={
+      "lawyer_id":id,
+      "user_id":this.userInfo_id
+    }
+    console.log("data",data);
+    
+    this._UsersService.addFollowers(data).subscribe((res) => {
+      console.log('addFollowers_res', res);
+    });
   }
 }

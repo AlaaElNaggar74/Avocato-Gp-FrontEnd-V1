@@ -54,7 +54,8 @@
             </div> -->
             <div class="mobile mb-3">
               <h5>
-                Mobile : <span>{{ userInfo.phone  || userInfoServ.phone}} </span>
+                Mobile :
+                <span>{{ userInfo.phone || userInfoServ.phone }} </span>
               </h5>
               <div class="icon" (click)="openWindow('phone')">
                 <i class="fa-solid fa-pen"></i>
@@ -119,7 +120,7 @@
           </button>
         </ng-container>
       </div>
-      <div class="myLawers">
+      <!-- <div class="myLawers">
         <h4 class="text-center mt-4">My Lawers</h4>
         <div class="allLawers mt-5 row">
           <ng-container *ngFor="let user of usersList; index as i">
@@ -132,6 +133,33 @@
             </div>
           </ng-container>
         </div>
+      </div> -->
+      <div class="myLawers">
+        <h4 class="text-center mt-4">My Appointment</h4>
+        <!-- userAppointment -->
+        <div class="row">
+          
+          <div class="col-md-4 col-lg-3 mb-3"  *ngFor="let date of userAppointment">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title text-center mb-3">DAY</h5>
+                <p class="card-text">
+                  <span class="hed">Appointment_date : </span> <span>{{date.appointment_date}}</span>
+                </p>
+                <p class="card-text">
+                  <span class="hed">Appointment_id : </span> <span> {{date.id}}</span>
+                </p>
+                <div class="btt mt-4">
+                  <button class="freeconsult btn me-3" [routerLink]="['/appointmentDetails', date.id]">Details</button>
+                  <button class="freeconsult btn"  (click)="deleteFun(date.id)">Delete</button>
+                </div>
+                <p *ngIf="appoError && errId == date.id" class="text-danger">"This appointment cannot be deleted as its destroying date has passed."</p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-4 col-lg-3 mb-3" *ngFor="let date of allDates"> -->
       </div>
     </div>
   </div>
@@ -222,7 +250,6 @@
           id="image"
           formControlName="image"
           (change)="onFileUserChange($event)"
-
           name="image"
           aria-describedby="imageHelp"
           [ngStyle]="{

@@ -6,13 +6,13 @@
           <div class="flexInfo">
             <div class="image">
               <!-- <img [src]="oneLawerReserv?.image" alt="" /> -->
-              <img [src]="uploadeImage + oneLawerReserv.user.image" alt="" />
+              <img [src]="uploadeImage + oneLawerReserv?.user?.image" alt="" />
             </div>
             <div class="infoText">
               <h5 class="name">
-                {{ oneLawerReserv.user.name }}
+                {{ oneLawerReserv?.user?.name }}
               </h5>
-              <p>0{{ oneLawerReserv.user.phone }}</p>
+              <p>0{{ oneLawerReserv?.user?.phone }}</p>
             </div>
           </div>
           <p class="details">
@@ -184,7 +184,7 @@
                 >
               </div>
             </div>
-            <div class="mb-5">
+            <!-- <div class="mb-5">
               <div
                 class="lableInfo d-flex justify-content-between align-items-center"
               >
@@ -196,7 +196,7 @@
                   <i class="fa-solid fa-medal me-2"></i> 300 points
                 </p>
               </div>
-            </div>
+            </div> -->
             <div class="but">
               <div class="book">
                 <input

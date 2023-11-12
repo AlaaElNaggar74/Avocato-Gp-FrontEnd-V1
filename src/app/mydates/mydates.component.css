@@ -28,6 +28,9 @@
 .formmmm {
   width: 300px;
   position: relative;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #cc880086;
 }
 
 .closBtn {

@@ -1,115 +1,27 @@
 <div class="container">
-  <h1 class="text-center mt-4">Date List</h1>
+  <h1 class="text-center my-4">Date List</h1>
 
   <div class="row" *ngIf="!showForm">
-    <div class="col-md-4 col-lg-3 mb-3">
+  
+    <div class="col-md-4 col-lg-3 mb-3" *ngFor="let date of allDates">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title text-center mb-3">Sun</h5>
+          <h5 class="card-title text-center mb-3">{{date.day}}</h5>
           <p class="card-text">
-            <span class="hed">Start_From : </span> <span> 12:30 pm</span>
+            <span class="hed">Start_From : </span> <span> {{date.start_hour}}</span>
           </p>
           <p class="card-text">
-            <span class="hed">End_To : </span> <span> 3:30 pm</span>
+            <span class="hed">End_To : </span> <span> {{date.end_hour}}</span>
           </p>
           <div class="btt mt-4">
-            <button class="freeconsult btn me-3" (click)="showFormFun(1,'sun',5,3)">Update</button>
-            <button class="freeconsult btn">Delete</button>
+            <button class="freeconsult btn me-3" (click)="showFormFun(date.id)">Update</button>
+            <button class="freeconsult btn"  (click)="deleteFun(date.id)">Delete</button>
           </div>
           <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
         </div>
       </div>
     </div>
-    <div class="col-md-4 col-lg-3 mb-3">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title text-center mb-3">Sun</h5>
-          <p class="card-text">
-            <span class="hed">Start_From : </span> <span> 12:30 pm</span>
-          </p>
-          <p class="card-text">
-            <span class="hed">End_To : </span> <span> 3:30 pm</span>
-          </p>
-          <div class="btt mt-4">
-            <button class="freeconsult btn me-3">Update</button>
-            <button class="freeconsult btn">Delete</button>
-          </div>
-          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 col-lg-3 mb-3">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title text-center mb-3">Sun</h5>
-          <p class="card-text">
-            <span class="hed">Start_From : </span> <span> 12:30 pm</span>
-          </p>
-          <p class="card-text">
-            <span class="hed">End_To : </span> <span> 3:30 pm</span>
-          </p>
-          <div class="btt mt-4">
-            <button class="freeconsult btn me-3">Update</button>
-            <button class="freeconsult btn">Delete</button>
-          </div>
-          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 col-lg-3 mb-3">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title text-center mb-3">Sun</h5>
-          <p class="card-text">
-            <span class="hed">Start_From : </span> <span> 12:30 pm</span>
-          </p>
-          <p class="card-text">
-            <span class="hed">End_To : </span> <span> 3:30 pm</span>
-          </p>
-          <div class="btt mt-4">
-            <button class="freeconsult btn me-3">Update</button>
-            <button class="freeconsult btn">Delete</button>
-          </div>
-          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 col-lg-3 mb-3">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title text-center mb-3">Sun</h5>
-          <p class="card-text">
-            <span class="hed">Start_From : </span> <span> 12:30 pm</span>
-          </p>
-          <p class="card-text">
-            <span class="hed">End_To : </span> <span> 3:30 pm</span>
-          </p>
-          <div class="btt mt-4">
-            <button class="freeconsult btn me-3">Update</button>
-            <button class="freeconsult btn">Delete</button>
-          </div>
-          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 col-lg-3 mb-3">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title text-center mb-3">Sun</h5>
-          <p class="card-text">
-            <span class="hed">Start_From : </span> <span> 12:30 pm</span>
-          </p>
-          <p class="card-text">
-            <span class="hed">End_To : </span> <span> 3:30 pm</span>
-          </p>
-          <div class="btt mt-4">
-            <button class="freeconsult btn me-3">Update</button>
-            <button class="freeconsult btn">Delete</button>
-          </div>
-          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-        </div>
-      </div>
-    </div>
+
   </div>
   <div class="editDate" *ngIf="showForm">
 
@@ -165,11 +77,11 @@
               class="form-control"
               id="day"
               aria-describedby="daylHelp"
-              formControlName="start_from"
+              formControlName="start_hour"
               [ngStyle]="{
                 'border-color':
-                  dateForm.controls['start_from'].touched &&
-                  dateForm.controls['start_from'].invalid
+                  dateForm.controls['start_hour'].touched &&
+                  dateForm.controls['start_hour'].invalid
                     ? 'red'
                     : 'grey'
               }"
@@ -177,20 +89,20 @@
             <div
               class="text-danger"
               *ngIf="
-                dateForm.controls['start_from'].touched &&
-                dateForm.controls['start_from'].invalid
+                dateForm.controls['start_hour'].touched &&
+                dateForm.controls['start_hour'].invalid
               "
             >
               <small
-                *ngIf="dateForm.controls['start_from']?.errors?.['required']"
+                *ngIf="dateForm.controls['start_hour']?.errors?.['required']"
                 >day is a required field!</small
               >
               <small
-                *ngIf="dateForm.controls['start_from']?.errors?.['minlength']"
+                *ngIf="dateForm.controls['start_hour']?.errors?.['minlength']"
                 >Length Should Be More Than 3 Char!!!
               </small>
               <small
-                *ngIf="dateForm.controls['start_from']?.errors?.['maxlength']"
+                *ngIf="dateForm.controls['start_hour']?.errors?.['maxlength']"
                 >Length Should Be Less Than 10 Char!!!
               </small>
             </div>
@@ -202,11 +114,11 @@
               class="form-control"
               id="day"
               aria-describedby="daylHelp"
-              formControlName="end_to"
+              formControlName="end_hour"
               [ngStyle]="{
                 'border-color':
-                  dateForm.controls['end_to'].touched &&
-                  dateForm.controls['end_to'].invalid
+                  dateForm.controls['end_hour'].touched &&
+                  dateForm.controls['end_hour'].invalid
                     ? 'red'
                     : 'grey'
               }"
@@ -214,17 +126,17 @@
             <div
               class="text-danger"
               *ngIf="
-                dateForm.controls['end_to'].touched &&
-                dateForm.controls['end_to'].invalid
+                dateForm.controls['end_hour'].touched &&
+                dateForm.controls['end_hour'].invalid
               "
             >
-              <small *ngIf="dateForm.controls['end_to']?.errors?.['required']"
+              <small *ngIf="dateForm.controls['end_hour']?.errors?.['required']"
                 >day is a required field!</small
               >
-              <small *ngIf="dateForm.controls['end_to']?.errors?.['minlength']"
+              <small *ngIf="dateForm.controls['end_hour']?.errors?.['minlength']"
                 >Length Should Be More Than 3 Char!!!
               </small>
-              <small *ngIf="dateForm.controls['end_to']?.errors?.['maxlength']"
+              <small *ngIf="dateForm.controls['end_hour']?.errors?.['maxlength']"
                 >Length Should Be Less Than 10 Char!!!
               </small>
             </div>

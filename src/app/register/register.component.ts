@@ -123,7 +123,7 @@ export class RegisterComponent {
     if (this.checkLawer) {
       this.clickSubmit = !this.clickSubmit;
       this.checkLawer = false;
-      formUserData.value.role = 'user';
+      formUserData.value.role = 'lawyer';
       // formUserData.value.IsActive = 'active';
       formUserData.value.image = this.UserImageName;
       // console.log('formUserData.value', formUserData.value);
@@ -137,11 +137,12 @@ export class RegisterComponent {
             let userPart = userPartList.find((ele: any) => {
               return ele.email == formUserData.value.email;
             });
-            // console.log('0000000', userPart);
-
+            console.log('0000000', userPart);
+            
             if (userPart) {
               // console.log('AAA-status-userPart-CHECK', userPart.id);
               this.userId = userPart.id;
+              console.log('this.userId = userPart.id', this.userId);
             } else {
               // console.log('Status-userPart-NOT-CHECK', userPart);
             }
@@ -178,11 +179,11 @@ export class RegisterComponent {
     formLawerData.value.idImage = this.LawerImageName;
     formLawerData.value.user_id = this.userId;
     let lawerWithID = { ...formLawerData.value };
-    console.log('lawerWithID------- ', lawerWithID);
+    console.log('new Object------- ', lawerWithID);
 
-    this._UsersService.registrLawerApi(lawerWithID).subscribe((data) => {
-      console.log('status---lawer_with-IDDD', data);
-    });
+    // this._UsersService.registrLawerApi(lawerWithID).subscribe((data) => {
+    //   console.log('status---lawer_with-IDDD', data);
+    // });
 
     this._Router.navigate(['/login']);
   }

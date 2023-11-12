@@ -28,13 +28,13 @@ export class lawergaurdGuard implements CanActivate {
       let parsed = localStorage.getItem('UserData');
       let userRole = JSON.parse(parsed ? parsed : '');
 
-      if (userRole?.user.role == 'lawyer' || userRole?.role == 'lawyer' ) {
+      if (userRole?.role == 'lawyer'  ) {
         // this.router.navigate(['/Reservation']);
         return true;
       }
     }
     // router.navigate(['/login']);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/notAuth']);
     return false;
   }
 }

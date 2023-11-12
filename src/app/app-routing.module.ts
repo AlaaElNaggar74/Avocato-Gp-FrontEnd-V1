@@ -37,6 +37,8 @@ import { AcityEditComponent } from './admin/test/acity-edit/acity-edit.component
 import { AspecializationComponent } from './admin/aspecialization/aspecialization.component';
 import { AspecializationsCreateComponent } from './admin/aspecialization/aspecializations-create/aspecializations-create.component';
 import { AspecializationsEditComponent } from './admin/aspecialization/aspecializations-edit/aspecializations-edit.component';
+import { NotautherComponent } from './notauther/notauther.component';
+import { AppointmentdetailsComponent } from './mydates/appointmentdetails/appointmentdetails.component';
 
 
 const routes: Routes = [
@@ -197,6 +199,22 @@ const routes: Routes = [
       path:'admin/specializations/edit/:id',
       component:AspecializationsEditComponent
     },
+    {
+    path: 'notAuth',
+    component: NotautherComponent,
+  },
+  {
+    path: 'appointmentDetails/:id',
+    component: AppointmentdetailsComponent,
+  },
+  {
+    path: 'notAuth',
+    component: NotautherComponent,
+  },
+  {
+    path: 'appointmentDetails/:id',
+    component: AppointmentdetailsComponent,
+  },
   {
     path: '**',
     component: ErrorPageComponent,

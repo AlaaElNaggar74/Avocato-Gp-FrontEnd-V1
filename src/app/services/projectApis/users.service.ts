@@ -64,11 +64,20 @@ export class UsersService {
   getUserApi(): Observable<any> {
     return this._HttpClient.get('http://127.0.0.1:8000/api/users');
   }
+  updateUserByIdApi(id: any, data: any): Observable<any> {
+    return this._HttpClient.put(`http://127.0.0.1:8000/api/users/${id}`, data);
+  }
   getLawerApi(): Observable<any> {
     return this._HttpClient.get('http://127.0.0.1:8000/api/lawyers');
   }
   getOneLawerApi(id: any): Observable<any> {
     return this._HttpClient.get(`http://127.0.0.1:8000/api/lawyers/${id}`);
+  }
+  updateOneLawerApi(id: any, data: any): Observable<any> {
+    return this._HttpClient.put(
+      `http://127.0.0.1:8000/api/lawyers/${id}`,
+      data
+    );
   }
   getCitiesApi(): Observable<any> {
     return this._HttpClient.get(`http://127.0.0.1:8000/api/cities`);
@@ -117,6 +126,7 @@ export class UsersService {
   getGroupsByIdApi(id: any): Observable<any> {
     return this._HttpClient.get(`http://127.0.0.1:8000/api/users/${id}`);
   }
+
   getAllReviews(id: any): Observable<any> {
     return this._HttpClient.get(`http://127.0.0.1:8000/api/reviews/${id}`);
   }
@@ -161,7 +171,113 @@ export class UsersService {
     );
   }
 
-  addComment(data: any) {
-    return this._HttpClient.post(`http://127.0.0.1:8000/api/addcomment`, data);
+  addComment(id: any, data: any) {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+    return this._HttpClient.post(
+      `http://127.0.0.1:8000/api/makeReview/${id}`,
+      data,
+      {
+        headers,
+      }
+    );
+  }
+
+  // addCommentReserv(id: any, app_id: any, data: any) {
+  //   const headers = new HttpHeaders().set(
+  //     'Authorization',
+  //     `Bearer ${this.token}`
+  //   );
+  //   return this._HttpClient.post(
+  //     `http://127.0.0.1:8000/api/makeReview/${id}/${app_id}`,
+  //     data,
+  //     {
+  //       headers,
+  //     }
+  //   );
+  // }
+  addDates(data: any) {
+    // const headers = new HttpHeaders().set(
+    //   'Authorization',
+    //   `Bearer ${this.token}`
+    // );
+    return this._HttpClient.post(
+      `http://127.0.0.1:8000/api/lawyerTimes`,
+      data
+      // ,
+      // {
+      //   headers,
+      // }
+    );
+  }
+  getOneLawerDates(id: any) {
+    // const headers = new HttpHeaders().set(
+    //   'Authorization',
+    //   `Bearer ${this.token}`
+    // );
+    return this._HttpClient.get(`http://127.0.0.1:8000/api/lawyerTimes/${id}`);
+  }
+  deleteOneLawerDates(id: any) {
+    // const headers = new HttpHeaders().set(
+    //   'Authorization',
+    //   `Bearer ${this.token}`
+    // );
+    return this._HttpClient.delete(
+      `http://127.0.0.1:8000/api/lawyerTimes/${id}`
+    );
+  }
+  updateOneLawerDates(id: any, data: any) {
+    // const headers = new HttpHeaders().set(
+    //   'Authorization',
+    //   `Bearer ${this.token}`
+    // );
+    return this._HttpClient.put(
+      `http://127.0.0.1:8000/api/lawyerTimes/${id}`,
+      data
+    );
+  }
+  getUserAppointment(id: any) {
+    return this._HttpClient.get(`http://127.0.0.1:8000/api/users/${id}`);
+  }
+  getLawyerAppointment(id: any) {
+    return this._HttpClient.get(`http://127.0.0.1:8000/api/users/${id}`);
+  }
+  deleteUserAppointment(id: any) {
+    return this._HttpClient.delete(
+      `http://127.0.0.1:8000/api/appointments/${id}`
+    );
+  }
+
+  addFollowers(data: any) {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+    return this._HttpClient.post(`http://127.0.0.1:8000/api/followers`, data, {
+      headers,
+    });
+  }
+  getAllFollowers(id: any) {
+    // const headers = new HttpHeaders().set(
+    //   'Authorization',
+    //   `Bearer ${this.token}`
+    // );
+    return this._HttpClient.get(`http://127.0.0.1:8000/api/followers/${id}`);
+  }
+  deleteOneFollowers(id: any) {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+    // console.log("this.token",this.token);
+    
+    return this._HttpClient.delete(
+      `http://127.0.0.1:8000/api/followers/${id}`,
+      {
+        headers,
+      }
+    );
   }
 }

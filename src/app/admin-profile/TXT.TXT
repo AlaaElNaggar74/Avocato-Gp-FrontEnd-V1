@@ -1,10 +1,7 @@
-
-
-
-.userProfile {
+.adminProfile {
   position: relative;
 }
-.headerUser {
+.headerAdmin {
   padding: 20px;
   /* border: 1px solid rgba(128, 128, 128, 0.39); */
 }
@@ -61,13 +58,13 @@
 .description {
   /* padding: 0 20px; */
 }
-.password {
+.title {
   position: relative;
   /* background-color: aqua; */
   width: fit-content;
 }
 
-.password .icon {
+.title .icon {
   padding: 14px;
   border-radius: 50%;
   background-color: white;
@@ -84,82 +81,13 @@
   color: #cc8800;
 }
 
-.name {
+.price {
   position: relative;
   /* background-color: aqua; */
   width: fit-content;
 }
 
-.name .icon {
-  padding: 14px;
-  border-radius: 50%;
-  background-color: white;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: -35px;
-  top: 0px;
-  cursor: pointer;
-  border: 1px solid rgba(128, 128, 128, 0.397);
-  color: #cc8800;
-}
-
-.mobile {
-  position: relative;
-  /* background-color: aqua; */
-  width: fit-content;
-}
-
-.mobile .icon {
-  padding: 14px;
-  border-radius: 50%;
-  background-color: white;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: -35px;
-  top: 0px;
-  cursor: pointer;
-  border: 1px solid rgba(128, 128, 128, 0.397);
-  color: #cc8800;
-}
-
-.email {
-  position: relative;
-  /* background-color: aqua; */
-  width: fit-content;
-}
-
-.email .icon {
-  padding: 14px;
-  border-radius: 50%;
-  background-color: white;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: -35px;
-  top: 0px;
-  cursor: pointer;
-  border: 1px solid rgba(128, 128, 128, 0.397);
-  color: #cc8800;
-}
-
-.address {
-  position: relative;
-  /* background-color: aqua; */
-  width: fit-content;
-}
-
-.address .icon {
+.price .icon {
   padding: 14px;
   border-radius: 50%;
   background-color: white;
@@ -197,7 +125,7 @@
   border: 1px solid rgba(128, 128, 128, 0.397);
   color: #cc8800;
 }
-.userProfile .divForm {
+.adminProfile .divForm {
   position: absolute;
   top: 0;
   left: 0;
@@ -209,16 +137,16 @@
   justify-content: center;
   align-items: center;
 }
-.userProfile .divForm form {
+.adminProfile .divForm form {
   padding: 30px;
   border-radius: 10px;
   background-color: rgb(253, 253, 253);
   position: relative;
 }
-.closBtn {
+.closBtn{
   position: absolute;
   top: -10px;
-  right: -10px;
+  right:-10px;
   /* padding: 10px; */
   width: 25px;
   height: 25px;
@@ -230,20 +158,11 @@
   cursor: pointer;
   font-weight: bold;
   border: 1px solid gray;
+
+
 }
 
 .btnSubmit {
-  margin-top: 5px;
-  border: none;
-  outline: none;
-  border: 2px solid #b8b8b8;
-  background-color: white;
-  color: black;
-  border-radius: 7px;
-  padding: 5px 15px;
-  transition: 0.3s;
-}
-.btnSubmit.active {
   margin-top: 5px;
   border: none;
   outline: none;
@@ -255,36 +174,10 @@
   transition: 0.3s;
 }
 
-.btnSubmit:hover.active {
+.btnSubmit:hover {
   border: 2px solid #878787;
   background-color: #cc8800;
   color: white;
 }
 
 /* .leftDe{} */
-.group {
-  padding-bottom: 30px;
-}
-.group button {
-  border-radius: 10px;
-  /* background-color: #f5f5f5; */
-  color: white;
-  /* border: 2px solid #f5f5f5; */
-  /* width: 250px; */
-  padding: 20px;
-  font-size: 1.5rem;
-  background-color: #cc8800f1;
-  margin-bottom: 10px;
-
-  text-align: start;
-}
-.myLawers{
-  border-top: 2px solid gray;
-}
-.onLawer{
-  padding: 20px;
-  border-radius: 5px;
-  background-color: #cc8800dc;
-  color: white;
-
-}
