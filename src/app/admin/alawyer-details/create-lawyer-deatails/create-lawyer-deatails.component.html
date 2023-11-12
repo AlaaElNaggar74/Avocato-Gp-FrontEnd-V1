@@ -118,39 +118,66 @@
                   </div>
                 </div>
               </div>
-
-              <!-- city -->
+              <!-- verifiy -->
               <div class="form-group row mb-3">
-                <label for="city" class="col-md-4 col-form-label text-md-end"
-                  >city</label
+                <label
+                  for="verified"
+                  class="col-md-4 col-form-label text-md-end"
+                  >verified</label
                 >
                 <div class="col-md-6">
                   <select
                     class="form-control"
-                    id="city"
-                    name="city"
+                    id="verified"
+                    name="verified"
                     required
-                    [(ngModel)]="data.city_id"
-                    formControlName="city"
+                    [(ngModel)]="data.verified"
+                    formControlName="verified"
                   >
-                    <option value="">Select city</option>
-                    <option
-                      *ngFor="let cities of cityData; let i = index"
-                      value="{{ cities.id }}"
-                    >
-                      {{ cities.name }}
-                    </option>
+                    <option value="0">NO</option>
+                    <option value="1">YES</option>
                   </select>
+                  <div
+                    *ngIf="
+                      lawyerForm.get('verified')?.errors != null &&
+                      lawyerForm.get('verified')?.touched
+                    "
+                    class="text-danger col-md-6 col-form-label"
+                  >
+                    <div
+                      *ngIf="lawyerForm.get('verified')?.errors?.['required']"
+                    >
+                      choose please .
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- city -->
+              <div class="form-group row mb-3">
+                <label for="city" class="col-md-4 col-form-label text-md-end"
+                  >Location</label
+                >
+
+                <div class="col-md-6">
+                  <input
+                    id="city"
+                    type="text"
+                    class="form-control"
+                    name="city"
+                    value=""
+                    required
+                    [(ngModel)]="data.city"
+                    formControlName="city"
+                  />
                   <div
                     *ngIf="
                       lawyerForm.get('city')?.errors != null &&
                       lawyerForm.get('city')?.touched
                     "
-                    class="text-danger col-md-6 col-form-label"
+                    class="text-danger"
                   >
-                    <div *ngIf="lawyerForm.get('city')?.errors?.['required']">
-                      city is required.
-                    </div>
+                    <div>Location is required.</div>
                   </div>
                 </div>
               </div>
@@ -165,6 +192,7 @@
                     class="form-control"
                     id="image"
                     name="image"
+                    (change)="onFileUserChange($event)"
                     required
                     [(ngModel)]="data.image"
                     formControlName="image"
@@ -185,8 +213,8 @@
               </div>
               <!-- phone  -->
               <div class="row mb-3">
-                <label for="phone" class="col-md-4 col-form-label text-md-end"
-                  >phone</label
+                <label for="about" class="col-md-4 col-form-label text-md-end"
+                  >about</label
                 >
 
                 <div class="col-md-6">
@@ -217,10 +245,7 @@
                     class="text-danger"
                   >
                     <div *ngIf="lawyerForm.get('about')?.errors?.['required']">
-                      phone is required.
-                    </div>
-                    <div *ngIf="lawyerForm.get('about')?.errors?.['pattern']">
-                      phone is invalid.
+                      about is required.
                     </div>
                   </div>
                 </div>

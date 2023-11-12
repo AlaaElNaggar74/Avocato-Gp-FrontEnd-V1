@@ -5,21 +5,32 @@ import { UserFunRoutingModule } from './user-fun-routing.module';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { AdminListUsersComponent } from './admin-list-users/admin-list-users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import {ThemePalette} from '@angular/material/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
+import { TestComponent } from '../../test/test.component';
+import { EditMainDataComponent } from './edit-user/edit-main-data/edit-main-data.component';
 
 @NgModule({
   declarations: [
     CreateUserComponent,
-    AdminListUsersComponent
+    AdminListUsersComponent,
+    EditUserComponent,
+    EditMainDataComponent,
+    
   ],
   imports: [
     CommonModule,
     UserFunRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatTabsModule
   ],
   exports:[
-    AdminListUsersComponent
-
+    AdminListUsersComponent,
+EditUserComponent
   ]
 })
 export class UserFunModule { }

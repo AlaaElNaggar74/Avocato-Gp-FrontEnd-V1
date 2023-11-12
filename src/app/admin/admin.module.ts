@@ -28,6 +28,11 @@ import { AspecializationsEditComponent } from './aspecialization/aspecialization
 import { AlawyerDetailsComponent } from './alawyer-details/alawyer-details.component';
 import { CreateLawyerDeatailsComponent } from './alawyer-details/create-lawyer-deatails/create-lawyer-deatails.component';
 // import { AdminComponent } from './admin.component';
+import {ThemePalette} from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 const adminRoutes: Routes = [
   {
@@ -75,11 +80,16 @@ const adminRoutes: Routes = [
     UserFunModule,
     ReactiveFormsModule,
     FormsModule,
+    MatTabsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule,
     RouterModule.forChild(adminRoutes)
   ],
   exports: [NavigationComponent,
     DashchartComponent,
-    RouterModule
+    RouterModule,
+    TestComponent
     
   ]
 })

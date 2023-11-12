@@ -3,6 +3,7 @@
 import { Component , inject} from '@angular/core';
 import { MyServiceService } from 'src/app/my-service.service';
 import { AdminListUsersComponent } from './user-fun/admin-list-users/admin-list-users.component';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-users',
@@ -10,9 +11,12 @@ import { AdminListUsersComponent } from './user-fun/admin-list-users/admin-list-
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent {
-  constructor(private MyService: MyServiceService) { }
+  constructor(private MyService: MyServiceService,private http: HttpClient) { }
 data!:any
+allData:any=''
 cityName:any
+filter:any
+spec:any
 ngOnInit() {
   this.getData();
   
@@ -24,24 +28,39 @@ ngOnInit() {
         this.data=response.data
         console.log(this.data);
         for (const obj of this.data) {
-         this.getCityData(obj.city_id) 
-         obj.cityName = this.cityName
-        console.log('mostafa',obj.cityName)
+         this.getCityData(obj.id) 
+        //  obj.cityName = this.cityName
+         obj.complete=1
+        console.log('mostafa',this.getCityData(obj.id))
+        if(obj.role=='lawyer'&& this.getCityData(obj.id)==0){
+obj.complete=0
         }
-        
+        }
+        console.log('mostassssfa',this.data)
       });
   }
   getCityData(id:any) {
-  
-    this.MyService.get(`cities/${id}`)
+  let allData =5
+    this.MyService.get(`showlawyer/${id}`)
       .subscribe(response => {
         
-       this.cityName=response.data[0].name;
-     
+       this.allData=1;
+       console.log('res',this.allData)
+     allData=1
         
-      });
+      },
+      (error: HttpErrorResponse) => {
+        allData=0
+        this.allData=0;
+        if (error.status === 404) {
+          console.log('Data not found',this.allData);
+        } else {
+          console.log('An error occurred:', error.error);
+        }
+      }
+      );
     
-     
+     return this.allData
   }
   postData() {
     let data ={
