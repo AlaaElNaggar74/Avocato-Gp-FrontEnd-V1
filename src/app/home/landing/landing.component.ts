@@ -11,9 +11,9 @@ export class LandingComponent {
   constructor(public _Router:Router , public location:Location){
     
     
-    this._Router.navigateByUrl('/login', { skipLocationChange: true }).then(() => {
-      this._Router.navigate([this.location.path()]);
-    });
+    // this._Router.navigateByUrl('/login', { skipLocationChange: true }).then(() => {
+    //   this._Router.navigate([this.location.path()]);
+    // });
   }
 
   image1 = '../../../assets/landing/landing1.jpg';

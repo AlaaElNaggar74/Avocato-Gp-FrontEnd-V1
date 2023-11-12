@@ -28,7 +28,7 @@ export class isloginGuard implements CanActivate {
       }
     }
     // router.navigate(['/login']);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/notAuth']);
     return false;
   }
 }

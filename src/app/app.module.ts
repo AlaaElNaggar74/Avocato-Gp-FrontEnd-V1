@@ -61,6 +61,8 @@ import { GroupComponent } from './group/group.component';
 import { MyroupComponent } from './myroup/myroup.component';
 import { DatesComponent } from './dates/dates.component';
 import { MydatesComponent } from './mydates/mydates.component';
+import { NotautherComponent } from './notauther/notauther.component';
+import { AppointmentdetailsComponent } from './mydates/appointmentdetails/appointmentdetails.component';
 
 
 register();
@@ -107,6 +109,8 @@ register();
     MyroupComponent,
     DatesComponent,
     MydatesComponent,
+    NotautherComponent,
+    AppointmentdetailsComponent,
   ],
   imports: [
     BrowserModule,

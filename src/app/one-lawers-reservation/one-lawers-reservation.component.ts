@@ -20,7 +20,7 @@ export class OneLawersReservationComponent implements OnInit {
   paypal_d_none = false;
   localStorValue: any;
   userInfo: any;
-  lawer:any;
+  lawer: any;
   uploadeImage = '../../assets/imageDataBase/';
 
   @ViewChild('paymentRef', { static: true }) paymentRef!: ElementRef;
@@ -38,7 +38,7 @@ export class OneLawersReservationComponent implements OnInit {
     this.lawerto = _ActivatedRoute.snapshot.paramMap.get('end_hour');
     _UsersService.getOneLawerApi(this.lawerId).subscribe((data) => {
       this.oneLawerReserv = data.data;
-      // console.log(data);
+      console.log("this.oneLawerReserv",this.oneLawerReserv);
     });
 
     if (localStorage.getItem('UserData')) {
@@ -52,14 +52,13 @@ export class OneLawersReservationComponent implements OnInit {
     //   this.lawer = data.data;
     //   console.log(this.lawer);
     // });
-  
   }
 
   reservationForm: FormGroup = new FormGroup({
     client_name: new FormControl(null, [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(10),
+      Validators.maxLength(30),
     ]),
     client_email: new FormControl(null, [
       Validators.required,
@@ -90,11 +89,28 @@ export class OneLawersReservationComponent implements OnInit {
     //     console.log('status', data);
     //   });
 
-    this._UsersService.createAppontment(formUserData.value).subscribe((res) => {
-      console.log('createAppontment', res);
-      this._Router.navigate(['/home']);
-    });
-    console.log('----', formUserData.value);
+    this._UsersService
+      .createAppontment(formUserData.value)
+      .subscribe((res: any) => {
+        console.log('createAppontment', res);
+        console.log('this.lawerId', this.lawerId);
+        console.log('createAppontment', res);
+        let reserve_id = res.data.id;
+        // let obj = {
+        //   comment: 'xcv vvbf fdds ssaas dff fff f f',
+        //   rate: '5',
+        //   asdf: 'fghhh',
+        // };
+        // if (res.data) {
+        //     this._UsersService.addCommentReserv(this.lawerId,reserve_id).subscribe((res)=>{
+
+        // });
+
+        // }
+
+        this._Router.navigate(['/home']);
+      });
+    // console.log('----', formUserData.value);
     // this._Router.navigate(['/login']);
   }
 
@@ -128,28 +144,33 @@ export class OneLawersReservationComponent implements OnInit {
           // this.reservationForm.value.userID = this.dateId;
           // this.reservationForm.value.dateFrom = this.lawerfrom;
           // this.reservationForm.value.dateTo = this.lawerto;
-          
+
           // this._AllLawerService
           //   .reservationMethod(this.reservationForm.value)
           //   .subscribe((data) => {
-            //     console.log('status', data);
-            //     // this._Router.navigate(['/home']);
-            //   });
-            this.reservationForm.value.lawyer_time_id = this.dateId;
-            this.reservationForm.value.user_id = this.userInfo.id;
-            this.reservationForm.value.order_id = data.orderID;
-            // formUserData.value.start_hour = this.lawerfrom;
-            // formUserData.value.end_hour = this.lawerto;
-        
-            // this._AllLawerService
-            //   .reservationMethod(formUserData.value)
-            //   .subscribe((data) => {
-            //     console.log('status', data);
-            //   });
-        
-            this._UsersService.createAppontment(this.reservationForm.value).subscribe((res) => {
+          //     console.log('status', data);
+          //     // this._Router.navigate(['/home']);
+          //   });
+          this.reservationForm.value.lawyer_time_id = this.dateId;
+          this.reservationForm.value.user_id = this.userInfo.id;
+          // this.reservationForm.value.order_id = data.orderID;
+          this.reservationForm.value.payment_method = "visa";
+
+              console.log('createAppontment', this.reservationForm.value);
+          // formUserData.value.start_hour = this.lawerfrom;
+          // formUserData.value.end_hour = this.lawerto;
+
+          // this._AllLawerService
+          //   .reservationMethod(formUserData.value)
+          //   .subscribe((data) => {
+          //     console.log('status', data);
+          //   });
+
+          this._UsersService
+            .createAppontment(this.reservationForm.value)
+            .subscribe((res) => {
               console.log('createAppontment', res);
-              this._Router.navigate(['/home']);
+              // this._Router.navigate(['/home']);
             });
         },
         onError: (error: any) => {

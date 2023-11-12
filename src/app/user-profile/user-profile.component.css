@@ -285,3 +285,12 @@
   color: white;
 
 }
+
+.freeconsult {
+  border: 2px solid #cc8800 !important;
+}
+.freeconsult:hover {
+  border: 2px solid black;
+  background-color: #cc8800;
+  color: white;
+}

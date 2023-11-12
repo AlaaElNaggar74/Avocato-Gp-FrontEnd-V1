@@ -16,6 +16,7 @@
               class="form-control"
               id="day"
               aria-describedby="daylHelp"
+              placeholder="Ex: sun , mon"
               formControlName="day"
               [ngStyle]="{
                 'border-color':
@@ -50,11 +51,12 @@
               class="form-control"
               id="day"
               aria-describedby="daylHelp"
-              formControlName="start_from"
+              formControlName="start_hour"
+              placeholder="EX: 12:30"
               [ngStyle]="{
                 'border-color':
-                  dateForm.controls['start_from'].touched &&
-                  dateForm.controls['start_from'].invalid
+                  dateForm.controls['start_hour'].touched &&
+                  dateForm.controls['start_hour'].invalid
                     ? 'red'
                     : 'grey'
               }"
@@ -62,14 +64,14 @@
             <div
               class="text-danger"
               *ngIf="
-                dateForm.controls['start_from'].touched &&
-                dateForm.controls['start_from'].invalid
+                dateForm.controls['start_hour'].touched &&
+                dateForm.controls['start_hour'].invalid
               "
             >
-              <small *ngIf="dateForm.controls['start_from']?.errors?.['required']"
+              <small *ngIf="dateForm.controls['start_hour']?.errors?.['required']"
                 >day is a required field!</small
               >
-              <small *ngIf="dateForm.controls['start_from']?.errors?.['minlength']"
+              <small *ngIf="dateForm.controls['start_hour']?.errors?.['minlength']"
                 >Length Should Be More Than 3 Char!!!
               </small>
               <small *ngIf="dateForm.controls['start_from']?.errors?.['maxlength']"
@@ -84,11 +86,12 @@
               class="form-control"
               id="day"
               aria-describedby="daylHelp"
-              formControlName="end_to"
+              formControlName="end_hour"
+              placeholder="EX: 3:30"
               [ngStyle]="{
                 'border-color':
-                  dateForm.controls['end_to'].touched &&
-                  dateForm.controls['end_to'].invalid
+                  dateForm.controls['end_hour'].touched &&
+                  dateForm.controls['end_hour'].invalid
                     ? 'red'
                     : 'grey'
               }"
@@ -96,17 +99,17 @@
             <div
               class="text-danger"
               *ngIf="
-                dateForm.controls['end_to'].touched &&
-                dateForm.controls['end_to'].invalid
+                dateForm.controls['end_hour'].touched &&
+                dateForm.controls['end_hour'].invalid
               "
             >
-              <small *ngIf="dateForm.controls['end_to']?.errors?.['required']"
+              <small *ngIf="dateForm.controls['end_hour']?.errors?.['required']"
                 >day is a required field!</small
               >
-              <small *ngIf="dateForm.controls['end_to']?.errors?.['minlength']"
+              <small *ngIf="dateForm.controls['end_hour']?.errors?.['minlength']"
                 >Length Should Be More Than 3 Char!!!
               </small>
-              <small *ngIf="dateForm.controls['end_to']?.errors?.['maxlength']"
+              <small *ngIf="dateForm.controls['end_hour']?.errors?.['maxlength']"
                 >Length Should Be Less Than 10 Char!!!
               </small>
             </div>

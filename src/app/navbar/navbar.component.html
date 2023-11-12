@@ -100,7 +100,7 @@
             >Contact</a
           >
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf=" userInfo?.role == 'lawyer'">
           <a class="nav-link" routerLink="dates" routerLinkActive="active"
             >Dates</a
           >
@@ -115,10 +115,10 @@
             Profile
           </a>
           <ul class="dropdown-menu">
-            <li >
+            <li *ngIf=" userInfo?.role == 'lawyer'">
               <a class="dropdown-item" routerLink="mydates">My Dates</a>
             </li>
-            <li *ngIf="userInfo?.user?.role == 'lawyer' || userInfo?.role == 'lawyer'">
+            <li *ngIf=" userInfo?.role == 'lawyer'">
               <a class="dropdown-item" routerLink="adminProfile">Setting</a>
             </li>
             <li *ngIf="userInfo?.role == 'user'">

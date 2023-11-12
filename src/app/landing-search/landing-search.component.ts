@@ -65,7 +65,7 @@ export class LandingSearchComponent {
 
         console.log('valueSearch', valueSearch);
         localStorage.setItem('searchData', JSON.stringify(valueSearch));
-
+  
         this._SearchService.searchData.next(valueSearch ? valueSearch : []);
         this._Router.navigate(['/lawersTest']);
       });

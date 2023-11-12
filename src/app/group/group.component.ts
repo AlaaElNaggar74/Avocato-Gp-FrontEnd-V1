@@ -74,28 +74,24 @@ export class GroupComponent {
     //   console.log('ssssssss', this.groupsUpdate.value);
     //   this.groupList = this.groupsUpdate.value;
     // });
-      _UsersService.getAllGroupsApi().subscribe((res) => {
+    _UsersService.getAllGroupsApi().subscribe((res) => {
       // console.log('res.data-----X----', res.data);
 
       this.arrOfObj = res.data;
 
       for (const iterator of this.arrOfObj) {
         // console.log("this.userId",this.userId);
-        
-       for (const user of iterator.users) {
-        if (user.id == this.userId) {
-          iterator.joined=true;
-          // console.log("hello",user.id);
-          
-          
+
+        for (const user of iterator.users) {
+          if (user.id == this.userId) {
+            iterator.joined = true;
+            // console.log("hello",user.id);
+          }
         }
-       }
-    
-        
       }
-      console.log("this.arrOfObj",this.arrOfObj);
-      console.log("this.groupList",this.groupList);
-      
+      console.log('this.arrOfObj', this.arrOfObj);
+      console.log('this.groupList', this.groupList);
+
       // let allBoll = all.bool;
       // console.log('allall', this.arrOfObj);
       // this.groupsUpdate.next(all);
@@ -155,7 +151,6 @@ export class GroupComponent {
 
   viewPostUser() {
     // this._UsersService.getUserApi().subscribe((res)=>{
-
     // console.log('IIIDDDD');
     //   console.log("res.data",res.data);
     //   this.usersList=res.data;
@@ -168,10 +163,9 @@ export class GroupComponent {
     // let obj={}
 
     let isjoin = 1;
-    let obj={
-      "isjoin":1
-    }
-
+    let obj = {
+      isjoin: 1,
+    };
 
     // this.groupsUpdate.next(all)
 

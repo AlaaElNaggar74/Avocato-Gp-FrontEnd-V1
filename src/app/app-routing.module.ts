@@ -31,6 +31,8 @@ import { lawergaurdGuard } from './services/guard/lawergaurd.guard';
 import { isloginGuard } from './services/guard/islogin.guard';
 import { DatesComponent } from './dates/dates.component';
 import { MydatesComponent } from './mydates/mydates.component';
+import { NotautherComponent } from './notauther/notauther.component';
+import { AppointmentdetailsComponent } from './mydates/appointmentdetails/appointmentdetails.component';
 
 const routes: Routes = [
   {
@@ -163,6 +165,14 @@ const routes: Routes = [
     path: 'alllawer/:city/:specializ/:name',
     component: LawersTestComponent,
     canActivate: [authgardGuard],
+  },
+  {
+    path: 'notAuth',
+    component: NotautherComponent,
+  },
+  {
+    path: 'appointmentDetails/:id',
+    component: AppointmentdetailsComponent,
   },
   {
     path: '**',
