@@ -121,6 +121,9 @@
             <li *ngIf=" userInfo?.role == 'lawyer'">
               <a class="dropdown-item" routerLink="adminProfile">Setting</a>
             </li>
+            <li *ngIf=" userInfo?.role == 'user'">
+              <a class="dropdown-item" routerLink="notification">Notification</a>
+            </li>
             <li *ngIf="userInfo?.role == 'user'">
               <a class="dropdown-item" routerLink="userProfile">Setting</a>
             </li>

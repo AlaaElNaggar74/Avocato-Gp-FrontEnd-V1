@@ -165,6 +165,8 @@ export class RegisterComponent {
       this._UsersService.registrUserApi(formUserData.value).subscribe(
         (data) => {
           console.log('ASDASSDDD', data);
+          this._Router.navigate(['/login']);
+
         },
         (error) => {
           // this._ToastrService.warning('Error In Login Please Try Again !!');

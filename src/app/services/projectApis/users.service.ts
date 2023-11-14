@@ -280,4 +280,18 @@ export class UsersService {
       }
     );
   }
+  getNotification() {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+    // console.log("this.token",this.token);
+    
+    return this._HttpClient.get(
+      `http://127.0.0.1:8000/api/notifications`,
+      {
+        headers,
+      }
+    );
+  }
 }

@@ -400,7 +400,7 @@
               formControlName="specialization_id"
               (change)="getSpecialize($event)"
             >
-              <option value="all" selected>Special</option>
+              <option value="" selected>Special</option>
               <ng-container *ngFor="let special of Specializes">
                 <option [value]="special.id" id="special.id">{{ special.name }}</option>
               </ng-container>
@@ -497,7 +497,7 @@
               id="lawerspan"
               formControlName="span"
               name="span"
-              placeholder="ex : 1:00 or 4:15"
+              placeholder="ex : 1 or 2 or 3"
               aria-describedby="lawerspanHelp"
               [ngStyle]="{
                 'border-color':

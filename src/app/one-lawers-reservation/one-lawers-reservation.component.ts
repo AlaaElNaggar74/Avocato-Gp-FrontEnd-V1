@@ -36,6 +36,8 @@ export class OneLawersReservationComponent implements OnInit {
     this.lawerday = _ActivatedRoute.snapshot.paramMap.get('day');
     this.lawerfrom = _ActivatedRoute.snapshot.paramMap.get('start_hour');
     this.lawerto = _ActivatedRoute.snapshot.paramMap.get('end_hour');
+
+
     _UsersService.getOneLawerApi(this.lawerId).subscribe((data) => {
       this.oneLawerReserv = data.data;
       console.log("this.oneLawerReserv",this.oneLawerReserv);
@@ -48,6 +50,8 @@ export class OneLawersReservationComponent implements OnInit {
 
       // console.log('this.isLogin', this._AuthService.isLogin);
     }
+
+    
     // _UsersService.getOneLawerApi(this.lawerId).subscribe((data) => {
     //   this.lawer = data.data;
     //   console.log(this.lawer);
@@ -80,6 +84,7 @@ export class OneLawersReservationComponent implements OnInit {
     // formUserData.value.user_id = this.lawerId;
     formUserData.value.lawyer_time_id = this.dateId;
     formUserData.value.user_id = this.userInfo.id;
+    formUserData.value.payment_method = "cash";
     // formUserData.value.start_hour = this.lawerfrom;
     // formUserData.value.end_hour = this.lawerto;
 
@@ -89,6 +94,8 @@ export class OneLawersReservationComponent implements OnInit {
     //     console.log('status', data);
     //   });
 
+    console.log("formUserData.value",formUserData.value);
+    
     this._UsersService
       .createAppontment(formUserData.value)
       .subscribe((res: any) => {
@@ -130,7 +137,7 @@ export class OneLawersReservationComponent implements OnInit {
             purchase_units: [
               {
                 amount: {
-                  value: this.amount,
+                  value: this.oneLawerReserv.price,
                   currency_code: 'USD',
                 },
               },
@@ -171,6 +178,8 @@ export class OneLawersReservationComponent implements OnInit {
             .subscribe((res) => {
               console.log('createAppontment', res);
               // this._Router.navigate(['/home']);
+              this._Router.navigate(['/home']);
+
             });
         },
         onError: (error: any) => {

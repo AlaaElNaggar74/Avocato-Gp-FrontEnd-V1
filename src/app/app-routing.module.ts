@@ -33,6 +33,8 @@ import { DatesComponent } from './dates/dates.component';
 import { MydatesComponent } from './mydates/mydates.component';
 import { NotautherComponent } from './notauther/notauther.component';
 import { AppointmentdetailsComponent } from './mydates/appointmentdetails/appointmentdetails.component';
+import { NotificationComponent } from './notification/notification.component';
+import { WaitforverifiyComponent } from './waitforverifiy/waitforverifiy.component';
 
 const routes: Routes = [
   {
@@ -154,6 +156,11 @@ const routes: Routes = [
     canActivate: [authgardGuard],
   },
   {
+    path: 'notification',
+    component: NotificationComponent,
+    canActivate: [authgardGuard],
+  },
+  {
     path: 'lawersTest/:id',
     component: OneLawersTestComponent,
   },
@@ -169,6 +176,10 @@ const routes: Routes = [
   {
     path: 'notAuth',
     component: NotautherComponent,
+  },
+  {
+    path: 'waitForVerifiy',
+    component: WaitforverifiyComponent,
   },
   {
     path: 'appointmentDetails/:id',

@@ -67,19 +67,19 @@ export class AdminProfileComponent {
           console.log('this.allFollowers', this.allFollowers);
         });
 
-      this.userInfo = this.localStorValue;
-      this.lawyer_id = this.userInfo.id;
-      this.name = this.userInfo.name;
-      this.email = this.userInfo.email;
-      this.image = this.userInfo.image;
-      this.phone = this.userInfo.phone;
-      this.password = this.userInfo.password;
-      this.city_id = this.userInfo.city_id;
+      // this.userInfo = this.localStorValue;
+      // this.lawyer_id = this.userInfo.id;
+      // this.name = this.userInfo.name;
+      // this.email = this.userInfo.email;
+      // this.image = this.userInfo.image;
+      // this.phone = this.userInfo.phone;
+      // this.password = this.userInfo.password;
+      // this.city_id = this.userInfo.city_id;
 
-      this.span = this.userInfo.city_id;
-      this.price = this.userInfo.city_id;
-      this.location = this.userInfo.city_id;
-      this.about = this.userInfo.city_id;
+      // this.span = this.userInfo.city_id;
+      // this.price = this.userInfo.city_id;
+      // this.location = this.userInfo.city_id;
+      // this.about = this.userInfo.city_id;
       // this.name=this.userInfo.name;
       this.userIdGroup = this.localStorValue.id;
 
@@ -272,6 +272,8 @@ export class AdminProfileComponent {
     //     this._Router.navigate([this.location.path()]);
     //   });
   }
+
+
   editLawerData(formdata: any) {
     if (formdata.value.span) {
       // formdata.value.span = this.userInfo.span;
@@ -316,7 +318,7 @@ export class AdminProfileComponent {
     console.log('this.userInfo', this.userInfo.id);
 
     this._UsersService
-      .updateOneLawerApi(this.lawyer_id, formdata.value)
+      .updateOneLawerApi(this.userInfo.id, formdata.value)
       .subscribe((res) => {
         console.log('resssssUpdate', res);
       });
