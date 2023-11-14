@@ -4,6 +4,7 @@ import { Component , inject} from '@angular/core';
 import { MyServiceService } from 'src/app/my-service.service';
 import { AdminListUsersComponent } from './user-fun/admin-list-users/admin-list-users.component';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -11,13 +12,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent {
-  constructor(private MyService: MyServiceService,private http: HttpClient) { }
+  constructor(private MyService: MyServiceService,private http: HttpClient,private router: Router) { }
 data!:any
 allData:any=''
-cityName:any
+lawyerData:any
 filter:any
 spec:any
 ngOnInit() {
+  this.getCityData();
   this.getData();
   
 }
@@ -26,26 +28,33 @@ ngOnInit() {
       .subscribe(response => {
         // Handle the response data here
         this.data=response.data
+        for (const userObj of this.data) {
+          let lawyerObject = this.lawyerData.find((obj:any) => obj.user.id == userObj.id);
+          if(lawyerObject&&lawyerObject.verified){
+            userObj.completed=true
+            userObj.verified=true
+          }
+          else if(!lawyerObject){
+            userObj.completed=false
+            userObj.verified=false
+          }
+          else if(lawyerObject&&!lawyerObject.verified){
+            userObj.completed=true
+            userObj.verified=false
+          }
+        }
+       
         console.log(this.data);
-        for (const obj of this.data) {
-         this.getCityData(obj.id) 
-        //  obj.cityName = this.cityName
-         obj.complete=1
-        console.log('mostafa',this.getCityData(obj.id))
-        if(obj.role=='lawyer'&& this.getCityData(obj.id)==0){
-obj.complete=0
-        }
-        }
-        console.log('mostassssfa',this.data)
       });
   }
-  getCityData(id:any) {
+  getCityData() {
   let allData =5
-    this.MyService.get(`showlawyer/${id}`)
+    this.MyService.get(`lawyers`)
       .subscribe(response => {
         
        this.allData=1;
-       console.log('res',this.allData)
+       console.log('res',response.data)
+       this.lawyerData=response.data
      allData=1
         
       },
@@ -84,6 +93,9 @@ obj.complete=0
         
         console.log(response);
       });
+  }
+  redirectToEdit(id:any){
+    this.router.navigate(['admin/users/edit', id]);
   }
 }
 

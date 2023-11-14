@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class CreateUserComponent {
   userForm!:FormGroup;
+  UserImageName :any;
   cityData!:any
   specData!:any
   specialization:any
@@ -66,6 +67,8 @@ this.getSpecData()
     //   this.router.navigate(['/target-component']);
     // }
     // else{
+      const formData=new FormData();
+      formData.append('idImage', this.UserImageName.name)
    this.postData()
   console.log(userForm)
   // console.log(this.data)
@@ -162,5 +165,15 @@ this.getSpecData()
         console.log('wrong in')
       }
  
+  }
+  onFileUserChange(event: any) {
+    if (event.target.files.length > 0) {
+      this.UserImageName = event.target.files[0];
+      this.data.image=event.target.files[0].name
+      // this.RegisterUserForm.patchValue({
+      //   fileSource: file.name
+      // });
+      // console.log( this.UserImageName)
+    }
   }
 }

@@ -39,7 +39,12 @@
                     "
                     class="text-danger"
                   >
-                    <div>Name is required.</div>
+                    <div *ngIf="specForm.get('name')?.errors?.['required']">
+                      Name is required.
+                    </div>
+                    <div *ngIf="specForm.get('name')?.errors?.['minlength']">
+                      Name is short.
+                    </div>
                   </div>
                 </div>
               </div>

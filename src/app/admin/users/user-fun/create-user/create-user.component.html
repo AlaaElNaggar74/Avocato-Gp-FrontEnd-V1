@@ -164,7 +164,7 @@
                     id="image"
                     name="image"
                     required
-                    [(ngModel)]="data.image"
+                    (change)="onFileUserChange($event)"
                     formControlName="image"
                   />
 

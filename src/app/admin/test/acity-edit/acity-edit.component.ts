@@ -14,6 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AcityEditComponent {
   cityId:string='';
   cityForm!:FormGroup;
+  cityData:any
   data: any = {
     name: '',}
   error:any={
@@ -23,6 +24,7 @@ export class AcityEditComponent {
     }
     ngOnInit(){
 this.cityId=this.activeRoute.snapshot.params['id']
+this.getData(this.cityId)
         this.cityForm=new FormGroup({
           'name':new FormControl(null,[Validators.required,Validators.minLength(4)]),
 })}
@@ -48,5 +50,12 @@ submitForm(cityForm:FormGroup){
       console.error('Errorr:', error);
     });
 }
-
+getData(id:any) {
+  this.MyService.get(`cities/${id}`)
+    .subscribe(response => {
+      // Handle the response data here
+      this.cityData=response.data[0].name
+      console.log('citydata',this.cityData);
+    });
+}
 }

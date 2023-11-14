@@ -34,7 +34,7 @@ export class AspecializationsCreateComponent {
         })}
 
 submitForm(specForm:FormGroup){
-  // console.log(specForm)
+  console.log(specForm)
 
   // this.data.image= this.UserImageName;
   const formData=new FormData();

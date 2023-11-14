@@ -88,7 +88,7 @@
                       </td>
 
                       <td>
-                        <a class="btn" href="#">
+                        <a class="btn" (click)="redirectToEdit(userData.id)">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -126,8 +126,31 @@
                           </button>
                         </form>
                       </td>
-                      <td *ngIf="userData.complete == 0">
-                        <p class="text-danger">incomplete</p>
+                      <td>
+                        <p
+                          *ngIf="
+                            !userData.completed && userData.role == 'lawyer';
+                            else elsecomplete
+                          "
+                          class="text-danger"
+                        >
+                          incomplete
+                        </p>
+                        <ng-template #elsecomplete>
+                          <p class="text-success">complete</p>
+                        </ng-template>
+                        <p
+                          *ngIf="
+                            !userData.verified && userData.role == 'lawyer';
+                            else elseverified
+                          "
+                          class="text-danger"
+                        >
+                          not verified
+                        </p>
+                        <ng-template #elseverified>
+                          <p class="text-success">verified</p>
+                        </ng-template>
                       </td>
                     </tr>
                   </ng-container>
