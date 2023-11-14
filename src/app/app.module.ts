@@ -63,6 +63,15 @@ import { DatesComponent } from './dates/dates.component';
 import { MydatesComponent } from './mydates/mydates.component';
 import { NotautherComponent } from './notauther/notauther.component';
 import { AppointmentdetailsComponent } from './mydates/appointmentdetails/appointmentdetails.component';
+import { ChatComponent } from './chat/chat.component';
+import { ChatBodyComponent } from './chat/chat-body/chat-body.component';
+import { ListUsersComponent } from './chat/list-users/list-users.component';
+import {AsyncPipe} from '@angular/common';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+
 
 
 register();
@@ -111,6 +120,9 @@ register();
     MydatesComponent,
     NotautherComponent,
     AppointmentdetailsComponent,
+    ChatComponent,
+    ChatBodyComponent,
+    ListUsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,7 +133,13 @@ register();
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    AsyncPipe,
   ],
   providers: [],
   bootstrap: [AppComponent],

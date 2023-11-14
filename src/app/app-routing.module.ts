@@ -33,6 +33,8 @@ import { DatesComponent } from './dates/dates.component';
 import { MydatesComponent } from './mydates/mydates.component';
 import { NotautherComponent } from './notauther/notauther.component';
 import { AppointmentdetailsComponent } from './mydates/appointmentdetails/appointmentdetails.component';
+import { ChatComponent } from './chat/chat.component';
+import { ChatBodyComponent } from './chat/chat-body/chat-body.component';
 
 const routes: Routes = [
   {
@@ -173,6 +175,10 @@ const routes: Routes = [
   {
     path: 'appointmentDetails/:id',
     component: AppointmentdetailsComponent,
+  },
+  {
+    path: 'chat',
+    component: ChatBodyComponent,
   },
   {
     path: '**',
