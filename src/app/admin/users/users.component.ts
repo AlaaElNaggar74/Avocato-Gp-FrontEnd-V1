@@ -99,7 +99,9 @@ ngOnInit() {
       });
   }
  
-      
+  viewUser(id:any){
+    this.router.navigate(['admin/users/view', id]);
+  }
   
   redirectToEdit(id:any){
     this.router.navigate(['admin/users/edit', id]);
