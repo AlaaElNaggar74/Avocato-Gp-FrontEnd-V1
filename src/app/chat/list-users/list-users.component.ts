@@ -1,6 +1,9 @@
 import { Component , ViewChild, ElementRef} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MyServiceService } from 'src/app/my-service.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -11,7 +14,11 @@ import {map, startWith} from 'rxjs/operators';
   styleUrls: ['./list-users.component.css']
 })
 export class ListUsersComponent {
-
+  data:any
+  constructor( private location: Location,private MyService: MyServiceService,private http: HttpClient,private router: Router) {
+    this.getData()
+   }
+ 
   // nameFilter = new FormControl('');
   // names: string[] = [];
   // filteredNames: string[] = [];
@@ -34,19 +41,54 @@ export class ListUsersComponent {
   //   );
   // }
   myControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three'];
+  options: string[] = [];
   filteredOptions!: Observable<string[]>;
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
+   
+  //   this.filteredOptions = this.myControl.valueChanges.pipe(
+  //     startWith(''),
+  //     map(value => this._filter(value || '')),
+  //   );
+  // }
+
+  // private _filter(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
+
+  //   return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+  getData() {
+    this.MyService.get('users')
+      .subscribe(response => {
+        // Handle the response data here
+        this.data=response.data
+        for (const userObj of this.data) {
+          this.options.push(userObj.name)
+        }
+       
+        console.log(this.options);
+      });
+      this.filteredOptions = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter(value || '')),
+      );
+    }
+  
+    private _filter(value: string): string[] {
+      const filterValue = value.toLowerCase();
+  
+      return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+  onOptionSelected(event: any): void {
+    // Access the selected value using event.option.value
+    const selectedOption = event.option.value;
+    // Call your logging function or perform any other action here
+    this.logSelectedOption(selectedOption);
+  }
 
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  logSelectedOption(selectedOption: string): void {
+    // Log the selected option to the console
+    console.log(`Selected option: ${selectedOption}`);
   }
 }

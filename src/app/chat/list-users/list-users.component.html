@@ -17,16 +17,21 @@
           <!-- </div> -->
           <form class="example-form">
             <mat-form-field class="example-full-width">
-              <mat-label>Number</mat-label>
+              <mat-label>Name</mat-label>
               <input
                 type="text"
-                placeholder="Pick one"
+                placeholder="name"
                 aria-label="Number"
                 matInput
                 [formControl]="myControl"
                 [matAutocomplete]="auto"
               />
-              <mat-autocomplete class="abso" #auto="matAutocomplete">
+
+              <mat-autocomplete
+                class="abso"
+                #auto="matAutocomplete"
+                (optionSelected)="onOptionSelected($event)"
+              >
                 <mat-option
                   *ngFor="let option of filteredOptions | async; track: option"
                   [value]="option"
@@ -42,22 +47,6 @@
       class="list-group-item list-group-item-action rounded-0"
       style="cursor: pointer"
     >
-      <div class="media">
-        <img
-          src="../../../assets/logo2.png"
-          alt="user"
-          width="50"
-          class="rounded-circle"
-        />
-        <div class="media-body ml-4">
-          <div class="d-flex align-items-center justify-content-between mb-1">
-            <h6 class="mb-0">User One</h6>
-            <small class="small font-weight-bold">22-3-2021</small>
-          </div>
-          <p class="font-italic mb-0 text-small">User@gmail.com</p>
-        </div>
-        <span class="right badge badge-danger">New</span>
-      </div>
     </a>
   </div>
 </div>

@@ -20,26 +20,30 @@
     <!-- Chat Box-->
     <div class="col-7 px-0 d-flex flex-column justify-content-between">
       <div class="p-3 chat-box-header bg-light">
-        <p class="h5 mb-0 py-1 ml-3 d-inline-block">Group Chat</p>
+        <p class="h5 mb-0 py-1 ml-3 d-inline-block">Chat</p>
       </div>
 
       <!-- Typing area -->
-      <form action="#" class="bg-light">
-        <div class="input-group d-flex">
-          <input
-            type="text"
-            placeholder="Type a message"
-            name="message"
-            aria-describedby="button-addon2"
-            class="form-control rounded-0 border-0 py-4 bg-light"
-          />
-          <div class="input-group-append">
-            <button id="button-addon2" type="submit" class="btn btn-link">
-              <i class="fa fa-paper-plane"></i>
-            </button>
+      <div class="d-flex flex-column justify-content-between">
+        <app-chat-body></app-chat-body>
+
+        <form action="#" class="bg-light">
+          <div class="input-group d-flex">
+            <input
+              type="text"
+              placeholder="Type a message"
+              name="message"
+              aria-describedby="button-addon2"
+              class="form-control rounded-0 border-0 py-4 bg-light"
+            />
+            <div class="input-group-append">
+              <button id="button-addon2" type="submit" class="btn btn-link">
+                <i class="fa fa-paper-plane"></i>
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </div>
