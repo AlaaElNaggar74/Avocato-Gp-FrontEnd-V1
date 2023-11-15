@@ -5,6 +5,8 @@ import { MyServiceService } from 'src/app/my-service.service';
 import { AdminListUsersComponent } from './user-fun/admin-list-users/admin-list-users.component';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-users',
@@ -12,7 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent {
-  constructor(private MyService: MyServiceService,private http: HttpClient,private router: Router) { }
+  constructor( private location: Location,private MyService: MyServiceService,private http: HttpClient,private router: Router) { }
 data!:any
 allData:any=''
 lawyerData:any
@@ -90,10 +92,15 @@ ngOnInit() {
   deleteData(id:any) {
     this.MyService.delete(`users/${id}`)
       .subscribe(response => {
-        
+        this.router.navigateByUrl('/admin', { skipLocationChange: true }).then(() => {
+          this.router.navigate([this.location.path()]);
+        });
         console.log(response);
       });
   }
+ 
+      
+  
   redirectToEdit(id:any){
     this.router.navigate(['admin/users/edit', id]);
   }
