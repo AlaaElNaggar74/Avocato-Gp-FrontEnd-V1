@@ -26,7 +26,6 @@
                     class="form-control"
                     name="name"
                     value=""
-                    required
                     [(ngModel)]="data.name"
                     formControlName="name"
                     autocomplete="name"
@@ -60,7 +59,6 @@
                     id="image"
                     name="image"
                     (change)="onFileUserChange($event)"
-                    required
                     [(ngModel)]="data.image"
                     formControlName="image"
                   />
@@ -91,7 +89,6 @@
                     class="form-control"
                     name="Description"
                     value=""
-                    required
                     [(ngModel)]="data.Description"
                     formControlName="Description"
                     autocomplete="Description"

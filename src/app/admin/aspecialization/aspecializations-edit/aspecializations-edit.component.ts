@@ -29,23 +29,34 @@ export class AspecializationsEditComponent {
     ngOnInit(){
       this.specId=this.activeRoute.snapshot.params['id']
         this.specForm=new FormGroup({
-          'name':new FormControl(null,[Validators.required,Validators.minLength(4)]),
-          'Description':new FormControl(null,[Validators.required,Validators.minLength(4)]),
-          'image':new FormControl(null,[Validators.required]),
+          'name':new FormControl(null,[Validators.minLength(4)]),
+          'Description':new FormControl(null,[Validators.minLength(4)]),
+          'image':new FormControl(null),
         })}
 
 submitForm(specForm:FormGroup){
   console.log(specForm)
 
   // this.data.image= this.UserImageName;
-  const formData=new FormData();
-  formData.append('name',this.data.name)
-  formData.append('description',this.data.Description)
-  formData.append('image',this.UserImageName,this.UserImageName.name)
-  console.log('Data before post',this.data)
-  console.log('FormData before post',formData)
-  this.postData(formData)
+  // const formData=new FormData();
+  // formData.append('name',this.data.name)
+  // formData.append('description',this.data.Description)
+  // formData.append('image',this.UserImageName,this.UserImageName.name)
+  // console.log('Data before post',this.data)
+  // console.log('FormData before post',formData)
+  // 
 
+  const filteredObject = Object.keys(this.data).reduce((acc, key) => {
+    const value = this.data[key];
+  
+    // Check for null or empty values
+    if (value !== null && value !== '') {
+      acc[key] = value;
+    }
+  
+    return acc;
+  }, {}as any)
+  this.postData(filteredObject)
  }
 
 

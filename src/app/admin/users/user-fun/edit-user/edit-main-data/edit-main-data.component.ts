@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import { TempLawyerDataService } from 'src/app/temp-lawyer-data.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { matchpassword } from '../../create-user/matchPassword.validator';
 @Component({
   selector: 'app-edit-main-data',
   templateUrl: './edit-main-data.component.html',

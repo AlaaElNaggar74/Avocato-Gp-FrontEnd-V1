@@ -12,6 +12,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { TestComponent } from '../../test/test.component';
 import { EditMainDataComponent } from './edit-user/edit-main-data/edit-main-data.component';
 import { LawyerEditDetailsComponent } from './edit-user/lawyer-edit-details/lawyer-edit-details.component';
+import { PassEditComponent } from './edit-user/pass-edit/pass-edit.component';
 @NgModule({
   declarations: [
     CreateUserComponent,
@@ -19,6 +20,7 @@ import { LawyerEditDetailsComponent } from './edit-user/lawyer-edit-details/lawy
     EditUserComponent,
     EditMainDataComponent,
     LawyerEditDetailsComponent,
+    PassEditComponent,
     
     
   ],
