@@ -4,7 +4,7 @@
       <div class="col-xl-12 col-md-12">
         <div class="card">
           <div class="card-header">
-            <h2 class="text-center">Create User</h2>
+            <h2 class="text-center">Edit {{ data.name }}</h2>
           </div>
 
           <div class="card-body">
@@ -82,11 +82,10 @@
                     name="role"
                     [(ngModel)]="data.role"
                     formControlName="role"
-                    #role
                   >
                     <option value="">Select Role</option>
-                    <option value="Admin">Admin</option>
-                    <option value="User">User</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
                     <option value="lawyer">lawyer</option>
                   </select>
 
@@ -206,7 +205,7 @@
                 </div>
               </div>
 
-              <div *ngIf="data.role != 'lawyer'" class="row mb-0">
+              <div class="row mb-0">
                 <div class="col-md-6 offset-md-4">
                   <button type="submit" class="btn btn-primary">
                     Edit User

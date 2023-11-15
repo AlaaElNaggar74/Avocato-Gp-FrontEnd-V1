@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,Output, EventEmitter  } from '@angular/core';
 import { MyServiceService } from 'src/app/my-service.service';
 import { FormGroup, NgForm, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit-main-data.component.css']
 })
 export class EditMainDataComponent {
+  @Output() sendNameToParent: EventEmitter<string> = new EventEmitter<string>();
   userForm!:FormGroup;
   userId:any
   cityData!:any
@@ -37,12 +38,15 @@ export class EditMainDataComponent {
   };
   constructor(private MyService: MyServiceService,private http: HttpClient ,
     private tempLawyerDataService:TempLawyerDataService,private router:Router,private activeRoute:ActivatedRoute ) { 
-
+    
   }
 ngOnInit(){
+  
   this.userId=this.activeRoute.snapshot.params['id']
 this.getData()
 this.getSpecData()
+this.getUserData(this.userId)
+this.sendName()
   this.userForm=new FormGroup({
     'name':new FormControl(null,[Validators.minLength(3)]),
     'email':new FormControl(null,[Validators.email]),
@@ -159,6 +163,13 @@ this.getSpecData()
         console.log(this.cityData);
       });
   }
+  getUserData(id:any) {
+    this.MyService.get(`users/${id}`)
+      .subscribe(response => {
+        // Handle the response data here
+        this.data=response.data
+      });
+  }
   nextStep(){
     if(this.userForm.valid){
       this.MyService.post('users',this.data)
@@ -192,5 +203,11 @@ this.getSpecData()
       // });
       // console.log( this.UserImageName)
     }
+  }
+ 
+  sendName() {
+    // Emit the name to the parent component
+    this.sendNameToParent.emit(this.data.role);
+    console.log('rolechild',this.data.role)
   }
 }
