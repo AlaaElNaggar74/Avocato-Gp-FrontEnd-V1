@@ -65,6 +65,7 @@ import { NotautherComponent } from './notauther/notauther.component';
 import { AppointmentdetailsComponent } from './mydates/appointmentdetails/appointmentdetails.component';
 import { NotificationComponent } from './notification/notification.component';
 import { WaitforverifiyComponent } from './waitforverifiy/waitforverifiy.component';
+import { AdminModule } from './admin/admin.module';
 
 
 register();
@@ -123,9 +124,11 @@ register();
     GoogleMapsModule,
     FormsModule,
     HttpClientModule,
+    AdminModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -35,6 +35,16 @@ import { NotautherComponent } from './notauther/notauther.component';
 import { AppointmentdetailsComponent } from './mydates/appointmentdetails/appointmentdetails.component';
 import { NotificationComponent } from './notification/notification.component';
 import { WaitforverifiyComponent } from './waitforverifiy/waitforverifiy.component';
+import { TestComponent } from './admin/test/test.component';
+import { AcityCreateComponent } from './admin/test/acity-create/acity-create.component';
+import { AcityEditComponent } from './admin/test/acity-edit/acity-edit.component';
+import { AspecializationComponent } from './admin/aspecialization/aspecialization.component';
+import { AspecializationsCreateComponent } from './admin/aspecialization/aspecializations-create/aspecializations-create.component';
+import { AspecializationsEditComponent } from './admin/aspecialization/aspecializations-edit/aspecializations-edit.component';
+import { CreateLawyerDeatailsComponent } from './admin/alawyer-details/create-lawyer-deatails/create-lawyer-deatails.component';
+import { EditUserComponent } from './admin/users/user-fun/edit-user/edit-user.component';
+import { AdminListUsersComponent } from './admin/users/user-fun/admin-list-users/admin-list-users.component';
+
 
 const routes: Routes = [
   {
@@ -105,6 +115,45 @@ const routes: Routes = [
     component: OneLawersReservationComponent,
     canActivate: [authgardGuard],
   },
+
+  { path: 'admin', loadChildren: () => import('./admin/admin.module')
+  .then(m => m.AdminModule) },
+  {
+    path:'admin/users/edit/:id',
+    component:EditUserComponent
+  },
+  {
+    path:'admin/users/view/:id',
+    component:AdminListUsersComponent
+  },
+  {
+      path:'admin/cities',
+      component:TestComponent
+    },
+    {
+      path:'admin/cities/create',
+      component:AcityCreateComponent
+    },
+    {
+      path:'admin/cities/edit/:id',
+      component:AcityEditComponent
+    },
+    {
+      path:'admin/specializations',
+      component:AspecializationComponent
+    },
+    {
+      path:'admin/specializations/create',
+      component:AspecializationsCreateComponent
+    },
+    {
+      path:'admin/specializations/edit/:id',
+      component:AspecializationsEditComponent
+    },
+    {
+      path:'admin/lawyerDetails/create/:id',
+      component:CreateLawyerDeatailsComponent
+    },
   // {
   //   path: 'oneLawerReservation/:id/:from/:to',
   //   component: OneLawersReservationComponent,
