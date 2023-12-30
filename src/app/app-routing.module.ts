@@ -44,7 +44,8 @@ import { AspecializationsEditComponent } from './admin/aspecialization/aspeciali
 import { CreateLawyerDeatailsComponent } from './admin/alawyer-details/create-lawyer-deatails/create-lawyer-deatails.component';
 import { EditUserComponent } from './admin/users/user-fun/edit-user/edit-user.component';
 import { AdminListUsersComponent } from './admin/users/user-fun/admin-list-users/admin-list-users.component';
-
+import { adminguardGuard } from './services/guard/adminguard.guard';
+import { CreateUserComponent } from './admin/users/user-fun/create-user/create-user.component';
 
 const routes: Routes = [
   {
@@ -116,44 +117,64 @@ const routes: Routes = [
     canActivate: [authgardGuard],
   },
 
-  { path: 'admin', loadChildren: () => import('./admin/admin.module')
-  .then(m => m.AdminModule) },
+  // DASHBOARD
+
   {
-    path:'admin/users/edit/:id',
-    component:EditUserComponent
+    path: 'admin',
+    canActivate: [adminguardGuard],
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
   },
   {
-    path:'admin/users/view/:id',
-    component:AdminListUsersComponent
+    path: 'admin/users/create',
+    component: CreateUserComponent,
+    canActivate: [adminguardGuard],
   },
   {
-      path:'admin/cities',
-      component:TestComponent
-    },
-    {
-      path:'admin/cities/create',
-      component:AcityCreateComponent
-    },
-    {
-      path:'admin/cities/edit/:id',
-      component:AcityEditComponent
-    },
-    {
-      path:'admin/specializations',
-      component:AspecializationComponent
-    },
-    {
-      path:'admin/specializations/create',
-      component:AspecializationsCreateComponent
-    },
-    {
-      path:'admin/specializations/edit/:id',
-      component:AspecializationsEditComponent
-    },
-    {
-      path:'admin/lawyerDetails/create/:id',
-      component:CreateLawyerDeatailsComponent
-    },
+    path: 'admin/users/edit/:id',
+    component: EditUserComponent,
+    canActivate: [adminguardGuard],
+  },
+  {
+    path: 'admin/users/view/:id',
+    component: AdminListUsersComponent,
+    canActivate: [adminguardGuard],
+  },
+  {
+    path: 'admin/cities',
+    component: TestComponent,
+    canActivate: [adminguardGuard],
+  },
+  {
+    path: 'admin/cities/create',
+    component: AcityCreateComponent,
+    canActivate: [adminguardGuard],
+  },
+  {
+    path: 'admin/cities/edit/:id',
+    component: AcityEditComponent,
+    canActivate: [adminguardGuard],
+  },
+  {
+    path: 'admin/specializations',
+    component: AspecializationComponent,
+    canActivate: [adminguardGuard],
+  },
+  {
+    path: 'admin/specializations/create',
+    component: AspecializationsCreateComponent,
+    canActivate: [adminguardGuard],
+  },
+  {
+    path: 'admin/specializations/edit/:id',
+    component: AspecializationsEditComponent,
+    canActivate: [adminguardGuard],
+  },
+  {
+    path: 'admin/lawyerDetails/create/:id',
+    component: CreateLawyerDeatailsComponent,
+    canActivate: [adminguardGuard],
+  },
   // {
   //   path: 'oneLawerReservation/:id/:from/:to',
   //   component: OneLawersReservationComponent,
@@ -167,7 +188,6 @@ const routes: Routes = [
     path: 'adminProfile',
     component: AdminProfileComponent,
     canActivate: [lawergaurdGuard],
-
   },
   {
     path: 'userProfile',

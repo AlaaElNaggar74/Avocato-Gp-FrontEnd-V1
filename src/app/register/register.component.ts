@@ -183,9 +183,9 @@ export class RegisterComponent {
     let lawerWithID = { ...formLawerData.value };
     console.log('new Object------- ', lawerWithID);
 
-    // this._UsersService.registrLawerApi(lawerWithID).subscribe((data) => {
-    //   console.log('status---lawer_with-IDDD', data);
-    // });
+    this._UsersService.registrLawerApi(lawerWithID).subscribe((data) => {
+      console.log('status---lawer_with-IDDD', data);
+    });
 
     this._Router.navigate(['/login']);
   }

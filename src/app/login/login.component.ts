@@ -121,9 +121,9 @@ export class LoginComponent {
             // this._AuthService.saveUserLoginData(this.userTotalData);
             // this._AuthService.saveUserLoginData(this.userTotalData);
             console.log('userTotalData-LAWER-TRUE', this.userTotalData);
-            if (lawerPart.verified !== null) {
-              this._Router.navigate(['/waitForVerifiy']);
-            } else {
+            // if (!lawerPart.verified) {
+              // this._Router.navigate(['/waitForVerifiy']);
+            // } else {
               this._UsersService.loginFun(formLoginData.value).subscribe(
                 (res) => {
                   // console.log('ressssssss', res.error.error);
@@ -149,7 +149,7 @@ export class LoginComponent {
                   );
                 }
               );
-            }
+            // }
             // this._Router.navigate(['/home']);
           } else {
             this._UsersService.loginFun(formLoginData.value).subscribe(

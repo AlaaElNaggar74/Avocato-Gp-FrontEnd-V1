@@ -70,42 +70,59 @@
             >landing Search</a
           >
         </li> -->
-        <li class="nav-item" >
+        <li class="nav-item">
           <a class="nav-link" routerLink="about" routerLinkActive="active"
             >About Us</a
           >
         </li>
-        <li class="nav-item" >
+        <li class="nav-item">
           <a class="nav-link" routerLink="practice" routerLinkActive="active"
             >Practice-Areas</a
           >
         </li>
-        <li class="nav-item" >
+        <li class="nav-item">
           <a class="nav-link" routerLink="faq" routerLinkActive="active">FAQ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="contact" routerLinkActive="active"
+            >Contact</a
+          >
         </li>
         <!-- <li class="nav-item" >
           <a class="nav-link" routerLink="mygroup" routerLinkActive="active">MY-GROUP</a>
         </li> -->
-        <li class="nav-item" *ngIf="isLogin">
+        <!-- <li class="nav-item" *ngIf="isLogin">
           <a class="nav-link" routerLink="allgroups" routerLinkActive="active" >GROUPS</a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" routerLink="blog" routerLinkActive="active"
             >Blog</a
           >
         </li> -->
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="contact" routerLinkActive="active"
-            >Contact</a
+        <li class="nav-item" *ngIf="userInfo?.role == 'admin'">
+          <a class="nav-link" routerLink="admin/cities" routerLinkActive="active"
+            >Cities</a
           >
         </li>
-        <li class="nav-item" *ngIf=" userInfo?.role == 'lawyer'">
+        <li class="nav-item" *ngIf="userInfo?.role == 'admin'">
+          <a class="nav-link" routerLink="admin/specializations" routerLinkActive="active"
+            >Specializations</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="userInfo?.role == 'admin'">
+          <a class="nav-link"  routerLink="admin/users" routerLinkActive="active"
+            >Users</a
+          >
+        </li>
+    
+
+        <li class="nav-item" *ngIf="userInfo?.role == 'lawyer'">
           <a class="nav-link" routerLink="dates" routerLinkActive="active"
             >Dates</a
           >
         </li>
-        <li class="nav-item dropdown" *ngIf="isLogin">
+        <li class="nav-item dropdown" *ngIf="userInfo?.role == 'lawyer' || userInfo?.role == 'user' " >
           <a
             class="nav-link dropdown-toggle"
             role="button"
@@ -115,14 +132,16 @@
             Profile
           </a>
           <ul class="dropdown-menu">
-            <li *ngIf=" userInfo?.role == 'lawyer'">
+            <li *ngIf="userInfo?.role == 'lawyer'">
               <a class="dropdown-item" routerLink="mydates">My Dates</a>
             </li>
-            <li *ngIf=" userInfo?.role == 'lawyer'">
+            <li *ngIf="userInfo?.role == 'lawyer'">
               <a class="dropdown-item" routerLink="adminProfile">Setting</a>
             </li>
-            <li *ngIf=" userInfo?.role == 'user'">
-              <a class="dropdown-item" routerLink="notification">Notification</a>
+            <li *ngIf="userInfo?.role == 'user'">
+              <a class="dropdown-item" routerLink="notification"
+                >Notification</a
+              >
             </li>
             <li *ngIf="userInfo?.role == 'user'">
               <a class="dropdown-item" routerLink="userProfile">Setting</a>
@@ -130,13 +149,19 @@
           </ul>
         </li>
         <li class="nav-item" *ngIf="!isLogin">
-          <a class="nav-link freeconsult" routerLink="login" routerLinkActive="active"
+          <a
+            class="nav-link freeconsult"
+            routerLink="login"
+            routerLinkActive="active"
             >Login</a
           >
         </li>
 
         <li class="nav-item" *ngIf="isLogin">
-          <a class="nav-link freeconsult" routerLink="login" routerLinkActive="active"
+          <a
+            class="nav-link freeconsult"
+            routerLink="login"
+            routerLinkActive="active"
             >LogOut</a
           >
         </li>
